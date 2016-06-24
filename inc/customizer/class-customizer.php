@@ -1,6 +1,6 @@
 <?php
 /**
- * Replace with Theme Name Customizer
+ * Mervis 2016 Customizer
  *
  * Contains methods for customizing the theme customization screen.
  *
@@ -30,7 +30,7 @@ class Class_Names_Customizer {
 		$wp_customize->add_panel( 'theme_options',
 			array(
 				'capability'  		=> 'edit_theme_options',
-				'description'  		=> esc_html__( 'Options for Replace with Theme Name', 'mervis-2016' ),
+				'description'  		=> esc_html__( 'Options for Mervis 2016', 'mervis-2016' ),
 				'priority'  		=> 10,
 				'theme_supports'  	=> '',
 				'title'  			=> esc_html__( 'Theme Options', 'mervis-2016' ),
@@ -42,7 +42,7 @@ class Class_Names_Customizer {
 		$wp_customize->add_panel( 'theme_options',
 			array(
 				'capability'  		=> 'edit_theme_options',
-				'description'  		=> esc_html__( 'Options for Replace with Theme Name', 'mervis-2016' ),
+				'description'  		=> esc_html__( 'Options for Mervis 2016', 'mervis-2016' ),
 				'priority'  		=> 10,
 				'theme_supports'  	=> '',
 				'title'  			=> esc_html__( 'Theme Options', 'mervis-2016' ),
