@@ -187,7 +187,7 @@ class Class_Names_Utilities {
 
 		if ( is_admin() ) { return $tag; }
 
-		$check = strpos( $handle, 'scriptname-' );
+		$check = strpos( $handle, 'mervis-2016-' );
 
 		if ( ! $check || 0 < $check ) { return $tag; }
 
@@ -286,7 +286,7 @@ class Class_Names_Utilities {
 	 */
 	public function enqueue_admin( $hook ) {
 
-		wp_enqueue_style( 'scriptname-admin', get_stylesheet_directory_uri() . '/admin.css' );
+		wp_enqueue_style( 'mervis-2016-admin', get_stylesheet_directory_uri() . '/admin.css' );
 
 		// if ( 'nav-menus.php' != $hook ) { return; } // Page-specific scripts & styles after this
 
@@ -297,7 +297,7 @@ class Class_Names_Utilities {
 	 */
 	public function enqueue_customizer() {
 
-		wp_enqueue_script( 'scriptname-customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.min.js', array( 'jquery', 'customize-preview' ), $this->version, true );
+		wp_enqueue_script( 'mervis-2016-customizer', get_stylesheet_directory_uri() . '/assets/js/customizer.min.js', array( 'jquery', 'customize-preview' ), $this->version, true );
 
 	} // enqueue_customizer()
 
@@ -312,7 +312,7 @@ class Class_Names_Utilities {
 	 */
 	public function enqueue_customizer_controls() {
 
-		wp_enqueue_script( 'scriptname-customizer-controls', get_stylesheet_directory_uri() . '/assets/js/customizer-controls.min.js', array( 'jquery', 'customize-controls' ), $this->version, true );
+		wp_enqueue_script( 'mervis-2016-customizer-controls', get_stylesheet_directory_uri() . '/assets/js/customizer-controls.min.js', array( 'jquery', 'customize-controls' ), $this->version, true );
 
 	} // enqueue_customizer_controls()
 
@@ -321,7 +321,7 @@ class Class_Names_Utilities {
 	 */
 	public function enqueue_login() {
 
-		wp_enqueue_style( 'scriptname-login', get_stylesheet_directory_uri() . '/login.css', 10, 2 );
+		wp_enqueue_style( 'mervis-2016-login', get_stylesheet_directory_uri() . '/login.css', 10, 2 );
 
 	} // enqueue_login()
 
@@ -330,15 +330,15 @@ class Class_Names_Utilities {
 	 */
 	public function enqueue_public() {
 
-		wp_enqueue_style( 'scriptname-style', get_stylesheet_uri() );
+		wp_enqueue_style( 'mervis-2016-style', get_stylesheet_uri() );
 
 		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), $this->version, true );
 
-		wp_enqueue_script( 'scriptname-navigation', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire' ), $this->version, true );
+		wp_enqueue_script( 'mervis-2016-navigation', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire' ), $this->version, true );
 
 		wp_enqueue_style( 'dashicons' );
 
-		// wp_enqueue_style( 'scriptname-fonts', $this->fonts_url(), array(), null );
+		// wp_enqueue_style( 'mervis-2016-fonts', $this->fonts_url(), array(), null );
 
 	} // enqueue_public()
 
