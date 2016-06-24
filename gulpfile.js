@@ -27,13 +27,13 @@
  * Project Configuration for gulp tasks.
  */
 // Project related.
-var project              = 'text-domain'; // Project Name.
+var project              = 'mervis-2016'; // Project Name.
 var projectURL           = 'themes.dev'; // Project URL. Could be something like localhost:8888.
 var productURL           = './'; // Theme/Plugin URL. Leave as is.
 
 // Translation related.
-var text_domain          = 'text-domain';
-var destFile             = 'text-domain.pot';
+var text_domain          = 'mervis-2016';
+var destFile             = 'mervis-2016.pot';
 var package              = 'DocBlock';
 var bugReport            = 'http://www.dccmarketing.com/contact';
 var lastTranslator       = 'Chris Wilcoxson <chrisw@dccmarketing.com>';

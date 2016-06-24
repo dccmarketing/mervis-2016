@@ -27,7 +27,7 @@
 		the_content();
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'text-domain' ),
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mervis-2016' ),
 			'after'  => '</div>',
 		) );
 
@@ -37,7 +37,7 @@
 
 	?><footer class="entry-footer"><?php
 
-		edit_post_link( esc_html__( 'Edit', 'text-domain' ), '<span class="edit-link">', '</span>' );
+		edit_post_link( esc_html__( 'Edit', 'mervis-2016' ), '<span class="edit-link">', '</span>' );
 
 	?></footer><!-- .entry-footer --><?php
 

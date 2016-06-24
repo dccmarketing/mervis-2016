@@ -9,12 +9,12 @@ wp_nonce_field( $this->theme_name, 'nonce_tcci_post_image' );
 
 $atts 					= array();
 $atts['class'] 			= 'widefat';
-$atts['description'] 	= esc_html__( '', 'text-domain' );
+$atts['description'] 	= esc_html__( '', 'mervis-2016' );
 $atts['id'] 			= 'post-image';
-$atts['label-remove'] 	= esc_html__( 'Remove image', 'text-domain' );
-$atts['label-upload'] 	= esc_html__( 'Choose/Upload image', 'text-domain' );
+$atts['label-remove'] 	= esc_html__( 'Remove image', 'mervis-2016' );
+$atts['label-upload'] 	= esc_html__( 'Choose/Upload image', 'mervis-2016' );
 $atts['name'] 			= 'post-image';
-$atts['placeholder'] 	= esc_html__( '', 'text-domain' );
+$atts['placeholder'] 	= esc_html__( '', 'mervis-2016' );
 $atts['type'] 			= 'url';
 $atts['value'] 			= '';
 

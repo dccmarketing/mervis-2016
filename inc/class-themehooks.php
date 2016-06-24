@@ -87,7 +87,7 @@ class Class_Names_Themehooks {
 					$args['after'] 			= '</span>';
 					$args['before'] 		= '<span rel="v:child" typeof="v:Breadcrumb">';
 					$args['delimiter'] 		= '&nbsp;>&nbsp;';
-					$args['home'] 			= esc_html_x( 'Home', 'breadcrumb', 'text-domain' );
+					$args['home'] 			= esc_html_x( 'Home', 'breadcrumb', 'mervis-2016' );
 					$args['wrap_after'] 	= '</span></span></nav>';
 					$args['wrap_before'] 	= '<nav class="woocommerce-breadcrumb" ' . ( is_single() ? 'itemprop="breadcrumb"' : '' ) . '><span xmlns:v="http://rdf.data-vocabulary.org/#"><span typeof="v:Breadcrumb">';
 
@@ -134,8 +134,8 @@ class Class_Names_Themehooks {
 	public function footer_content() {
 
 		?><div class="site-info">
-			<div class="copyright">&copy <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( get_admin_url(), 'text-domain' ); ?>"><?php echo get_bloginfo( 'name' ); ?></a></div>
-			<div class="credits"><?php printf( esc_html__( 'Site created by %1$s', 'text-domain' ), '<a href="https://dccmarketing.com/" rel="nofollow" target="_blank">DCC Marketing</a>' ); ?></div>
+			<div class="copyright">&copy <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( get_admin_url(), 'mervis-2016' ); ?>"><?php echo get_bloginfo( 'name' ); ?></a></div>
+			<div class="credits"><?php printf( esc_html__( 'Site created by %1$s', 'mervis-2016' ), '<a href="https://dccmarketing.com/" rel="nofollow" target="_blank">DCC Marketing</a>' ); ?></div>
 		</div><!-- .site-info --><?php
 
 	} // footer_content()
@@ -176,7 +176,7 @@ class Class_Names_Themehooks {
 		if ( ! is_404() ) { return; }
 
 		/* translators: %1$s: smiley */
-		$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'text-domain' ), convert_smilies( ':)' ) ) . '</p>';
+		$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'mervis-2016' ), convert_smilies( ':)' ) ) . '</p>';
 
 		the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
 
@@ -197,7 +197,7 @@ class Class_Names_Themehooks {
 		if ( ! function_names_categorized_blog() ) { return; }
 
 		?><div class="widget widget_categories">
-			<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'text-domain' ); ?></h2>
+			<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'mervis-2016' ); ?></h2>
 			<ul><?php
 
 				wp_list_categories( array(
@@ -283,7 +283,7 @@ class Class_Names_Themehooks {
 	public function menu_primary() {
 
 		?><nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'text-domain' ); ?></button><?php
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'mervis-2016' ); ?></button><?php
 
 				$menu_args['menu_id'] 			= 'primary-menu';
 				$menu_args['theme_location'] 	= 'primary';
@@ -416,7 +416,7 @@ class Class_Names_Themehooks {
 	 */
 	public function skip_link() {
 
-		?><a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'text-domain' ); ?></a><?php
+		?><a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'mervis-2016' ); ?></a><?php
 
 	} // skip_link()
 
@@ -505,7 +505,7 @@ class Class_Names_Themehooks {
 		?><header class="page-header">
 			<h1 class="page-title"><?php
 
-				printf( esc_html__( 'Search Results for: %s', 'text-domain' ), '<span>' . get_search_query() . '</span>' );
+				printf( esc_html__( 'Search Results for: %s', 'mervis-2016' ), '<span>' . get_search_query() . '</span>' );
 
 			?></h1>
 		</header><!-- .page-header --><?php

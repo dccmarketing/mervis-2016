@@ -46,7 +46,7 @@ class Class_Names_Utilities {
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'text-domain', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'mervis-2016', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -108,8 +108,8 @@ class Class_Names_Utilities {
 		 * Register Menus
 		 */
 		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary', 'text-domain' ),
-			'social' => esc_html__( 'Social', 'text-domain' )
+			'primary' => esc_html__( 'Primary', 'mervis-2016' ),
+			'social' => esc_html__( 'Social', 'mervis-2016' )
 		) );
 
 	} // setup()
@@ -158,8 +158,8 @@ class Class_Names_Utilities {
 	 */
 	public function add_mime_types( $post_mime_types ) {
 
-	    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'text-domain' ), esc_html__( 'Manage PDFs', 'text-domain' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-	    $post_mime_types['text/x-vcard'] 	= array( esc_html__( 'vCards', 'text-domain' ), esc_html__( 'Manage vCards', 'text-domain' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
+	    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'mervis-2016' ), esc_html__( 'Manage PDFs', 'mervis-2016' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+	    $post_mime_types['text/x-vcard'] 	= array( esc_html__( 'vCards', 'mervis-2016' ), esc_html__( 'Manage vCards', 'mervis-2016' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
 
 	    return $post_mime_types;
 
@@ -375,9 +375,9 @@ class Class_Names_Utilities {
 		global $post;
 
 		$return = sprintf( '... <a class="moretag read-more" href="%s">', esc_url( get_permalink( $post->ID ) ) );
-		$return .= esc_html__( 'Read more', 'text-domain' );
+		$return .= esc_html__( 'Read more', 'mervis-2016' );
 		$return .= '<span class="screen-reader-text">';
-		$return .= sprintf( esc_html__( ' about %s', 'text-domain' ), $post->post_title );
+		$return .= sprintf( esc_html__( ' about %s', 'mervis-2016' ), $post->post_title );
 		$return .= '</span></a>';
 
 		return $return;
@@ -393,7 +393,7 @@ class Class_Names_Utilities {
 
 		$return 	= '';
 		$families 	= '';
-		$fonts[] 	= array( 'font' => 'Open Sans', 'weights' => '400,700', 'translate' => esc_html_x( 'on', 'Open Sans font: on or off', 'text-domain' ) );
+		$fonts[] 	= array( 'font' => 'Open Sans', 'weights' => '400,700', 'translate' => esc_html_x( 'on', 'Open Sans font: on or off', 'mervis-2016' ) );
 
 		foreach ( $fonts as $font ) {
 
@@ -551,7 +551,7 @@ class Class_Names_Utilities {
 
 		} else {
 
-			echo '<span class="name-template">' . esc_html( 'Default', 'text-domain' ) . '</span>';
+			echo '<span class="name-template">' . esc_html( 'Default', 'mervis-2016' ) . '</span>';
 
 		}
 
@@ -566,7 +566,7 @@ class Class_Names_Utilities {
 	 */
 	public function page_template_column_head( $defaults ) {
 
-		$defaults['page_template'] = esc_html( 'Page Template', 'text-domain' );
+		$defaults['page_template'] = esc_html( 'Page Template', 'mervis-2016' );
 
 	    return $defaults;
 
@@ -651,9 +651,9 @@ class Class_Names_Utilities {
 	public function widgets_init() {
 
 		register_sidebar( array(
-			'name'          => esc_html__( 'Sidebar', 'text-domain' ),
+			'name'          => esc_html__( 'Sidebar', 'mervis-2016' ),
 			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'text-domain' ),
+			'description'   => esc_html__( 'Add widgets here.', 'mervis-2016' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',

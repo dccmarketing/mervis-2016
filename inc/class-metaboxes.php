@@ -64,7 +64,7 @@ class Class_Names_Metaboxes {
 
 		add_meta_box(
 			'metabox_name',
-			apply_filters( $this->theme_name . '-metabox-name-title', esc_html__( 'Metabox Name', 'text-domain' ) ),
+			apply_filters( $this->theme_name . '-metabox-name-title', esc_html__( 'Metabox Name', 'mervis-2016' ) ),
 			array( $this, 'metabox' ),
 			'posttypename',
 			'normal',
@@ -86,10 +86,10 @@ class Class_Names_Metaboxes {
 	 */
 	public function change_featured_image_labels( $labels ) {
 
-		$labels->featured_image 		= esc_html__( 'Featured Image', 'text-domain' );
-		$labels->set_featured_image 	= esc_html__( 'Set featured image', 'text-domain' );
-		$labels->remove_featured_image 	= esc_html__( 'Remove featured image', 'text-domain' );
-		$labels->use_featured_image 	= esc_html__( 'Use as featured image', 'text-domain' );
+		$labels->featured_image 		= esc_html__( 'Featured Image', 'mervis-2016' );
+		$labels->set_featured_image 	= esc_html__( 'Set featured image', 'mervis-2016' );
+		$labels->remove_featured_image 	= esc_html__( 'Remove featured image', 'mervis-2016' );
+		$labels->use_featured_image 	= esc_html__( 'Use as featured image', 'mervis-2016' );
 
 		return $labels;
 

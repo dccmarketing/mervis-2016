@@ -35,13 +35,13 @@ class Class_Names_Sanitize {
 
 		if ( empty( $type ) ) {
 
-			$check = new WP_Error( 'forgot_type', __( 'Specify the data type to sanitize.', 'text-domain' ) );
+			$check = new WP_Error( 'forgot_type', __( 'Specify the data type to sanitize.', 'mervis-2016' ) );
 
 		}
 
 		if ( is_wp_error( $check ) ) {
 
-			wp_die( $check->get_error_message(), __( 'Forgot data type', 'text-domain' ) );
+			wp_die( $check->get_error_message(), __( 'Forgot data type', 'mervis-2016' ) );
 
 		}
 

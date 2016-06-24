@@ -74,7 +74,7 @@ class Class_Names_Post_Format_Metaboxes {
 
 		add_meta_box(
 			'post_format_link',
-			apply_filters( $this->theme_name . '-post-format-link-title', esc_html__( 'Post Link', 'text-domain' ) ),
+			apply_filters( $this->theme_name . '-post-format-link-title', esc_html__( 'Post Link', 'mervis-2016' ) ),
 			array( $this, 'metabox' ),
 			'post',
 			'top',
@@ -86,7 +86,7 @@ class Class_Names_Post_Format_Metaboxes {
 
 		add_meta_box(
 			'post_format_video',
-			apply_filters( $this->theme_name . '-post-format-video-title', esc_html__( 'Post Video', 'text-domain' ) ),
+			apply_filters( $this->theme_name . '-post-format-video-title', esc_html__( 'Post Video', 'mervis-2016' ) ),
 			array( $this, 'metabox' ),
 			'post',
 			'top',
@@ -98,7 +98,7 @@ class Class_Names_Post_Format_Metaboxes {
 
 		add_meta_box(
 			'post_format_image',
-			apply_filters( $this->theme_name . '-post-format-image-title', esc_html__( 'Post Image', 'text-domain' ) ),
+			apply_filters( $this->theme_name . '-post-format-image-title', esc_html__( 'Post Image', 'mervis-2016' ) ),
 			array( $this, 'metabox' ),
 			'post',
 			'top',
@@ -110,7 +110,7 @@ class Class_Names_Post_Format_Metaboxes {
 
 		/*add_meta_box(
 			'metabox_name',
-			apply_filters( $this->theme_name . '-metabox-name-title', esc_html__( 'Metabox Name', 'text-domain' ) ),
+			apply_filters( $this->theme_name . '-metabox-name-title', esc_html__( 'Metabox Name', 'mervis-2016' ) ),
 			array( $this, 'metabox' ),
 			'posttypename',
 			'normal',

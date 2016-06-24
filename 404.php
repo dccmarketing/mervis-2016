@@ -13,9 +13,9 @@ get_header();
 		<main id="main" role="main">
 			<section class="error-404 not-found">
 				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'text-domain' ); ?></h1>
+					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'mervis-2016' ); ?></h1>
 				</header><!-- .page-header -->
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'text-domain' ); ?></p><?php
+				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'mervis-2016' ); ?></p><?php
 
 				/**
 				 * The function_names_404_content action hook

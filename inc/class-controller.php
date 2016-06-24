@@ -48,7 +48,7 @@ class Class_Names_Controller {
 	 */
 	public function __construct() {
 
-		$this->theme_name 	= 'text-domain';
+		$this->theme_name 	= 'mervis-2016';
 		$this->version 		= '1.0.0';
 
 		$this->load_dependencies();

@@ -9,10 +9,10 @@ wp_nonce_field( $this->theme_name, 'nonce_tcci_post_audio' );
 
 $atts 					= array();
 $atts['class'] 			= 'widefat';
-$atts['description'] 	= esc_html__( '', 'text-domain' );
+$atts['description'] 	= esc_html__( '', 'mervis-2016' );
 $atts['id'] 			= 'post-audio';
 $atts['name'] 			= 'post-audio';
-$atts['placeholder'] 	= esc_html__( '', 'text-domain' );
+$atts['placeholder'] 	= esc_html__( '', 'mervis-2016' );
 $atts['type'] 			= 'url';
 $atts['value'] 			= '';
 
