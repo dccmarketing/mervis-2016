@@ -4,7 +4,7 @@
  *
  * @link https://jetpack.com/
  *
- * @package  	DocBlock
+ * @package  	Mervis_2016
  */
 class Class_Names_Automattic {
 

@@ -2,7 +2,7 @@
 /**
  * The sidebar for the Sidrbar Content page template
  *
- * @package DocBlock
+ * @package Mervis_2016
  */
 
 if ( ! is_active_sidebar( 'sidebar-left' ) ) { return; }

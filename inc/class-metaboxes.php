@@ -5,7 +5,7 @@
  * @link 		http://slushman.com
  * @since 		1.0.0
  *
- * @package 	DocBlock
+ * @package 	Mervis_2016
  */
 class Class_Names_Metaboxes {
 

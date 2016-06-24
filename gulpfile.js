@@ -34,7 +34,7 @@ var productURL           = './'; // Theme/Plugin URL. Leave as is.
 // Translation related.
 var text_domain          = 'mervis-2016';
 var destFile             = 'mervis-2016.pot';
-var package              = 'DocBlock';
+var package              = 'Mervis_2016';
 var bugReport            = 'http://www.dccmarketing.com/contact';
 var lastTranslator       = 'Chris Wilcoxson <chrisw@dccmarketing.com>';
 var team                 = 'DCC Marketing <web@dccmarketing.com>';

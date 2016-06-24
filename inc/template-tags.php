@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package DocBlock
+ * @package Mervis_2016
  */
 
 if ( ! function_exists( 'function_names_posted_on' ) ) :

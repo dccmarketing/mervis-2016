@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package DocBlock
+ * @package Mervis_2016
  */
 
 get_header();

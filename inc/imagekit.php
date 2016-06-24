@@ -3,7 +3,7 @@
 /**
  * A class of methods related to images.
  *
- * @package DocBlock
+ * @package Mervis_2016
  * @author Slushman <chris@slushman.com>
  */
 

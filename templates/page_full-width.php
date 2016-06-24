@@ -4,7 +4,7 @@
  *
  * Description: A full-width template with no sidebar
  *
- * @package DocBlock
+ * @package Mervis_2016
  */
 
 get_header();
