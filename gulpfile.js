@@ -28,7 +28,7 @@
  */
 // Project related.
 var project              = 'mervis-2016'; // Project Name.
-var projectURL           = 'themes.dev'; // Project URL. Could be something like localhost:8888.
+var projectURL           = 'mervis.dev'; // Project URL. Could be something like localhost:8888.
 var productURL           = './'; // Theme/Plugin URL. Leave as is.
 
 // Translation related.
