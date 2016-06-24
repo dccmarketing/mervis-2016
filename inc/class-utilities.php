@@ -6,7 +6,7 @@
  * @package Mervis_2016
  * @author Slushman <chris@slushman.com>
  */
-class Class_Names_Utilities {
+class Mervis_2016_Utilities {
 
 	/**
 	 * The ID of this theme.

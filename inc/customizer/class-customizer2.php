@@ -8,7 +8,7 @@
  * @since 		1.0.0
  * @package  	Mervis_2016
  */
-class Class_Names_Customizer {
+class Mervis_2016_Customizer {
 
 	/**
 	 * Constructor
@@ -1139,7 +1139,7 @@ class Class_Names_Customizer {
 
 		return array_map( 'sanitize_text_field', $multi_values );
 
-		$sanitizer 	= new Class_Names_Sanitize();
+		$sanitizer 	= new Mervis_2016_Sanitize();
 		$new_value 	= $sanitizer->clean( $_POST[$meta[0]], $meta[1] );
 
 	} // sanitizer()

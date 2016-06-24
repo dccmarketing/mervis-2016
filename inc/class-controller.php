@@ -7,7 +7,7 @@
  *
  * @package 	Mervis_2016
  */
-class Class_Names_Controller {
+class Mervis_2016_Controller {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -15,7 +15,7 @@ class Class_Names_Controller {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Class_Names_Loader    $loader    Maintains and registers all hooks for the theme.
+	 * @var      Mervis_2016_Loader    $loader    Maintains and registers all hooks for the theme.
 	 */
 	protected $loader;
 
@@ -116,8 +116,8 @@ class Class_Names_Controller {
 		 */
 		require_once get_template_directory() . '/inc/customizer/class-customizer.php';
 
-		$this->loader 		= new Class_Names_Loader();
-		$this->sanitizer 	= new Class_Names_Sanitize();
+		$this->loader 		= new Mervis_2016_Loader();
+		$this->sanitizer 	= new Mervis_2016_Sanitize();
 
 	} // load_dependencies()
 
@@ -129,7 +129,7 @@ class Class_Names_Controller {
 	 */
 	private function define_automattic_hooks() {
 
-		$theme_automattic = new Class_Names_Automattic( $this->get_theme_name(), $this->get_version() );
+		$theme_automattic = new Mervis_2016_Automattic( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'after_setup_theme', $theme_automattic, 'jetpack_setup' );
 		$this->loader->action( 'after_setup_theme', $theme_automattic, 'wpcom_setup' );
@@ -144,7 +144,7 @@ class Class_Names_Controller {
 	 */
 	private function define_customizer_hooks() {
 
-		$theme_customizer = new Class_Names_Customizer( $this->get_theme_name(), $this->get_version() );
+		$theme_customizer = new Mervis_2016_Customizer( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'customize_register', 					$theme_customizer, 'register_panels' );
 		$this->loader->action( 'customize_register', 					$theme_customizer, 'register_sections' );
@@ -162,7 +162,7 @@ class Class_Names_Controller {
 	 */
 	private function define_menu_hooks() {
 
-		$theme_menu = new Class_Names_Menukit( $this->get_theme_name(), $this->get_version() );
+		$theme_menu = new Mervis_2016_Menukit( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->filter( 'walker_nav_menu_start_el', 			$theme_menu, 'menu_show_hide', 10, 4 );
 
@@ -185,7 +185,7 @@ class Class_Names_Controller {
 	 */
 	private function define_metabox_hooks() {
 
-		$theme_metaboxes = new Class_Names_Metaboxes( $this->get_theme_name(), $this->get_version() );
+		$theme_metaboxes = new Mervis_2016_Metaboxes( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'add_metaboxes' );
 		$this->loader->action( 'save_post', 					$theme_metaboxes, 'validate_meta', 10, 2 );
@@ -203,7 +203,7 @@ class Class_Names_Controller {
 	 */
 	private function define_post_format_hooks() {
 
-		$theme_formats = new Class_Names_Post_Format_Metaboxes( $this->get_theme_name(), $this->get_version() );
+		$theme_formats = new Mervis_2016_Post_Format_Metaboxes( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'add_meta_boxes', 							$theme_formats, 'add_metaboxes' );
 		$this->loader->action( 'save_post', 								$theme_formats, 'validate_meta', 10, 2 );
@@ -225,7 +225,7 @@ class Class_Names_Controller {
 	 */
 	private function define_theme_hooks() {
 
-		$theme_hooks = new Class_Names_Themehooks( $this->get_theme_name(), $this->get_version() );
+		$theme_hooks = new Mervis_2016_Themehooks( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'function_names_header_top', 			$theme_hooks, 'header_wrap_start', 10 );
 		$this->loader->action( 'function_names_header_top', 			$theme_hooks, 'site_branding_start', 15 );
@@ -265,7 +265,7 @@ class Class_Names_Controller {
 	 */
 	private function define_utility_hooks() {
 
-		$theme_utils = new Class_Names_Utilities( $this->get_theme_name(), $this->get_version() );
+		$theme_utils = new Mervis_2016_Utilities( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'after_setup_theme', 				$theme_utils, 'setup' );
 		$this->loader->action( 'after_setup_theme', 				$theme_utils, 'content_width', 0 );
@@ -321,7 +321,7 @@ class Class_Names_Controller {
 	 *
 	 * @since     1.0.0
 	 *
-	 * @return    Class_Names_Loader    Orchestrates the hooks of the theme.
+	 * @return    Mervis_2016_Loader    Orchestrates the hooks of the theme.
 	 */
 	public function get_loader() {
 

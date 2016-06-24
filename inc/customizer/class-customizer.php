@@ -8,7 +8,7 @@
  * @since 		1.0.0
  * @package  	Mervis_2016
  */
-class Class_Names_Customizer {
+class Mervis_2016_Customizer {
 
 	/**
 	 * Constructor

@@ -7,7 +7,7 @@
  *
  * @package 	Mervis_2016
  */
-class Class_Names_Loader {
+class Mervis_2016_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

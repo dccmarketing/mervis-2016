@@ -8,7 +8,7 @@
  * @package 	Mervis_2016
  */
 
-class Class_Names_Sanitize {
+class Mervis_2016_Sanitize {
 
 	/**
 	 * Constructor

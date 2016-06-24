@@ -7,7 +7,7 @@
  *
  * @package 	TCCi
  */
-class Class_Names_Post_Format_Metaboxes {
+class Mervis_2016_Post_Format_Metaboxes {
 
 	/**
 	 * The post meta data

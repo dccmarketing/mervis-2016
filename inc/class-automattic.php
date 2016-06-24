@@ -6,7 +6,7 @@
  *
  * @package  	Mervis_2016
  */
-class Class_Names_Automattic {
+class Mervis_2016_Automattic {
 
 	/**
 	 * Constructor
