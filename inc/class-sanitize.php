@@ -50,7 +50,7 @@ class Mervis_2016_Sanitize {
 		/**
 		 * Add additional santization before the default sanitization
 		 */
-		do_action( 'function_names_pre_sanitize', $sanitized );
+		do_action( 'mervis_2016_pre_sanitize', $sanitized );
 
 		switch ( $type ) {
 
@@ -83,7 +83,7 @@ class Mervis_2016_Sanitize {
 		/**
 		 * Add additional santization after the default .
 		 */
-		do_action( 'function_names_post_sanitize', $sanitized );
+		do_action( 'mervis_2016_post_sanitize', $sanitized );
 
 		return $sanitized;
 

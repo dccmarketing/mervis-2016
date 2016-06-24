@@ -18,9 +18,9 @@
 if ( post_password_required() ) { return; }
 
 /**
- * The function_names_comments_before action hook
+ * The mervis_2016_comments_before action hook
  */
-do_action( 'function_names_comments_before' );
+do_action( 'mervis_2016_comments_before' );
 
 ?><div id="comments" class="comments-area"><?php
 
@@ -85,6 +85,6 @@ do_action( 'function_names_comments_before' );
 ?></div><!-- #comments --><?php
 
 /**
- * The function_names_comments_after action hook
+ * The mervis_2016_comments_after action hook
  */
-do_action( 'function_names_comments_after' );
+do_action( 'mervis_2016_comments_after' );

@@ -57,7 +57,7 @@ class Mervis_2016_Automattic {
 /**
  * Custom render function for Infinite Scroll.
  */
-function function_names_infinite_scroll_render() {
+function mervis_2016_infinite_scroll_render() {
 
 	while ( have_posts() ) {
 
@@ -75,4 +75,4 @@ function function_names_infinite_scroll_render() {
 
 	}
 
-} // function_names_infinite_scroll_render()
+} // mervis_2016_infinite_scroll_render()

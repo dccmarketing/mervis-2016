@@ -10,27 +10,27 @@
 if ( ! is_active_sidebar( 'sidebar-1' ) ) { return; }
 
 /**
- * The function_names_sidebars_before action hook
+ * The mervis_2016_sidebars_before action hook
  */
-do_action( 'function_names_sidebars_before' );
+do_action( 'mervis_2016_sidebars_before' );
 
 ?><aside id="secondary" class="widget-area" role="complementary"><?php
 
 	/**
-	 * The function_names_sidebar_top action hook
+	 * The mervis_2016_sidebar_top action hook
 	 */
-	do_action( 'function_names_sidebar_top' );
+	do_action( 'mervis_2016_sidebar_top' );
 
 	dynamic_sidebar( 'sidebar-1' );
 
 	/**
-	 * The function_names_sidebar_bottom action hook
+	 * The mervis_2016_sidebar_bottom action hook
 	 */
-	do_action( 'function_names_sidebar_bottom' );
+	do_action( 'mervis_2016_sidebar_bottom' );
 
 ?></aside><!-- #secondary --><?php
 
 /**
- * The function_names_sidebars_after action hook
+ * The mervis_2016_sidebars_after action hook
  */
-do_action( 'function_names_sidebars_after' );
+do_action( 'mervis_2016_sidebars_after' );

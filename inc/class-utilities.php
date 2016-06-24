@@ -203,7 +203,7 @@ class Mervis_2016_Utilities {
 	public function background_images() {
 
 		$output = '';
-		$image 	= function_names_get_thumbnail_url( get_the_ID(), 'full' );
+		$image 	= mervis_2016_get_thumbnail_url( get_the_ID(), 'full' );
 
 		if ( ! $image ) {
 
@@ -226,14 +226,14 @@ class Mervis_2016_Utilities {
 	} // background_images()
 
 	/**
-	 * Flush out the transients used in function_names_categorized_blog.
+	 * Flush out the transients used in mervis_2016_categorized_blog.
 	 */
 	public function category_transient_flusher() {
 
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return; }
 
 		// Like, beat it. Dig?
-		delete_transient( 'function_names_categories' );
+		delete_transient( 'mervis_2016_categories' );
 
 	} // category_transient_flusher()
 
@@ -246,7 +246,7 @@ class Mervis_2016_Utilities {
 	 */
 	public function content_width() {
 
-		$GLOBALS['content_width'] = apply_filters( 'function_names_content_width', 640 );
+		$GLOBALS['content_width'] = apply_filters( 'mervis_2016_content_width', 640 );
 
 	} // content_width()
 

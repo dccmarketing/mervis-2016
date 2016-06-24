@@ -7,7 +7,7 @@
  *
  * @return 		object 									The attachment post object
  */
-function function_names_get_attachment_by_name( $post_name ) {
+function mervis_2016_get_attachment_by_name( $post_name ) {
 
 	if ( empty( $post_name ) ) { return 'Post name is empty'; }
 
@@ -25,7 +25,7 @@ function function_names_get_attachment_by_name( $post_name ) {
 
 	return FALSE;
 
-} // function_names_get_attachment_by_name()
+} // mervis_2016_get_attachment_by_name()
 
 /**
  * Returns a post object of the requested post type
@@ -35,7 +35,7 @@ function function_names_get_attachment_by_name( $post_name ) {
  *
  * @return 	object 		A post object
  */
-function function_names_get_posts( $post, $params = array(), $cache = '' ) {
+function mervis_2016_get_posts( $post, $params = array(), $cache = '' ) {
 
 	if ( empty( $post ) ) { return -1; }
 
@@ -75,14 +75,14 @@ function function_names_get_posts( $post, $params = array(), $cache = '' ) {
 
 	return $return;
 
-} // function_names_get_posts()
+} // mervis_2016_get_posts()
 
 /**
  * Returns the URL for the posts page
  *
  * @return 		string 						The URL for the posts page
  */
-function function_names_get_posts_page() {
+function mervis_2016_get_posts_page() {
 
 	if( get_option( 'show_on_front' ) == 'page' ) {
 
@@ -94,7 +94,7 @@ function function_names_get_posts_page() {
 
 	}
 
-} // function_names_get_posts_page()
+} // mervis_2016_get_posts_page()
 
 /**
  * Returns a Google Map link from an address
@@ -103,7 +103,7 @@ function function_names_get_posts_page() {
  *
  * @return 	string 						URL for Google Maps
  */
-function function_names_make_map_link( $address ) {
+function mervis_2016_make_map_link( $address ) {
 
 	if( empty( $address ) ) { return FALSE; }
 
@@ -114,7 +114,7 @@ function function_names_make_map_link( $address ) {
 
 	return $return;
 
-} // function_names_make_map_link()
+} // mervis_2016_make_map_link()
 
 /**
  * Converts a phone number into a tel link
@@ -123,7 +123,7 @@ function function_names_make_map_link( $address ) {
  *
  * @return 	mixed 							Formatted HTML telephone link
  */
-function function_names_make_phone_link( $number ) {
+function mervis_2016_make_phone_link( $number ) {
 
 	if ( empty( $number ) ) { return FALSE; }
 
@@ -140,7 +140,7 @@ function function_names_make_phone_link( $number ) {
 
 	return $return;
 
-} // function_names_make_phone_link()
+} // mervis_2016_make_phone_link()
 
 /**
  * Reduce the length of a string by character count
@@ -151,7 +151,7 @@ function function_names_make_phone_link( $number ) {
  *
  * @return 	string 					The possibly reduced string
  */
-function function_names_shorten_text( $text, $limit = 100, $after = '...' ) {
+function mervis_2016_shorten_text( $text, $limit = 100, $after = '...' ) {
 
 	if ( empty( $text ) ) { return; }
 
@@ -166,4 +166,4 @@ function function_names_shorten_text( $text, $limit = 100, $after = '...' ) {
 
 	return $text;
 
-} // function_names_shorten_text()
+} // mervis_2016_shorten_text()

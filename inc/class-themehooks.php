@@ -16,7 +16,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds a hidden search field
 	 *
-	 * @hooked 		function_names_body_top 		15
+	 * @hooked 		mervis_2016_body_top 		15
 	 *
 	 * @return 		mixed 				The HTML markup for a search field
 	 */
@@ -35,7 +35,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds a search form
 	 *
-	 * @hooked 		function_names_404_content 		15
+	 * @hooked 		mervis_2016_404_content 		15
 	 *
 	 * @return 		mixed 		Search form markup
 	 */
@@ -50,7 +50,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		tag_manager field is empty.
 	 *
-	 * @hooked 		function_names_body_top 		10
+	 * @hooked 		mervis_2016_body_top 		10
 	 *
 	 * @return 		mixed 				The inserted Google Tag Manager code
 	 */
@@ -71,7 +71,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		On the front page.
 	 *
-	 * @hooked		function_names_wrap_content
+	 * @hooked		mervis_2016_wrap_content
 	 *
 	 * @return 		mixed 				WooCommerce breadcrumbs, then Yoast breadcrumbs
 	 */
@@ -112,7 +112,7 @@ class Mervis_2016_Themehooks {
 	 * @exits 		Comments closed.
 	 * @exits 		There are no comments.
 	 *
-	 * @hooked 		function_names_entry_after 		10
+	 * @hooked 		mervis_2016_entry_after 		10
 	 *
 	 * @return 		mixed 					The comments markup
 	 */
@@ -127,7 +127,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the copyright and credits to the footer content.
 	 *
-	 * @hooked 		function_names_footer_content
+	 * @hooked 		mervis_2016_footer_content
 	 *
 	 * @return 		mixed 									The footer markup
 	 */
@@ -167,7 +167,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on 404 page.
 	 *
-	 * @hooked 		function_names_404_content		25
+	 * @hooked 		mervis_2016_404_content		25
 	 *
 	 * @return 		mixed 							Markup for the archives
 	 */
@@ -187,14 +187,14 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on 404 page.
 	 *
-	 * @hooked 		function_names_404_content		20
+	 * @hooked 		mervis_2016_404_content		20
 	 *
 	 * @return 		mixed 							The categories widget
 	 */
 	public function four_04_categories() {
 
 		if ( ! is_404() ) { return; }
-		if ( ! function_names_categorized_blog() ) { return; }
+		if ( ! mervis_2016_categorized_blog() ) { return; }
 
 		?><div class="widget widget_categories">
 			<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'mervis-2016' ); ?></h2>
@@ -218,7 +218,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on 404 page.
 	 *
-	 * @hooked 		function_names_404_content 		15
+	 * @hooked 		mervis_2016_404_content 		15
 	 *
 	 * @return 		mixed 							The Recent Posts widget
 	 */
@@ -235,7 +235,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on 404 page.
 	 *
-	 * @hooked 		function_names_404_content		30
+	 * @hooked 		mervis_2016_404_content		30
 	 *
 	 * @return 		mixed 							The tag cloud widget
 	 */
@@ -250,7 +250,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * The header wrap markup
 	 *
-	 * @hooked  	function_names_header_bottom 		90
+	 * @hooked  	mervis_2016_header_bottom 		90
 	 *
 	 * @return 		mixed 					The header wrap markup
 	 */
@@ -263,7 +263,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * The header wrap markup
 	 *
-	 * @hooked 		function_names_header_top 		10
+	 * @hooked 		mervis_2016_header_top 		10
 	 *
 	 * @return 		mixed 				The header wrap markup
 	 */
@@ -276,7 +276,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the primary menu
 	 *
-	 * @hooked 		function_names_header_bottom 		95
+	 * @hooked 		mervis_2016_header_bottom 		95
 	 *
 	 * @return 		mixed 					The primary menu markup
 	 */
@@ -300,7 +300,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Menu not active.
 	 *
-	 * @hooked 		function_names_header_bottom 		65
+	 * @hooked 		mervis_2016_header_bottom 		65
 	 *
 	 * @return 		mixed 					The social links menu markup
 	 */
@@ -338,7 +338,7 @@ class Mervis_2016_Themehooks {
 
 		?><div class="entry-meta"><?php
 
-			function_names_posted_on();
+			mervis_2016_posted_on();
 
 		?></div><!-- .entry-meta --><?php
 
@@ -350,7 +350,7 @@ class Mervis_2016_Themehooks {
 	 * @exits 		Not on posts home.
 	 * @exits 		Not on archive page.
 	 *
-	 * @hooked 		function_names_while_after
+	 * @hooked 		mervis_2016_while_after
 	 *
 	 * @return 		mixed 							The posts navigation
 	 */
@@ -365,7 +365,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the starting site branding markup
 	 *
-	 * @hooked 		function_names_header_bottom			85
+	 * @hooked 		mervis_2016_header_bottom			85
 	 *
 	 * @return 		mixed 						HTML markup
 	 */
@@ -378,7 +378,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the starting site branding markup
 	 *
-	 * @hooked 		function_names_header_top				15
+	 * @hooked 		mervis_2016_header_top				15
 	 *
 	 * @return 		mixed 						HTML markup
 	 */
@@ -391,7 +391,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the site description markup
 	 *
-	 * @hooked 		function_names_header_content 		15
+	 * @hooked 		mervis_2016_header_content 		15
 	 *
 	 * @return 		mixed 								The site description markup
 	 */
@@ -410,7 +410,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the a11y skip link markup
 	 *
-	 * @hooked 		function_names_body_top 		20
+	 * @hooked 		mervis_2016_body_top 		20
 	 *
 	 * @return 		mixed 				Skip link markup
 	 */
@@ -425,7 +425,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on archive page.
 	 *
-	 * @hooked 		function_names_while_before
+	 * @hooked 		mervis_2016_while_before
 	 *
 	 * @return 		mixed 							The archive page title
 	 */
@@ -476,7 +476,7 @@ class Mervis_2016_Themehooks {
 	 * @exits 		On posts home.
 	 * @exits 		Not on a page.
 	 *
-	 * @hooked 		function_names_while_before 		10
+	 * @hooked 		mervis_2016_while_before 		10
 	 *
 	 * @return 		mixed 							The entry title
 	 */
@@ -494,7 +494,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on a search page.
 	 *
-	 * @hooked 		function_names_while_before
+	 * @hooked 		mervis_2016_while_before
 	 *
 	 * @return 		mixed 							Search title markup
 	 */
@@ -517,7 +517,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		On static front page
 	 *
-	 * @hooked 		function_names_while_before
+	 * @hooked 		mervis_2016_while_before
 	 *
 	 * @return 		mixed 							The single post title
 	 */
@@ -537,7 +537,7 @@ class Mervis_2016_Themehooks {
 	 * @exits 		get_custom_logo doesn't exist
 	 * @exits 		get_custom_logo is empty
 	 *
-	 * @hooked 		function_names_header_content 		10
+	 * @hooked 		mervis_2016_header_content 		10
 	 *
 	 * @return 		mixed 								The site title markup
 	 */

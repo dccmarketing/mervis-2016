@@ -232,7 +232,7 @@ class Mervis_2016_Menukit {
 
 		$output .= '<a href="' . $item->url . '">';
 		$output .= $item->title;
-		$output .= '<span class="children">' . function_names_get_svg( 'caret-down' ) . '</span>';
+		$output .= '<span class="children">' . mervis_2016_get_svg( 'caret-down' ) . '</span>';
 		$output .= '</a>';
 
 		return $output;
@@ -414,7 +414,7 @@ class Mervis_2016_Menukit {
 
 		foreach ( $classes as $class ) {
 
-			$check = function_names_get_svg( $class );
+			$check = mervis_2016_get_svg( $class );
 
 			if ( ! is_null( $check ) ) { $output .= $check; break; }
 
