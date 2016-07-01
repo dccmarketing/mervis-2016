@@ -64,6 +64,34 @@
 		} );
 	} );
 
+	// menubox_title1.
+	wp.customize( 'menubox_title1', function( value ) {
+		value.bind( function( to ) {
+			$( '#menubox1 .menubox-title' ).text( to );
+		} );
+	} );
+
+	// menubox_title2.
+	wp.customize( 'menubox_title2', function( value ) {
+		value.bind( function( to ) {
+			$( '#menubox2 .menubox-title' ).text( to );
+		} );
+	} );
+
+	// menubox_title3.
+	wp.customize( 'menubox_title3', function( value ) {
+		value.bind( function( to ) {
+			$( '#menubox3 .menubox-title' ).text( to );
+		} );
+	} );
+
+	// menubox_title4.
+	wp.customize( 'menubox_title4', function( value ) {
+		value.bind( function( to ) {
+			$( '#menubox4 .menubox-title' ).text( to );
+		} );
+	} );
+
 
 
 /*

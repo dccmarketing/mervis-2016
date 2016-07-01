@@ -1,0 +1,36 @@
+.ui-accordion-header {
+	background 		: transparent !important;
+	border 			: 1px solid $gray;
+	border-radius 	: 0 !important;
+    font-family 	: 'boldob';
+	font-size 		: 1.5em !important;
+	padding 		: 0.25em !important;
+	padding-left 	: 1.5em !important;
+}
+
+.wrap-location {
+	margin-bottom 	: 3em;
+	padding 		: 1em !important;
+}
+
+.map_canvas {
+	width: 325px;
+	height: 280px
+}
+
+.flex {
+	@media screen and (min-width: $bp__tablet) {
+		display: flex;
+		justify-content: space-between;
+	}
+}
+
+.loc-info {
+	@media screen and (min-width: $bp__tablet) {
+		margin-right: 5%;
+	}
+}
+
+.loc-contact {
+	@include listreset();
+}

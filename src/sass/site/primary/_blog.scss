@@ -1,0 +1,22 @@
+.blog {
+	.entry-title {
+		font-family 	: 'boldob';
+		margin-bottom 	: 0;
+	}
+
+	.entry-content {
+		margin-top: 0;
+
+		p {
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	.read-more {
+		display 	: block;
+		text-align 	: right;
+	}
+}

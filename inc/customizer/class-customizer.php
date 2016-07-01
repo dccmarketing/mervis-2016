@@ -26,17 +26,6 @@ class Mervis_2016_Customizer {
 	 */
 	public function register_panels( $wp_customize ) {
 
-		// Theme Options Panel
-		$wp_customize->add_panel( 'theme_options',
-			array(
-				'capability'  		=> 'edit_theme_options',
-				'description'  		=> esc_html__( 'Options for Mervis 2016', 'mervis-2016' ),
-				'priority'  		=> 10,
-				'theme_supports'  	=> '',
-				'title'  			=> esc_html__( 'Theme Options', 'mervis-2016' ),
-			)
-		);
-
 		/*
 		// Theme Options Panel
 		$wp_customize->add_panel( 'theme_options',
@@ -75,6 +64,19 @@ class Mervis_2016_Customizer {
 	 * @param 		WP_Customize_Manager 		$wp_customize 		Theme Customizer object.
 	 */
 	public function register_sections( $wp_customize ) {
+
+		// Images Section
+		$wp_customize->add_section( 'images',
+			array(
+				'active_callback' 	=> '',
+				'capability'  		=> 'edit_theme_options',
+				'description'  		=> esc_html__( '', 'mervis-2016' ),
+				'panel' 			=> '',
+				'priority'  		=> 10,
+				'theme_supports'  	=> '',
+				'title'  			=> esc_html__( 'Images', 'mervis-2016' ),
+			)
+		);
 
 		/*
 		// New Section
@@ -140,6 +142,59 @@ class Mervis_2016_Customizer {
 		$wp_customize->get_setting( 'tag_manager' )->transport = 'postMessage';
 
 
+
+
+		// Default Header Image Field
+		$wp_customize->add_setting(
+			'default_header_image' ,
+			array(
+				'capability' 			=> 'edit_theme_options',
+				'default'  				=> '',
+				'sanitize_callback' 	=> 'esc_url_raw',
+				'transport' 			=> 'postMessage',
+				'type' 					=> 'theme_mod'
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control(
+				$wp_customize,
+				'default_header_image',
+				array(
+					'active_callback' 	=> '',
+					'description' 		=> esc_html__( '', 'mervis-2016' ),
+					'label' 			=> esc_html__( 'Default Header Image', 'mervis-2016' ),
+					'priority' 			=> 10,
+					'section' 			=> 'images',
+					'settings' 			=> 'default_header_image'
+				)
+			)
+		);
+
+		// Default Text Logo Field
+		$wp_customize->add_setting(
+			'default_text_logo' ,
+			array(
+				'capability' 			=> 'edit_theme_options',
+				'default'  				=> '',
+				'sanitize_callback' 	=> 'esc_url_raw',
+				'transport' 			=> 'postMessage',
+				'type' 					=> 'theme_mod'
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control(
+				$wp_customize,
+				'default_text_logo',
+				array(
+					'active_callback' 	=> '',
+					'description' 		=> esc_html__( 'The text logo used when nothing else is selected.', 'mervis-2016' ),
+					'label' 			=> esc_html__( 'Default Text Logo', 'mervis-2016' ),
+					'priority' 			=> 10,
+					'section' 			=> 'images',
+					'settings' 			=> 'default_text_logo'
+				)
+			)
+		);
 
 
 		/*

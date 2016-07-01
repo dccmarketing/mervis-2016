@@ -108,8 +108,14 @@ class Mervis_2016_Utilities {
 		 * Register Menus
 		 */
 		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary', 'mervis-2016' ),
-			'social' => esc_html__( 'Social', 'mervis-2016' )
+			'header-menu' 		=> esc_html__( 'Header Menu', 'mervis-2016' ),
+			'belowslider' 		=> esc_html__( 'Below Slider', 'mervis-2016' ),
+			'menubox1' 			=> esc_html__( 'Home Menubox 1', 'mervis-2016' ),
+			'menubox2' 			=> esc_html__( 'Home Menubox 2', 'mervis-2016' ),
+			'menubox3' 			=> esc_html__( 'Home Menubox 3', 'mervis-2016' ),
+			'menubox4' 			=> esc_html__( 'Home Menubox 4', 'mervis-2016' ),
+			'android-footer' 	=> esc_html__( 'Android Footer Location', 'mervis-2016' ),
+			'header-tabs' 		=> esc_html__( 'Header Tabs', 'mervis-2016' )
 		) );
 
 	} // setup()
@@ -205,22 +211,36 @@ class Mervis_2016_Utilities {
 		$output = '';
 		$image 	= mervis_2016_get_thumbnail_url( get_the_ID(), 'full' );
 
-		if ( ! $image ) {
+		if ( ! $image ) { // look for parent image
 
-			$image = get_theme_mod( 'default_bg_image' );
+			$parents = get_post_ancestors( get_the_ID() );
+
+			if ( ! empty( $parents ) ) {
+
+				$id 	= $parents[count( $parents ) - 1];
+				$image 	= mervis_2016_get_thumbnail_url( $id, 'full' );
+
+			}
+
+		}
+
+		if ( ! $image && is_home() ) { // get image for blog home
+
+			$home 	= get_option( 'page_for_posts' );
+			$image 	= mervis_2016_get_thumbnail_url( $home, 'full' );
+
+		}
+
+		if ( ! $image ) { // get default
+
+			$image = get_theme_mod( 'default_header_image' );
 
 		}
 
 		if ( empty( $image ) ) { return; }
 
 		?><style>
-			.site-content {background-image:url(<?php echo esc_url( $image ); ?>);}
-
-			@media screen and (max-width: 767px){
-				.site-content {background-image:url() !important;}
-				.site-content:before {background-image:url(<?php echo esc_url( $image ); ?>);}
-			}
-
+			.featured-image {background-image:url(<?php echo esc_url( $image ); ?>);}
 		</style><!-- Background Images --><?php
 
 	} // background_images()
@@ -330,13 +350,21 @@ class Mervis_2016_Utilities {
 	 */
 	public function enqueue_public() {
 
+		global $wp_scripts;
+
 		wp_enqueue_style( 'mervis-2016-style', get_stylesheet_uri() );
 
 		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), $this->version, true );
 
-		wp_enqueue_script( 'mervis-2016-navigation', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire' ), $this->version, true );
+		wp_enqueue_script( 'mervis-2016-public', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire', 'jquery-ui-accordion' ), $this->version, true );
+
+		wp_enqueue_script( 'mervis-2016-maps', '//maps.googleapis.com/maps/api/js?sensor=false' );
 
 		wp_enqueue_style( 'dashicons' );
+
+		$ui = $wp_scripts->query( 'jquery-ui-core' );
+
+		wp_enqueue_style( 'jquery-ui-smoothness', '//ajax.googleapis.com/ajax/libs/jqueryui/' . $ui->ver . '/themes/smoothness/jquery-ui.min.css', false, null );
 
 		// wp_enqueue_style( 'mervis-2016-fonts', $this->fonts_url(), array(), null );
 
@@ -463,6 +491,43 @@ class Mervis_2016_Utilities {
 		);
 
 	} // list_menu()
+
+	/**
+	 * Creates a style tag in the header with the background image
+	 *
+	 * @return 		mixed 			Style tag
+	 */
+	public function logo_text() {
+
+		$output = '';
+		$image 	= mervis_2016_get_thumbnail_url( get_the_ID(), 'full' );
+
+		if ( ! $image ) {
+
+			$parents = get_post_ancestors( get_the_ID() );
+
+			if ( ! empty( $parents ) ) {
+
+				$id 	= $parents[count( $parents ) - 1];
+				$image 	= mervis_2016_get_thumbnail_url( $id, 'full' );
+
+			}
+
+		}
+
+		if ( ! $image ) {
+
+			$image = get_theme_mod( 'default_text_logo' );
+
+		}
+
+		if ( empty( $image ) ) { return; }
+
+		?><style>
+			.featured-image {background-image:url(<?php echo esc_url( $image ); ?>);}
+		</style><!-- Background Images --><?php
+
+	} // logo_text()
 
 	/**
 	 * Converts the search input button to an HTML5 button element
@@ -652,7 +717,27 @@ class Mervis_2016_Utilities {
 
 		register_sidebar( array(
 			'name'          => esc_html__( 'Sidebar', 'mervis-2016' ),
-			'id'            => 'sidebar-1',
+			'id'            => 'sidebar',
+			'description'   => esc_html__( 'Add widgets here.', 'mervis-2016' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+
+		register_sidebar( array(
+			'name'          => esc_html__( 'Home', 'mervis-2016' ),
+			'id'            => 'home',
+			'description'   => esc_html__( 'Widget added here appear in the center of the homepage below the menuboxes.', 'mervis-2016' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		) );
+
+		register_sidebar( array(
+			'name'          => esc_html__( 'Footer', 'mervis-2016' ),
+			'id'            => 'footer',
 			'description'   => esc_html__( 'Add widgets here.', 'mervis-2016' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',

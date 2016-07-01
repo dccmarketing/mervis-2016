@@ -20,19 +20,30 @@
 }
 
 .site-content {
-	margin 		: 0 auto $size__default-bot-marg;
-	max-width 	: $size__max-width;
-	overflow 	: auto;
-	width 		: 100%;
+	margin 			: 0 auto;
+	max-width 		: $size__max-width;
+	padding-bottom 	: $size__default-bot-marg;
+	overflow 		: auto;
+	transition 		: $trans__default;
+	width 			: 100%;
+
+	.home & {
+
+		@media only screen and (min-width: $bp__laptop) {
+			margin-top 	:- 3em;
+			position 	: relative;
+			z-index 	: 9999;
+		}
+	}
 }
 
 .content-area {
-	float 		: left;
 	overflow 	: auto;
 	padding 	: 1em;
 	width 		: 100%;
 
 	@media only screen and (min-width: $bp__tablet) {
+
 		&.content-sidebar {
 			float 	: left;
 			margin 	: 0 2.5% 0 0;
@@ -44,5 +55,34 @@
 			margin 	: 0 0 0 2.5%;
 			width 	: 70%;
 		}
+	}
+}
+
+.page-title {
+	color 			: $maroon;
+	font-family 	: 'bold';
+	text-transform 	: uppercase;
+}
+
+.mapp-layout {
+	display: none;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		display : inherit;
+		float 	: right;
+	}
+}
+
+.single {
+	.entry-title {
+		color 		: $maroon;
+		font-family : 'bold';
+	}
+}
+
+.app-btn {
+	@media only screen and (min-width: $bp__tablet) {
+		display : inline-block;
+		width 	: 48%;
 	}
 }

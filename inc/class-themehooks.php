@@ -22,7 +22,7 @@ class Mervis_2016_Themehooks {
 	 */
 	public function add_hidden_search() {
 
-		?><div aria-hidden="true" class="hidden-search-top" id="hidden-search-top">
+		?><div aria-hidden="true" class="hidden-search" id="hidden-search">
 			<div class="wrap"><?php
 
 			get_search_form();
@@ -124,6 +124,40 @@ class Mervis_2016_Themehooks {
 
 	} // comments()
 
+	public function div_begin() {
+
+		?><div><?php
+
+	} // div_begin()
+
+	public function div_end() {
+
+		?></div><?php
+
+	} // div_end()
+
+	public function featured_image() {
+
+		if ( is_front_page() ) { return; }
+
+		?><div class="featured-image">
+			<div class="page-title-head"><?php
+
+			if ( is_home() && ! is_front_page() ) {
+
+				esc_html_e( 'News', 'mervis-2016' );
+
+			} else {
+
+				the_title();
+
+			}
+
+			?></div>
+		</div><?php
+
+	} // featured_image()
+
 	/**
 	 * Adds the copyright and credits to the footer content.
 	 *
@@ -134,8 +168,17 @@ class Mervis_2016_Themehooks {
 	public function footer_content() {
 
 		?><div class="site-info">
-			<div class="copyright">&copy <?php echo date( 'Y' ); ?> <a href="<?php echo esc_url( get_admin_url(), 'mervis-2016' ); ?>"><?php echo get_bloginfo( 'name' ); ?></a></div>
-			<div class="credits"><?php printf( esc_html__( 'Site created by %1$s', 'mervis-2016' ), '<a href="https://dccmarketing.com/" rel="nofollow" target="_blank">DCC Marketing</a>' ); ?></div>
+			<div class="copyright">&copy <?php echo date( 'Y' ); ?> <a class="link-admin" href="<?php echo esc_url( get_admin_url(), 'mervis-2016' ); ?>"><?php echo get_bloginfo( 'name' ); ?></a> <?php esc_html_e( '- All Rights Reserved.', 'mervis-2016' ); ?></div>
+			<ul class="footer-links">
+				<li><a href="/privacy-policy/"><?php esc_html_e( 'Privacy', 'mervis-2016' ); ?></a></li>
+				<li><a href="/terms-of-use/"><?php esc_html_e( 'Terms of Use', 'mervis-2016' ); ?></a></li>
+				<li><a href="/site-map/"><?php esc_html_e( 'Site Map', 'mervis-2016' ); ?></a></li>
+			</ul>
+			<div class="credits"><?php
+
+				printf( esc_html__( 'Site created by %1$s', 'mervis-2016' ), '<a href="https://dccmarketing.com/" rel="nofollow" target="_blank">DCC Marketing</a>' );
+
+			?></div>
 		</div><!-- .site-info --><?php
 
 	} // footer_content()
@@ -250,6 +293,45 @@ class Mervis_2016_Themehooks {
 	/**
 	 * The header wrap markup
 	 *
+	 * @hooked 		mervis_2016_header_top 		10
+	 *
+	 * @return 		mixed 				The header wrap markup
+	 */
+	public function header_menus_wrap_begin() {
+
+		?><div class="wrap-header-menus"><?php
+
+	} // header_menus_wrap_begin()
+
+	/**
+	 * The header wrap markup
+	 *
+	 * @hooked  	mervis_2016_header_bottom 		90
+	 *
+	 * @return 		mixed 					The header wrap markup
+	 */
+	public function header_menus_wrap_end() {
+
+		?></div><!-- .wrap-header-menus --><?php
+
+	} // header_menus_wrap_end()
+
+	/**
+	 * The header wrap markup
+	 *
+	 * @hooked 		mervis_2016_header_top 		10
+	 *
+	 * @return 		mixed 				The header wrap markup
+	 */
+	public function header_wrap_begin() {
+
+		?><div class="wrap wrap-header"><?php
+
+	} // header_wrap_begin()
+
+	/**
+	 * The header wrap markup
+	 *
 	 * @hooked  	mervis_2016_header_bottom 		90
 	 *
 	 * @return 		mixed 					The header wrap markup
@@ -261,42 +343,7 @@ class Mervis_2016_Themehooks {
 	} // header_wrap_end()
 
 	/**
-	 * The header wrap markup
-	 *
-	 * @hooked 		mervis_2016_header_top 		10
-	 *
-	 * @return 		mixed 				The header wrap markup
-	 */
-	public function header_wrap_start() {
-
-		?><div class="wrap wrap-header"><?php
-
-	} // header_wrap_start()
-
-	/**
-	 * Adds the primary menu
-	 *
-	 * @hooked 		mervis_2016_header_bottom 		95
-	 *
-	 * @return 		mixed 					The primary menu markup
-	 */
-	public function menu_primary() {
-
-		?><nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'mervis-2016' ); ?></button><?php
-
-				$menu_args['menu_id'] 			= 'primary-menu';
-				$menu_args['theme_location'] 	= 'primary';
-				$menu_args['walker']  			= new Mervis_2016_Walker();
-
-				wp_nav_menu( $menu_args );
-
-		?></nav><!-- #site-navigation --><?php
-
-	} // menu_primary()
-
-	/**
-	 * Adds the primary menu
+	 * Adds the android menu
 	 *
 	 * @exits 		Menu not active.
 	 *
@@ -304,24 +351,256 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @return 		mixed 					The social links menu markup
 	 */
-	public function menu_social() {
+	public function menu_android() {
 
 		//if (  ) { return; }
 
-		if ( ! has_nav_menu( 'social' ) ) { return; }
+		if ( ! has_nav_menu( 'android-footer' ) ) { return; }
 
-		$menu_args['theme_location']	= 'social';
+		$menu_args['theme_location']	= 'android-footer';
 		$menu_args['container'] 		= 'div';
-		$menu_args['container_id']    	= 'menu-social-media';
-		$menu_args['container_class'] 	= 'menu nav-social';
-		$menu_args['menu_id']         	= 'menu-social-media-items';
+		$menu_args['container_id']    	= 'menu-android';
+		$menu_args['container_class'] 	= 'menu nav-android';
+		$menu_args['menu_id']         	= 'menu-android-items';
 		$menu_args['menu_class']      	= 'menu-items';
 		$menu_args['depth']           	= 1;
 		$menu_args['fallback_cb']     	= '';
 
 		wp_nav_menu( $menu_args );
 
-	} // menu_social()
+	} // menu_android()
+
+	/**
+	 * Adds the main menu
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		95
+	 *
+	 * @return 		mixed 					The primary menu markup
+	 */
+	public function menu_belowslider() {
+
+		//if ( is_front_page() ) { return; }
+
+		?><nav id="site-navigation" class="main-navigation" role="navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'mervis-2016' ); ?></button><?php
+
+				$menu_args['theme_location']	= 'belowslider';
+				$menu_args['container'] 		= 'div';
+				$menu_args['container_id']    	= 'menu-belowslider';
+				$menu_args['container_class'] 	= 'menu nav-belowslider';
+				$menu_args['menu_id']         	= 'menu-belowslider-items';
+				$menu_args['menu_class']      	= 'menu-items medium upper';
+				$menu_args['depth']           	= 2;
+				$menu_args['fallback_cb']     	= '';
+				$menu_args['walker']  			= new Mervis_2016_Walker();
+
+				wp_nav_menu( $menu_args );
+
+		?></nav><!-- #site-navigation --><?php
+
+	} // menu_belowslider()
+
+	/**
+	 * Adds the header menu
+	 *
+	 * @exits 		Menu not active.
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		65
+	 *
+	 * @return 		mixed 					The social links menu markup
+	 */
+	public function menu_header() {
+
+		//if (  ) { return; }
+
+		if ( ! has_nav_menu( 'header-menu' ) ) { return; }
+
+		$menu_args['theme_location']	= 'header-menu';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-header-menu';
+		$menu_args['container_class'] 	= 'menu nav-header-menu';
+		$menu_args['menu_id']         	= 'menu-header-menu-items';
+		$menu_args['menu_class']      	= 'menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_header()
+
+	/**
+	 * Adds the home about menu
+	 *
+	 * @exits 		Menu not active.
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		65
+	 *
+	 * @return 		mixed 					The social links menu markup
+	 */
+	public function menu_menubox1() {
+
+		//if (  ) { return; }
+
+		if ( ! is_front_page() ) { return; }
+		if ( ! has_nav_menu( 'menubox1' ) ) { return; }
+
+		$menu_args['theme_location']	= 'menubox1';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-menubox1';
+		$menu_args['container_class'] 	= 'menu nav-menubox1 menubox';
+		$menu_args['menu_id']         	= 'menu-menubox1-items';
+		$menu_args['menu_class']      	= 'menubox-menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_menubox1()
+
+	/**
+	 * Adds the home about menu
+	 *
+	 * @exits 		Menu not active.
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		65
+	 *
+	 * @return 		mixed 					The social links menu markup
+	 */
+	public function menu_menubox2() {
+
+		//if (  ) { return; }
+
+		if ( ! is_front_page() ) { return; }
+		if ( ! has_nav_menu( 'menubox2' ) ) { return; }
+
+		$menu_args['theme_location']	= 'menubox2';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-menubox2';
+		$menu_args['container_class'] 	= 'menu nav-menubox2 menubox';
+		$menu_args['menu_id']         	= 'menu-menubox2-items';
+		$menu_args['menu_class']      	= 'menubox-menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_menubox2()
+
+	/**
+	 * Adds the home about menu
+	 *
+	 * @exits 		Menu not active.
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		65
+	 *
+	 * @return 		mixed 					The social links menu markup
+	 */
+	public function menu_menubox3() {
+
+		//if (  ) { return; }
+
+		if ( ! is_front_page() ) { return; }
+		if ( ! has_nav_menu( 'menubox3' ) ) { return; }
+
+		$menu_args['theme_location']	= 'menubox3';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-menubox3';
+		$menu_args['container_class'] 	= 'menu nav-menubox3 menubox';
+		$menu_args['menu_id']         	= 'menu-menubox3-items';
+		$menu_args['menu_class']      	= 'menubox-menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_menubox3()
+
+	/**
+	 * Adds the home about menu
+	 *
+	 * @exits 		Menu not active.
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		65
+	 *
+	 * @return 		mixed 					The social links menu markup
+	 */
+	public function menu_menubox4() {
+
+		//if (  ) { return; }
+
+		if ( ! is_front_page() ) { return; }
+		if ( ! has_nav_menu( 'menubox4' ) ) { return; }
+
+		$menu_args['theme_location']	= 'menubox4';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-menubox4';
+		$menu_args['container_class'] 	= 'menu nav-menubox4 menubox';
+		$menu_args['menu_id']         	= 'menu-menubox4-items';
+		$menu_args['menu_class']      	= 'menubox-menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_menubox4()
+
+	/**
+	 * Adds the top tabs menu
+	 *
+	 * @exits 		Menu not active.
+	 *
+	 * @hooked 		mervis_2016_header_bottom 		65
+	 *
+	 * @return 		mixed 					The social links menu markup
+	 */
+	public function menu_toptabs() {
+
+		//if (  ) { return; }
+
+		if ( ! has_nav_menu( 'header-tabs' ) ) { return; }
+
+		$menu_args['theme_location']	= 'header-tabs';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-top-tabs-menu';
+		$menu_args['container_class'] 	= 'menu nav-top-tabs-menu';
+		$menu_args['menu_id']         	= 'menu-top-tabs-menu-items';
+		$menu_args['menu_class']      	= 'menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_toptabs()
+
+	/**
+	 * Displays the opening menubox section tag.
+	 *
+	 * @exits 		Not the front page.
+	 *
+	 * @return 		mixed 				HTML tag
+	 */
+	public function menubox_wrap_begin() {
+
+		if ( ! is_front_page() ) { return; }
+
+		?><section class="menuboxes"><?php
+
+	} // menubox_wrap_begin()
+
+	/**
+	 * Displays the closing menubox section tag.
+	 *
+	 * @exits 		Not the front page.
+	 *
+	 * @return 		mixed 				HTML tag
+	 */
+	public function menubox_wrap_end() {
+
+		if ( ! is_front_page() ) { return; }
+
+		?></section><!-- .menuboxes --><?php
+
+	} // menubox_wrap_end()
 
 	/**
 	 * Adds the posted_on post meta.
@@ -361,6 +640,65 @@ class Mervis_2016_Themehooks {
 		the_posts_navigation();
 
 	} // posts_nav()
+
+	/**
+	 * Adds a sidebar.
+	 *
+	 * @return [type] [description]
+	 */
+	public function sidebar_footer() {
+
+		?><div class="sidebar-footer">
+			<div class="wrap"><?php
+
+				dynamic_sidebar( 'footer' );
+
+			?></div>
+		</div><?php
+
+	} // sidebar_footer()
+
+	/**
+	 * Adds a sidebar.
+	 *
+	 * @exits 		Not on the front page.
+	 *
+	 * @return [type] [description]
+	 */
+	public function sidebar_home() {
+
+		if( ! is_front_page() ) { return; }
+
+		?><div class="sidebar-home">
+			<div class="wrap"><?php
+
+			dynamic_sidebar( 'home' );
+
+			?></div>
+		</div><?php
+
+	} // sidebar_home()
+
+	/**
+	 * Adds a sidebar.
+	 *
+	 * @exits 		Not on the front page.
+	 *
+	 * @return [type] [description]
+	 */
+	public function sidebar_news() {
+
+		if( ! is_home() ) { return; }
+
+		?><div class="sidebar-news widget-area">
+			<div class="wrap"><?php
+
+			dynamic_sidebar( 'sidebar' );
+
+			?></div>
+		</div><?php
+
+	} // sidebar_news()
 
 	/**
 	 * Adds the starting site branding markup
@@ -419,6 +757,60 @@ class Mervis_2016_Themehooks {
 		?><a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'mervis-2016' ); ?></a><?php
 
 	} // skip_link()
+
+	/**
+	 * Displays the home slider
+	 *
+	 * @exits 		Not the home page
+	 * @exits 		Soliloquy isn't installed and/or activated
+	 *
+	 * @return 		mixed 			Home Page Slider
+	 */
+	public function slider_home() {
+
+		if ( ! is_front_page() ) { return; }
+		if ( ! function_exists( 'soliloquy' ) ) { return; }
+
+		soliloquy( 'home', 'slug' );
+
+	} // slider_home()
+
+	/**
+	 * Displays the text logo.
+	 *
+	 * @return [type] [description]
+	 */
+	public function text_logo() {
+
+		$output = '';
+		$logo 	= get_field( 'text_logo', get_the_ID() );
+
+		if ( ! $logo ) {
+
+			$parents = get_post_ancestors( get_the_ID() );
+
+			if ( ! empty( $parents ) ) {
+
+				$id 	= $parents[count( $parents ) - 1];
+				$logo 	= get_field( 'text_logo', $id );
+
+			}
+
+		}
+
+		if ( ! $logo ) {
+
+			$logo = get_theme_mod( 'default_text_logo' );
+
+		}
+
+		if ( empty( $logo ) ) { return; }
+
+		?><p class="text-logo">
+			<a><img src="<?php echo esc_url( $logo ); ?>"></a>
+		</p><!-- Background Images --><?php
+
+	} // text_logo()
 
 	/**
 	 * Adds the page title to an archive page

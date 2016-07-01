@@ -6,8 +6,11 @@
 @import "site/primary/entry-meta";
 @import "site/primary/home";
 @import "site/primary/posts-and-pages";
+@import "site/primary/blog";
 
 @import "site/secondary/widgets";
+@import "site/secondary/sidebar-home";
+@import "site/secondary/sidebar-footer";
 
 .wrap {
 	max-width 	: $size__max-width;

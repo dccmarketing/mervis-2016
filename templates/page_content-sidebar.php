@@ -24,7 +24,7 @@ get_header();
 				 */
 				do_action( 'mervis_2016_entry_before' );
 
-				get_template_part( 'template-parts/content', 'page' );
+				get_template_part( 'partials/template-parts/content', 'page' );
 
 				/**
 				 * The mervis_2016_entry_after action hook

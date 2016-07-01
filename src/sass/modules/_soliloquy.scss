@@ -1,0 +1,28 @@
+.soliloquy-outer-container {
+	display: none;
+	z-index: 1;
+
+	@media screen and (min-width: $bp__tablet) {
+		border-bottom 	: $border__header;
+		border-top 		: $border__header;
+		display 		: inherit;
+	}
+}
+
+.soliloquy-container {
+
+	.soliloquy-caption {
+		top 		: 50% !important;
+		transform 	: translateY(-50%);
+
+		.soliloquy-caption-inside {
+			background-color: $transdark !important;
+			font-family 	: 'boldob';
+			font-size 		: 5em !important;
+			line-height 	: 1 !important;
+			text-align 		: center;
+			text-shadow 	: 4px 4px 20px $transdarker !important;
+			text-transform 	: uppercase;
+		}
+	}
+}

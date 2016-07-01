@@ -65,11 +65,11 @@ function mervis_2016_infinite_scroll_render() {
 
 		if ( is_search() ) {
 
-			get_template_part( 'template-parts/content', 'search' );
+			get_template_part( 'partials/template-parts/content', 'search' );
 
 		} else {
 
-			get_template_part( 'template-parts/content', get_post_format() );
+			get_template_part( 'partials/template-parts/content', get_post_format() );
 
 		}
 

@@ -1,0 +1,75 @@
+.sidebar-home {
+	background-color: $dark;
+	color 			: $light;
+	transition 		: $trans__default;
+
+	.wrap {
+		margin 		: 0 auto;
+		max-width 	: $size__max-width;
+		padding 	: 1em;
+
+		@media only screen and (min-width: $bp__tablet) {
+			display 		: flex;
+			justify-content : space-between;
+		}
+
+		@media only screen and (min-width: $bp__laptop) {
+			padding: 0;
+		}
+	}
+
+	.post-title {
+		font-family 	: 'bold';
+		margin-bottom 	: 0;
+		margin-top 		: 0;
+		text-transform 	: uppercase;
+
+		a {
+			@include unline( $red, $maroon );
+		}
+	}
+
+	.post-excerpt {
+		margin-top: 0;
+	}
+
+	.more-link {
+		display 		: block;
+		float 			: right;
+		font-size 		: 0.825em;
+		margin 			: 0.5em 0;
+		text-transform 	: uppercase;
+
+		@include unline( $red, $maroon );
+	}
+
+	.widget_ultimate_posts {
+
+		@media only screen and (min-width: $bp__tablet) {
+			width: 69%;
+		}
+
+		ul {
+			@include listreset();
+
+			@media only screen and (min-width: $bp__tablet) {
+				display 		: flex;
+				justify-content : space-between;
+			}
+		}
+
+		li {
+			margin-bottom: 3em;
+
+			@media only screen and (min-width: $bp__tablet) {
+				width: 48%;
+			}
+		}
+	}
+
+	.widget_sp_image {
+		@media only screen and (min-width: $bp__tablet) {
+			width: 29%;
+		}
+	}
+}

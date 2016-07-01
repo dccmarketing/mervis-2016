@@ -1,19 +1,68 @@
 header[role="banner"]{
 	// DO NOT ADD PADDING HERE! - it screws up menus
-	margin-bottom	: $size__default-bot-marg;
-	overflow 		: auto;
+	transition: $trans__default;
+
+	@include redgrad;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		min-height 		: 129px;
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		min-height: inherit;
+		padding 		: 0;
+	}
 
 	@media only screen and (min-width: $bp__sidemenu + 1) {
 		overflow 	: visible;
 	}
+
+	a {
+		color: $light;
+	}
+
+	.home & {
+		@media only screen and (min-width: $bp__menu-button + 1) and (max-width: $bp__tablet - 1) {
+			border-bottom 	: $border__header;
+		}
+	}
 }
 
 .site-branding {
-	margin		: 0 auto;
+	align-items 	: center;
+	border-bottom 	: $border__header;
+	display 		: flex;
+	justify-content : center;
+	margin			: 0 auto;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		border-bottom 	: none;
+		justify-content : flex-start;
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		margin: 0;
+	}
+
+	a {
+		display: block;
+	}
 }
 
 .site-title {
-	text-align: center;
+	display 	: inline-block;
+	height 		: $size__header-height;
+	margin 		: -2.5em 0 0 0;
+	transition 	: $trans__default;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		position: absolute;
+		z-index : 100;
+
+		&:hover {
+			transform: translateY(25px);
+		}
+	}
 
 	a {
 		color 			: $color__text-site-title;
@@ -23,4 +72,81 @@ header[role="banner"]{
 
 .site-description {
 	text-align: center;
+}
+
+.wrap-header {
+	position: relative;
+
+	@media only screen and (min-width: $bp__tablet) {
+		display 		: flex;
+		justify-content : space-between;
+	}
+}
+
+.wrap-header-menus {
+	position 		: absolute;
+	top 			: 195px;
+	width 			: 100%;
+	z-index 		: 1000;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		top: 0;
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		text-align 	: right;
+		width 		: auto;
+	}
+}
+
+.featured-image {
+	background-repeat 	: no-repeat;
+	background-position : center center;
+	background-size 	: cover;
+	display 			: none;
+	padding 			: 5em 0;
+	width 				: 100%;
+
+	@media screen and (min-width: $bp__menu-button + 1) {
+		border-bottom 	: $border__header;
+		border-top 		: $border__header;
+		display 		: inherit;
+	}
+}
+
+.page-title-head {
+	background-color: $transdark;
+	color 			: $light;
+	font-family 	: 'boldob';
+	font-size 		: 4em;
+	line-height 	: 1;
+	text-align 		: center;
+	text-shadow 	: 4px 4px 20px $transdarker;
+	text-transform 	: uppercase;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		font-size 	: 5em;
+	}
+}
+
+.text-logo {
+	display 	: inline-block;
+	margin 		: 0;
+	margin-left	: 1em;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		margin 		: 2.5em 0;
+		margin-left : calc(1em + #{$size__logo-width});
+	}
+
+	@media screen and (min-width: $bp__full-menu) {
+		margin-bottom 	: 1.5em;
+		margin-top 		: 1.5em;
+	}
+
+	img {
+		width: 100%;
+	}
+
+
 }

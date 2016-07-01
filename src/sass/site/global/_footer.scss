@@ -1,6 +1,26 @@
 [role="contentinfo"] {
 	float 		: left;
+	font-size 	: 0.75em;
 	width 		: 100%;
+
+	a {
+		@include unline( $red, $maroon );
+	}
+}
+
+.copyright {
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		display: inline-block;
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		float 	: left;
+	}
+
+	a {
+		color: inherit;
+	}
 }
 
 .wrap-footer {
@@ -12,6 +32,51 @@
 .site-info {
 	float 		: left;
 	overflow 	: auto;
-	text-align: center;
+	text-align 	: center;
 	width 		: 100%;
+}
+
+.footer-links {
+	@include listreset();
+	padding: 1em;
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		display 	: inline-block;
+		padding-left: 0.5em;
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
+		float 	: left;
+		padding : 0 0 0 0.5em;
+	}
+
+	li {
+		display: inline-block;
+
+		&:first-child {
+			@media only screen and (min-width: $bp__menu-button + 1) {
+				border-left 	: 1px solid $gray;
+				padding-left 	: 0.75em;
+			}
+		}
+
+		&:not(:first-child) {
+			border-left 	: 1px solid $gray;
+			margin-left 	: 0.5em;
+			padding-left 	: 0.75em;
+		}
+	}
+}
+
+.credits {
+
+	@media only screen and (min-width: $bp__tablet) {
+		display : inline-block;
+		float 	: right;
+	}
+}
+
+.link-admin {
+	color 			: inherit !important;
+	text-decoration : none !important;
 }

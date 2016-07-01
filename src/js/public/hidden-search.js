@@ -7,18 +7,20 @@
 
 	var index, search, page, button;
 
-	search = document.querySelector( '#hidden-search-top' );
+	search = document.querySelector( '#hidden-search' );
 	if ( ! search ) { return; }
 
-	page = document.querySelector( '#page' );
-	if ( ! page ) { return; }
-
-	button = document.querySelector( '.btn-search' );
+	button = document.querySelector( '.btn-search .icon-menu' );
 	if ( ! button ) { return; }
+
+	//console.log( search );
+	//console.log( button );
 
 	search.setAttribute( 'aria-hidden', 'true' );
 
-	button.onclick = function( e ) {
+	button.addEventListener( 'click', function( e ) {
+
+		console.log( 'yep' );
 
 		e.preventDefault();
 
@@ -34,22 +36,6 @@
 
 		}
 
-		var affected = [ page, button ];
-
-		for	( index = 0; index < affected.length; index++ ) {
-
-			if ( -1 !== affected[index].className.indexOf( 'open' ) ) {
-
-				affected[index].className = affected[index].className.replace( ' open', '' );
-
-			} else {
-
-				affected[index].className += ' open';
-
-			}
-
-		}
-
-	};
+	});
 
 } )();

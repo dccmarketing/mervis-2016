@@ -1,14 +1,23 @@
 .main-navigation {
+	background-color: $dark;
 	clear			: both;
+	color 			: $light;
 	display			: block;
 	width			: 100%;
+
+	.home & {
+
+		@media only screen and (min-width: $bp__laptop) {
+			display: none !important;
+		}
+	}
 
 	ul {
 		@include listreset();
 		text-align 	: left;
 
 		&[aria-expanded="false"] {
-			@media only screen and (max-width: $bp__laptop) {
+			@media only screen and (max-width: $bp__laptop - 1) {
 				display: none;
 			}
 		}
@@ -16,21 +25,14 @@
 		&[aria-expanded="true"] {
 			display : block;
 			padding : 0;
-
-			.menu-main-menu-container {
-				@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-					transform: translateX(0);
-				}
-
-			}
 		}
 
-		@media only screen and (min-width: $bp__menu-button + 1) {
+		@media only screen and (min-width: $bp__laptop) {
 			@include center();
 		}
 
 		 > li {
-		 	@media only screen and (max-width: $bp__menu-button) {
+		 	@media only screen and (max-width: $bp__laptop - 1) {
 				position: relative;
 
 				&.menu-item-has-children {
@@ -41,7 +43,7 @@
 
 					.show-hide {
 						cursor 		: pointer;
-						height 		: 2em;
+						height 		: 3.5em;
 						position 	: absolute;
 						right 		: 0;
 						top 		: 0.5em;
@@ -50,14 +52,17 @@
 				}
 			}
 
-			@media only screen and (min-width: $bp__menu-button + 1) {
+			@media only screen and (min-width: $bp__laptop - 1) {
 				.show-hide {
 					display: none;
 				}
 			}
 
 		 	 > a {
-				padding: 1.5em;
+
+			 	@media only screen and (max-width: $bp__laptop - 1) {
+					padding: 1.5em;
+				}
 			}
 		}
 
@@ -65,25 +70,25 @@
 			background-color: $color__bg-menu-item-mobile;
 			display			: inherit;
 
-			@media only screen and (min-width: $bp__menu-button + 1) {
+			@media only screen and (min-width: $bp__laptop) {
 				box-shadow	: 0 3px 3px rgba(0, 0, 0, 0.2);
 				left 		: 0;
 				opacity 	: 0;
 				position	: absolute;
-				transition 	: visibility 0s ease 0.5s, opacity 0.5s ease;
+				transition 	: visibility 0s ease 0.2s, opacity 0.2s ease;
 				visibility 	: hidden;
 				z-index		: 99999;
 			} // breakpoint
 
 			ul {
 
-				@media only screen and (min-width: $bp__sidemenu + 1) {
+				@media only screen and (min-width: $bp__laptop) {
 					left: 100%;
 					top	: 0;
 				}
 
 				a {
-					@media only screen and (max-width: $bp__sidemenu) {
+					@media only screen and (max-width: $bp__laptop - 1) {
 						border-left : none;
 						padding 	: 0.5em 3em;
 					}
@@ -91,11 +96,11 @@
 			}
 
 			a {
-				@media only screen and (max-width: $bp__sidemenu) {
+				@media only screen and (max-width: $bp__laptop - 1) {
 					padding: 0.5em 2em;
 				}
 
-				@media only screen and (min-width: $bp__sidemenu + 1) {
+				@media only screen and (min-width: $bp__laptop) {
 					color 		: $color__text-submenu;
 					padding 	: 0.5em 1em;
 					white-space : nowrap;
@@ -108,11 +113,17 @@
 
 				&:last-child {
 
-					@media only screen and (max-width: $bp__sidemenu) {
+					@media only screen and (max-width: $bp__laptop - 1) {
 						padding-bottom: 0;
 					}
 				}
 
+				&:hover {
+
+					a {
+						color: $red;
+					}
+				}
 			}
 		} // .submenu ul
 	} // first-level ul
@@ -123,8 +134,8 @@
 		&:hover,
 		&.focus {
 
-			> ul {
-				@media only screen and (min-width: $bp__sidemenu + 1) {
+			> .wrap-submenu ul {
+				@media only screen and (min-width: $bp__laptop) {
 					display 	: block;
 					opacity 	: 1;
 					visibility 	: visible;
@@ -133,12 +144,11 @@
 
 			> a {
 
-				@media only screen and (min-width: $bp__menu-button + 1) {
+				@media only screen and (min-width: $bp__laptop) {
 					background-color: $color__bg-menu-item;
 					color 			: $color__text-menu-hover;
 				}
 			}
-
 		}
 	}
 
@@ -147,10 +157,7 @@
 		display			: block;
 		padding 		: 0.5em 1em;
 		text-decoration	: none;
-
-		@media only screen and (min-width: $bp__sidemenu + 1) {
-			color: $color__text-menu;
-		}
+		text-transform 	: uppercase;
 
 		&:focus {
 			outline-color: $color__outline-menu-link;
@@ -162,7 +169,7 @@
 	.current-menu-parent,
 	.current_page_ancestor {
 
-		@media only screen and (min-width: $bp__sidemenu + 1) {
+		@media only screen and (min-width: $bp__laptop) {
 			background-color: $color__bg-menu-current;
 		}
 
@@ -178,51 +185,23 @@
 			}
 		}
 	}
-
-	/* &.toggled {
-
-		.nav-menu {
-			@include menutoggle();
-			padding: 0;
-		}
-
-		.menu-main-menu-container {
-			@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-				transform: translateX(0);
-			}
-
-		}
-	} */
 } // .main-navigation
+
+.nav-belowslider {
+	padding-top: $size__tab-menu-height1;
+
+	@media only screen and (min-width: $bp__upper-tab-text) and (max-width: $bp__menu-button) {
+		padding-top: $size__menu-button-height;
+	}
+
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		padding-top: 0;
+	}
+}
 
 // Center Menu
 .menu-main-menu-container {
-	margin		: 0 auto;
-
-	/**
-	 * Tablet menu - slide in from left - on top or pushing content
-	 */
-	@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-		background-color: $dark;
-		bottom 			: 0;
-		height 			: 100%;
-		left 			: 0;
-		overflow 		: auto;
-		position 		: fixed;
-		top 			: 0;
-		transform 		: translateX( -$size__menu_width);
-		transition 		: transform 0.4s ease;
-		width 			: $size__menu_width;
-		z-index 		: 9999;
-
-		.admin-bar & {
-			padding-top: $size__wp-admin-bar-1;
-
-			@media only screen and (min-width: $bp__admin-bar-1) {
-				padding-top: $size__wp-admin-bar-2;
-			}
-		}
-	}
+	margin	: 0 auto;
 }
 
 
@@ -231,6 +210,11 @@
 	@include menutoggle();
 	background		: $color__bg-menu-button-mobile;
 	color 			: $color__text-menu-button-mobile;
+	transition 		: $trans__default;
+
+	.toggled & {
+		background-color: $gray;
+	}
 
 	&:hover,
 	&:focus,
@@ -238,29 +222,25 @@
 		background: $color__bg-menu-button-mobile;
 	}
 
-	@media only screen and (min-width: $bp__tablet) and (max-width: $bp__laptop) {
-		background-color: $color__bg-menu-button;
-		color 			: $color__text-menu-button;
-		position 		: absolute;
-		right 			: 0;
-		width 			: 200px;
-		z-index 		: 99;
-	}
-
-	@media only screen and (min-width: $bp__menu-button + 1) {
-		display 		: none;
+	@media only screen and (min-width: $bp__laptop + 1) {
+		display: none;
 	}
 }
 
 .wrap-submenu {
-	@media only screen and (max-width: $bp__menu-button) {
+	@media only screen and (max-width: $bp__laptop - 1) {
 		border-top: 3px solid $color__border-submenu-hint;
 	}
 }
 
-.children-caret {
-	display 	: inline-block;
-	height 		: 0.75em;
-	margin-left : 0.25em;
-	width 		: 0.75em;
+.caret-down {
+	fill: $light;
+}
+
+.children {
+	display: none;
+
+	@media only screen and (min-width: $bp__laptop) {
+		display: inline-block;
+	}
 }

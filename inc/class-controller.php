@@ -164,16 +164,10 @@ class Mervis_2016_Controller {
 
 		$theme_menu = new Mervis_2016_Menukit( $this->get_theme_name(), $this->get_version() );
 
-		$this->loader->filter( 'walker_nav_menu_start_el', 			$theme_menu, 'menu_show_hide', 10, 4 );
-
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'dashicon_before_menu_item', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'dashicon_after_menu_item', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'dashicon_only_menu_item', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'menu_caret', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'svg_before_menu_item', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'svg_after_menu_item', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'svg_only_menu_item', 10, 4 );
-		//$this->loader->filter( 'walker_nav_menu_start_el', 		$theme_menu, 'search_icon_only', 10, 4 );
+		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'menu_show_hide', 10, 4 );
+		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'header_tabs_menu', 10, 4 );
+		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'android_menu', 10, 4 );
+		$this->loader->filter( 'wp_nav_menu_items', 		$theme_menu, 'add_search_to_menu', 10, 2 );
 
 	} // define_menu_hooks()
 
@@ -187,10 +181,10 @@ class Mervis_2016_Controller {
 
 		$theme_metaboxes = new Mervis_2016_Metaboxes( $this->get_theme_name(), $this->get_version() );
 
-		$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'add_metaboxes' );
-		$this->loader->action( 'save_post', 					$theme_metaboxes, 'validate_meta', 10, 2 );
+		//$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'add_metaboxes' );
+		//$this->loader->action( 'save_post', 					$theme_metaboxes, 'validate_meta', 10, 2 );
 		//$this->loader->action( 'edit_form_after_title', 		$theme_metaboxes, 'metabox_subtitle', 10, 2 );
-		$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'set_meta' );
+		//$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'set_meta' );
 		//$this->loader->filter( 'post_type_labels', 				$theme_metaboxes, 'change_featured_image_labels', 10, 1 );
 
 	} // define_metabox_hooks()
@@ -227,32 +221,63 @@ class Mervis_2016_Controller {
 
 		$theme_hooks = new Mervis_2016_Themehooks( $this->get_theme_name(), $this->get_version() );
 
-		$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'header_wrap_start', 10 );
+		$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'header_wrap_begin', 10 );
+		//$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'add_hidden_search', 11 );
 		$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'site_branding_start', 15 );
-		$this->loader->action( 'mervis_2016_header_content', 		$theme_hooks, 'title_site', 10 );
-		$this->loader->action( 'mervis_2016_header_content', 		$theme_hooks, 'site_description', 15 );
-		$this->loader->action( 'mervis_2016_header_bottom', 			$theme_hooks, 'site_branding_end', 85 );
-		$this->loader->action( 'mervis_2016_header_bottom', 			$theme_hooks, 'header_wrap_end', 90 );
-		$this->loader->action( 'mervis_2016_header_bottom', 			$theme_hooks, 'menu_primary', 95 );
-		$this->loader->action( 'mervis_2016_body_top', 				$theme_hooks, 'analytics_code', 10 );
-		$this->loader->action( 'mervis_2016_body_top', 				$theme_hooks, 'add_hidden_search', 15 );
-		$this->loader->action( 'mervis_2016_body_top', 				$theme_hooks, 'skip_link', 20 );
-		$this->loader->action( 'mervis_2016_while_before', 			$theme_hooks, 'title_archive' );
-		$this->loader->action( 'mervis_2016_while_before', 			$theme_hooks, 'title_single_post' );
-		$this->loader->action( 'mervis_2016_while_after', 			$theme_hooks, 'posts_nav' );
-		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'breadcrumbs' );
-		$this->loader->action( 'mervis_2016_entry_after', 			$theme_hooks, 'comments', 10 );
+
+		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'title_site', 10 );
+		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'text_logo', 20 );
+		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'site_branding_end', 20 );
+		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'header_menus_wrap_begin', 25 );
+		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'menu_toptabs', 30 );
+		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'menu_header', 35 );
+
+		$this->loader->action( 'mervis_2016_header_bottom', 		$theme_hooks, 'header_menus_wrap_end', 75 );
+		$this->loader->action( 'mervis_2016_header_bottom', 		$theme_hooks, 'header_wrap_end', 85 );
+
+		$this->loader->action( 'mervis_2016_header_after', 		$theme_hooks, 'slider_home', 10 );
+		$this->loader->action( 'mervis_2016_header_after', 		$theme_hooks, 'featured_image', 10 );
+		$this->loader->action( 'mervis_2016_header_after', 		$theme_hooks, 'menu_belowslider', 15 );
+
+		$this->loader->action( 'mervis_2016_body_top', 					$theme_hooks, 'analytics_code', 10 );
+		$this->loader->action( 'mervis_2016_body_top', 					$theme_hooks, 'skip_link', 20 );
+
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'breadcrumbs', 10 );
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menubox_wrap_begin', 19 );
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menu_menubox1', 20 );
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menu_menubox2', 25 );
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menu_menubox3', 30 );
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menu_menubox4', 40 );
+		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menubox_wrap_end', 41 );
+
+		$this->loader->action( 'mervis_2016_while_before', 			$theme_hooks, 'title_archive', 10 );
+		$this->loader->action( 'mervis_2016_while_before', 			$theme_hooks, 'title_single_post', 10 );
+
+		$this->loader->action( 'mervis_2016_while_after', 				$theme_hooks, 'posts_nav' );
+
+		//$this->loader->action( 'mervis_2016_entry_after', 				$theme_hooks, 'comments', 10 );
+
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'add_search', 10 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_posts_widget', 15 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_categories', 20 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_archives', 25 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_tag_cloud', 30 );
+
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'title_entry', 10 );
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'title_page', 10 );
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'title_search', 10 );
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'posted_on', 20 );
-		$this->loader->action( 'mervis_2016_footer_top', 			$theme_hooks, 'footer_wrap_begin' );
+
+		$this->loader->action( 'mervis_2016_content_bottom', 			$theme_hooks, 'sidebar_news', 50 );
+
+		$this->loader->action( 'mervis_2016_content_after', 			$theme_hooks, 'sidebar_home', 50 );
+
+		$this->loader->action( 'mervis_2016_footer_before', 		$theme_hooks, 'sidebar_footer', 10 );
+
+		$this->loader->action( 'mervis_2016_footer_top', 				$theme_hooks, 'footer_wrap_begin' );
+
 		$this->loader->action( 'mervis_2016_footer_content', 		$theme_hooks, 'footer_content', 20 );
+
 		$this->loader->action( 'mervis_2016_footer_bottom', 			$theme_hooks, 'footer_wrap_end' );
 
 	} // define_theme_hooks()

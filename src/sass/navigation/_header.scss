@@ -1,0 +1,28 @@
+.nav-header-menu {
+	display 		: none;
+	float 			: right;
+	font-family 	: medium;
+	font-size 		: 18px;
+	line-height 	: 1;
+	padding 		: 30px 1em 0 0;
+	text-transform 	: uppercase;
+
+	.menu {
+		text-align 	: right;
+	}
+
+	li {
+		display 	: inline-block;
+		border-right: 3px solid #fff;
+		padding 	: 0 0.75em 0 0.5em;
+	}
+
+	li:last-child {
+		border-right 	: none;
+		padding-right 	: 0;
+	}
+
+	@media screen and (min-width: $bp__tablet) {
+		display 	: inherit;
+	}
+}

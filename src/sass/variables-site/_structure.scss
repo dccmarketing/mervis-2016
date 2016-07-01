@@ -4,11 +4,20 @@ $size__site-sidebar		: 25%;
 $size__default-bot-marg	: 1.5em;
 $size__max-width 		: 1000px;
 
+$size__header-height 		: 180px;
+$size__menu-button-height 	: 45px;
+$size__tab-menu-top 		: 195px; // header + menu button + border;
+$size__tab-menu-height1 	: 69px;
+$size__logo-width 			: 156px;
+
 $size__menu_width 		: 300px;
-$size__hidden-search 	: 180px;
+$size__hidden-search 	: 176px;
 
 $size__wp-admin-bar-1 	: 46px;
 $size__wp-admin-bar-2 	: 32px;
+
+$border__header 		: 5px solid $light;
+$border__gray-line 		: 2px solid $gray;
 
 $trans__default 		: 0.4s ease;
 
@@ -22,10 +31,12 @@ $size__login-logo-height: 84px;
 /**
  * Breakpoints
  */
+$bp__upper-tab-text 	: 500px;
 $bp__sidemenu			: 600px; // 37.5em
 $bp__headings1 			: 700px; // 43.75em
 $bp__tablet				: 768px; // 48em
 $bp__admin-bar-1		: 783px;
 $bp__headings2 			: 900px; // 56.25em
-$bp__menu-button 		: 1024px;
+$bp__full-menu 			: 900px;
+$bp__menu-button 		: 650px;
 $bp__laptop				: 1024px; // 64em

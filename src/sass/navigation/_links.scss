@@ -1,6 +1,8 @@
 a {
 	color: $color__link;
 
+	@include unline( $red, $maroon );
+
 	&:visited {
 		color: $color__link-visited;
 	}

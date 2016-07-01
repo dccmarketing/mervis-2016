@@ -1,15 +1,66 @@
 @font-face {
 	font-family : 'fontello';
-	src 		: url('fonts/fontello.eot?47129516');
-	src 		: url('fonts/fontello.eot?47129516#iefix') format('embedded-opentype'),
-				url('fonts/fontello.woff?47129516') format('woff'),
-				url('fonts/fontello.ttf?47129516') format('truetype'),
-				url('fonts/fontello.svg?47129516#fontello') format('svg');
+	src 		: url('assets/fonts/fontello.eot?47129516');
+	src 		: url('assets/fonts/fontello.eot?47129516#iefix') format('embedded-opentype'),
+				url('assets/fonts/fontello.woff?47129516') format('woff'),
+				url('assets/fonts/fontello.ttf?47129516') format('truetype'),
+				url('assets/fonts/fontello.svg?47129516#fontello') format('svg');
 	font-weight : normal;
 	font-style 	: normal;
 }
 
-$font__main 				: sans-serif;
+@font-face {
+    font-family: 'bold';
+    src: url('assets/fonts/avbold-webfont.eot');
+    src: url('assets/fonts/avbold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/avbold-webfont.woff') format('woff'),
+         url('assets/fonts/avbold-webfont.ttf') format('truetype'),
+         url('assets/fonts/avbold-webfont.svg#itc_avant_garde_pro_mdbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'boldob';
+    src: url('assets/fonts/avboldoblique-webfont.eot');
+    src: url('assets/fonts/avboldoblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/avboldoblique-webfont.woff') format('woff'),
+         url('assets/fonts/avboldoblique-webfont.ttf') format('truetype'),
+         url('assets/fonts/avboldoblique-webfont.svg#itc_avant_garde_gothic_prBdOb') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'demi';
+    src: url('assets/fonts/avdemi-webfont.eot');
+    src: url('assets/fonts/avdemi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/avdemi-webfont.woff') format('woff'),
+         url('assets/fonts/avdemi-webfont.ttf') format('truetype'),
+         url('assets/fonts/avdemi-webfont.svg#itc_avant_garde_gothic_prdemi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'medium';
+    src: url('assets/fonts/avmedium-webfont.eot');
+    src: url('assets/fonts/avmedium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/avmedium-webfont.woff') format('woff'),
+         url('assets/fonts/avmedium-webfont.ttf') format('truetype'),
+         url('assets/fonts/avmedium-webfont.svg#itc_avant_garde_gothic_proMd') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'reg';
+    src: url('assets/fonts/avregular-webfont.eot');
+    src: url('assets/fonts/avregular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/fonts/avregular-webfont.woff') format('woff'),
+         url('assets/fonts/avregular-webfont.ttf') format('truetype'),
+         url('assets/fonts/avregular-webfont.svg#itc_avant_garde_gothic_proBk') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font__main 				: 'reg', sans-serif;
 $font__code 				: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 $font__pre 					: "Courier 10 Pitch", Courier, monospace;
 $font__line-height-body 	: 1.5;

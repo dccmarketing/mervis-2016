@@ -1,0 +1,85 @@
+.sidebar-footer {
+	background-color: $dark;
+	color 			: $light;
+	transition 		: $trans__default;
+
+	.wrap {
+		margin 		: 0 auto;
+		max-width 	: $size__max-width;
+		padding 	: 1em;
+
+		@media only screen and (min-width: $bp__tablet) {
+			display 		: flex;
+			justify-content : space-between;
+		}
+
+		@media only screen and (min-width: $bp__laptop) {
+			padding-left 	: 0;
+			padding-right 	: 0;
+		}
+	}
+
+	.home & {
+		background-color: transparent;
+		color 			: inherit;
+	}
+
+	.widget {
+
+		&:not(:first-child) {
+			border-top: $border__gray-line;
+
+			@media only screen and (min-width: $bp__tablet) {
+				border-left : $border__gray-line;
+				border-top 	: none;
+				width 		: 26%;
+			}
+		}
+
+		@media only screen and (min-width: $bp__tablet) {
+			padding: 0 2%;
+
+			&:first-child {
+				padding-left: 0;
+				width 		: 48%;
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+		}
+	}
+
+	.widget-title {
+		font-family 	: 'bold';
+		font-size 		: 1em;
+		text-transform 	: inherit;
+	}
+
+	.widget_nav_menu {
+		padding-top: 1em;
+
+		@media only screen and (min-width: $bp__tablet) {
+			padding-top: 0;
+		}
+
+		.widget-title {
+			display: none;
+
+			@media only screen and (min-width: $bp__tablet) {
+				color 		: transparent !important;
+				display 	: inherit;
+			}
+		}
+
+		ul {
+			@include listreset();
+		}
+
+		a {
+			font-family 	: 'bold';
+			@include unline( $red, $maroon );
+		}
+	}
+
+}

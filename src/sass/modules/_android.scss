@@ -1,0 +1,404 @@
+%redbox {
+	@include redgrad();
+	color 		: $light;
+	text-align 	: center;
+	position 	: relative;
+}
+
+%appear {
+	-webkit-appearance 	: none;
+	-moz-appearance 	: none;
+	appearance 			: none;
+}
+
+%button {
+	border-radius 	: 5px;
+	margin 			: 1em auto;
+	padding 		: 0.5em;
+	display			: block;
+}
+
+%transinput {
+	@extend %button;
+	background-color: transparent;
+	border 			: 2px solid $light;
+	width 			: 70%;
+	color 			: $light;
+	font-size 		: 1em;
+}
+
+%redbutton {
+	@extend %button;
+	@extend %redbox;
+	text-transform 	: uppercase;
+	max-width 		: 60%;
+}
+
+
+.android {
+	background-image 	: url( assets/images/mobile-bg.png );
+	background-repeat 	: no-repeat;
+	background-size 	: cover;
+	background-color 	: lighten( $darkgray, 40% );
+
+	* {
+		box-sizing 	: border-box;
+	}
+
+	header {
+		@extend %redbox;
+		padding 	: 0.75em;
+	}
+
+	.screen-title {
+		color 		: $light;
+		font-family : 'medium';
+	}
+
+	.mervis-logo {
+		position 	: absolute;
+		right 		: 0.75em;
+		top 		: 0;
+		width 		: 42px;
+		height 		: auto;
+	}
+
+	.signup-button {
+		@extend %redbutton;
+	}
+
+	.waistband {
+		@extend %redbox;
+		padding 	: 0.25em 0;
+		min-height 	: 1em;
+		text-align 	: center;
+		font-size 	: 0.8em;
+
+		p {
+			margin: 0 !important;
+		}
+	}
+
+	p.waistband {
+		margin: 0 !important;
+	}
+
+	.list {
+		background-color: $translight;
+		color 			: $gray;
+		min-height 		: 200px;
+		overflow-y 		: scroll;
+		overflow-x 		: hidden;
+
+		ol {
+			counter-reset 	: ol-counter;
+			list-style-type : none;
+			margin 			: 0;
+   			padding 		: 0 0 64px 1.75em !important;
+
+			li {
+				border-bottom 	: 1px solid $darkgray;
+				padding 		: 0.75em 0;
+				padding-left 	: 0.75em;
+				position 		: relative;
+			}
+
+			> li:before {
+				background-color 	: transparent;
+				border 				: 2px solid $gray;
+				border-radius 		: 50%;
+				color 				: $gray;
+				content 			: counter(ol-counter);
+				counter-increment 	: ol-counter;
+				height 				: 1.75em;
+				left 				: -1.33em;
+				line-height 		: 1.5;
+				position 			: absolute;
+				text-align 			: center;
+				top 				: 50%;
+				transform 			: translateY(-50%);
+				width 				: 1.75em;
+			}
+		}
+
+		a {
+			color: $gray;
+		}
+	}
+
+	footer {
+		border-top 		: 2px solid $dark;
+		padding 		: 0.25em 0;
+		position 		: fixed;
+		bottom 			: 0;
+		background-color: $light;
+		width 			: 100%;
+	}
+
+}
+
+.nav-android {
+
+	.menu-items {
+		@include listreset();
+	}
+
+	li {
+		display 		: inline-block;
+		vertical-align 	: top;
+		width 			: 18.75%;
+		text-align 		: center;
+
+		&.current-menu-item,
+		&:hover {
+
+			svg {
+				fill: $maroon;
+			}
+
+			a {
+				color: $maroon;
+			}
+		}
+	}
+
+	a {
+		font-size 	: 12px;
+		color 		: $darkgray;
+	}
+
+	.menu-icon-label,
+	.menu-label {
+		display: block;
+	}
+
+	svg {
+		width 	: 2.5em;
+		height 	: 2.5em;
+		fill 	: $darkgray;
+	}
+}
+
+.top-form {
+
+	select {
+		@extend %appear;
+		@extend %transinput;
+		padding-right: 2em;
+	}
+}
+
+[type="submit"].btn-submit {
+	@extend %redbutton;
+	margin 			: 0 auto 1em;
+	border 			: 0;
+	box-shadow 		: none;
+	font-size 		: 1em;
+	width 			: 70%;
+}
+
+.transbutton {
+	@extend %transinput;
+	font-size 		: 0.8em;
+	line-height 	: 2.5;
+	padding 		: 0.25em;
+
+	.dashicons {
+		vertical-align 	: middle;
+		margin-left 	: 0.25em;
+	}
+}
+
+.inactive {
+	opacity: 0.4;
+}
+
+/**
+ * Pricing
+ */
+.magnetic {
+	margin 	: 1em auto;
+	width 	: 70%;
+
+	input[type="radio"] {
+		display: none;
+
+		&:checked + label {
+			background-color: $light;
+			color 			: $maroon;
+		}
+	}
+
+	label {
+		display 	: inline-block;
+		width 		: 50%;
+		position	: relative;
+		border 		: 2px solid $light;
+		color 		: $light;
+		font-size 	: 0.8em;
+		line-height : 2.65;
+		text-align 	: center;
+		cursor 		: pointer;
+
+		&[for="nonferrous"] {
+			margin-right 				: -3px;
+			border-top-left-radius 		: 5px;
+			border-bottom-left-radius 	: 5px;
+		}
+		&[for="ferrous"] {
+			margin-left 				: -3px;
+			border-top-right-radius 	: 5px;
+			border-bottom-right-radius 	: 5px;
+		}
+	}
+}
+
+.metal-price {
+	float 		: right;
+	margin-right: 1em;
+	color 		: $red;
+}
+
+/**
+ * Calculator
+ */
+.current-price {
+	padding: 0.25em 0;
+}
+
+.pounds {
+	@extend %transinput;
+}
+
+.pounds2 {
+	width 			: 100%;
+	border 			: 0;
+	padding 		: 1em;
+	font-size 		: 1em;
+	background-color: $ltgray;
+	color 			: $med;
+}
+
+.estimate {
+	width 			: 100%;
+	background-color: $light;
+	padding 		: 0.25em;
+	line-height 	: 1.75;
+	font-size 		: 1.5em;
+	color 			: $maroon;
+	margin-bottom 	: 0 !important;
+
+	.dollar {
+		border 			: 1px solid $maroon;
+		border-radius 	: 50%;
+		padding 		: 0 0.4em;
+	}
+}
+
+.fine-print {
+	font-size 	: 10px;
+	padding 	: 0.25em;
+	text-align 	: center;
+	color 		: $light;
+}
+
+.find-loc-btn {
+	@extend %redbutton;
+}
+
+/**
+ * Locations
+ */
+.location {
+	padding: 0.25em 0;
+
+	svg {
+		width 	: 1em;
+		height 	: 1em;
+		fill 	: $darkgray;
+	}
+
+	.show-info {
+		bottom 			: 0;
+		color 			: $gray;
+		position 		: absolute;
+		right 			: 0;
+		top 			: 50%;
+		transform 		: translateY(-50%);
+		width 			: 11% !important;
+	}
+
+	.show-button {
+		border-radius 	: 50%;
+		border 			: 2px solid $gray;
+		padding 		: 0 0.4em 0.1em;
+		margin 			: 0.2em 0.2em 0 0;
+		font-size 		: 1em;
+		line-height 	: 2;
+	}
+}
+
+.location-select,
+.metal-select {
+	position: relative;
+
+	&:after {
+		content 					: "\f345";
+		font-family 				: 'dashicons';
+		width 						: 1.5em;
+		height 						: 100%;
+		position 					: absolute;
+		right 						: 15%;
+		color 						: $maroon;
+		background-color 			: $light;
+		top 						: 0;
+		font-size 					: 1.5em;
+		line-height 				: 1.65;
+		text-align 					: center;
+		border-top-right-radius 	: 5px;
+		border-bottom-right-radius 	: 5px;
+		z-index 					: -1;
+	}
+}
+
+.loc-info {
+	max-height 	: 0;
+	visibility 	: hidden;
+	opacity 	: 0;
+	transition 	: 0.3s;
+
+	&.open {
+		max-height 	: 2.5em;
+		visibility 	: visible;
+		opacity 	: 1;
+	}
+}
+
+.loc-button {
+	width 	: 32%;
+	display : inline-block;
+	padding : 0.5em 0;
+	color 	: $darkgray;
+}
+
+.location-name {
+	display 	: block;
+	font-size 	: 0.9em;
+}
+
+.location-address {
+	display 	: block;
+	font-size 	: 0.7em;
+	padding 	: 0.25em 0;
+}
+
+/**
+ * Alerts
+ */
+.alert {
+	a {
+		font-size 		: 0.85em;
+		width 			: 100%;
+		display 		: block;
+	}
+}

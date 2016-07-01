@@ -1,0 +1,19 @@
+
+@mixin redgrad() {
+	background: $maroon; /* old browsers */
+	background: -webkit-linear-gradient( left, $maroon 0%, $red 50%, $maroon 100% ); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient( to right, $maroon 0%, $red 50%, $maroon 100% ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+@mixin redbox() {
+	@include redgrad();
+	color 		: $light;
+	text-align 	: center;
+	position 	: relative;
+}
+
+@mixin graygrad() {
+	background-color: $ltgray;
+	background-image: -webkit-linear-gradient(to bottom, $ltgray 0%, $light 100%);
+	background-image: linear-gradient(to bottom, $ltgray 0%, $light 100%);
+}

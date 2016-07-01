@@ -6,23 +6,23 @@
 @import "mixins/mixins";
 
 .login { // page body tag
-	background: $light;
+	background: $med;
 
 	#login { // div container for login form
 
 		h1 {
 
 			a {
-/* 				background-image: url(images/logo.jpg);
+				background-image: url(assets/images/logo.png);
 			    background-size : contain;
-			    height 			: 110px;
-			    width 			: 110px; // max: 320px
- */			}
+			    height 			: 140px;
+			    width 			: 300px; // max: 320px
+			}
 		}
 	}
 
 	form {
-		background-color: $med;
+		background-color: $red;
 		padding-bottom 	: 26px;
 
 		p {
@@ -38,7 +38,7 @@
 	[type="password"] { // username and password fields
 		background-color: $med;
 		border 			: 0;
-		color 			: $light;
+		color 			: $gray;
 
 		&:focus,
 		&:active {
@@ -53,16 +53,18 @@
 
 	[type="submit"] { // submit button itself
 		background-color: $med;
-		border 			: 0;
+		border 			: 1px solid $light;
 		border-radius 	: 0;
 		box-shadow 		: none;
 		color 			: $light;
 		font-size 		: 1.25em;
 		font-weight 	: 700;
+		text-shadow 	: none;
 		text-transform 	: uppercase;
 
 		&:hover {
-			background-color: darken( $med, 25% );
+			background-color: $gray;
+			border-color 	: $light;
 			color 			: $light;
 		}
 	}
@@ -71,10 +73,12 @@
 	#backtoblog {
 
 		a {
-			color: $dark;
+			color: $light;
 
 			&:hover {
-				color: $med;
+				color 		: $light;
+				font-weight : 700;
+				//color: $maroon;
 			}
 		}
 	}
@@ -89,6 +93,13 @@
 	[type="checkbox"] { // checkbox itself
 		background-color: $med;
 		color 			: $light;
+
+		&:checked {
+
+			&:before {
+				color: $maroon;
+			}
+		}
 	}
 
 }

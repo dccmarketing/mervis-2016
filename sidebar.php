@@ -7,7 +7,7 @@
  * @package Mervis_2016
  */
 
-if ( ! is_active_sidebar( 'sidebar-1' ) ) { return; }
+if ( ! is_active_sidebar( 'sidebar' ) ) { return; }
 
 /**
  * The mervis_2016_sidebars_before action hook
