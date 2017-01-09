@@ -102,8 +102,6 @@ if ( ! isset( $_POST['mode'] ) ) {
 
 	}
 
-	//;pretty( $metals );
-
 	?><section class="top-form">
 		<form action="<?php echo get_permalink(); ?>" method="post">
 			<div>

@@ -10,6 +10,33 @@
 class Mervis_2016_Metaboxes {
 
 	/**
+	 * The capabilities required for saving these metaboxes.
+	 *
+	 * @since 		1.0.0
+	 * @access 		private
+	 * @var 		string 			$caps 			The capability.
+	 */
+	private $caps = 'edit_post';
+
+	/**
+	 * The post type for this set of metaboxes.
+	 *
+	 * @since 		1.0.0
+	 * @access 		private
+	 * @var 		string 			$cpt 			This post type.
+	 */
+	private $cpt;
+
+	/**
+	 * Array of fields used in these metaboxes.
+	 *
+	 * @since 		1.0.0
+	 *
+	 * @var [type]
+	 */
+	private $fields;
+
+	/**
 	 * The post meta data
 	 *
 	 * @since 		1.0.0
@@ -48,6 +75,9 @@ class Mervis_2016_Metaboxes {
 		$this->theme_name 	= $theme_name;
 		$this->version 		= $version;
 
+		$this->set_caps();
+		$this->set_cpt();
+
 	} // __construct()
 
 	/**
@@ -59,44 +89,9 @@ class Mervis_2016_Metaboxes {
 	 */
 	public function add_metaboxes() {
 
-		//remove_meta_box( 'postimagediv', 'employee', 'side' );
-
-		// add_meta_box( $id, $title, $callback, $screen, $context, $priority, $callback_args );
-
-		// add_meta_box(
-		// 	'subtitle',
-		// 	apply_filters( $this->theme_name . '-subtitle-title', esc_html__( 'Subtitle', 'mervis-2016' ) ),
-		// 	array( $this, 'metabox' ),
-		// 	'page',
-		// 	'top',
-		// 	'default',
-		// 	array(
-		// 		'appear' => 'page',
-		// 		'file' => 'subtitle'
-		//
-		// 	)
-		// );
+		// Define in child class.
 
 	} // add_metaboxes()
-
-	/**
-	 * Changes strings referencing Featured Images
-	 *
-	 * @hooked 		post_type_labels
-	 * @see 		https://developer.wordpress.org/reference/hooks/post_type_labels_post_type/
-	 * @param 		object 		$labels 		Current post type labels
-	 * @return 		object 						Modified post type labels
-	 */
-	public function change_featured_image_labels( $labels ) {
-
-		$labels->featured_image 		= esc_html__( 'Featured Image', 'mervis-2016' );
-		$labels->set_featured_image 	= esc_html__( 'Set featured image', 'mervis-2016' );
-		$labels->remove_featured_image 	= esc_html__( 'Remove featured image', 'mervis-2016' );
-		$labels->use_featured_image 	= esc_html__( 'Use as featured image', 'mervis-2016' );
-
-		return $labels;
-
-	} // change_featured_image_labels()
 
 	/**
 	 * Check each nonce. If any don't verify, $nonce_check is increased.
@@ -108,9 +103,8 @@ class Mervis_2016_Metaboxes {
 	 */
 	private function check_nonces( $posted ) {
 
-		$nonces 		= array();
 		$nonce_check 	= 0;
-		$nonces[] 		= 'nonce_page_menus';
+		$nonces 		= $this->nonces;
 
 		foreach ( $nonces as $nonce ) {
 
@@ -124,25 +118,6 @@ class Mervis_2016_Metaboxes {
 	} // check_nonces()
 
 	/**
-	 * Returns an array of the all the metabox fields and their respective types
-	 *
-	 * $fields[] 	= array( 'field-name', 'field-type', 'Field Label' );
-	 *
-	 * @since 		1.0.0
-	 * @access 		public
-	 * @return 		array 		Metabox fields and types
-	 */
-	private function get_metabox_fields() {
-
-		$fields 	= array();
-		$fields[] 	= array( 'header-menu', 'select', '' );
-		$fields[] 	= array( 'main-menu', 'select', '' );
-
-		return $fields;
-
-	} // get_metabox_fields()
-
-	/**
 	 * Calls a metabox file specified in the add_meta_box args.
 	 *
 	 * @exits 		Not in the admin.
@@ -153,11 +128,57 @@ class Mervis_2016_Metaboxes {
 	public function metabox( $post, $params ) {
 
 		if ( ! is_admin() ) { return; }
-		if ( $params['args']['appear'] != $post->post_type ) { return; }
+		if ( $this->cpt != $post->post_type ) { return; }
 
 		include( get_stylesheet_directory() . '/template-parts/metaboxes/' . $params['args']['file'] . '.php' );
 
 	} // metabox()
+
+	/**
+	 * Checks conditions before validating metabox submissions.
+	 *
+	 * Returns FALSE under these conditions:
+	 * 		Doing autosave.
+	 * 		User doesn't have the capabilities.
+	 * 		Not on the correct post type.
+	 * 		Nonces don't validate.
+	 *
+	 * @param 		object 		$posted 		The submitted data.
+	 * @param 		int 		$post_id 		The post ID.
+	 * @param 		object 		$post 			The post object.
+	 * @return 		bool 						FALSE if any conditions are met, otherwise TRUE.
+	 */
+	private function pre_validation_checks( $posted, $post_id, $post ) {
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return FALSE; }
+		if ( ! current_user_can( $this->caps, $post_id ) ) { return FALSE; }
+		if ( $this->cpt != $post->post_type ) { return FALSE; }
+
+		$nonce_check = $this->check_nonces( $posted );
+
+		if ( 0 < $nonce_check ) { return FALSE; }
+
+		return TRUE;
+
+	} // pre_validation_checks()
+
+	/**
+	 * Sets the class variable $caps.
+	 */
+	private function set_caps() {
+
+		$this->caps = 'edit_post';
+
+	} // set_caps()
+
+	/**
+	 * Sets the class variable $cpt.
+	 */
+	private function set_cpt() {
+
+		$this->cpt = '';
+
+	} // set_cpt()
 
 	/**
 	 * Sets the class variable $options
@@ -171,7 +192,7 @@ class Mervis_2016_Metaboxes {
 		global $post;
 
 		if ( empty( $post ) ) { return; }
-		if ( 'page' != $post->post_type ) { return; }
+		if ( $this->cpt != $post->post_type ) { return; }
 
 		$this->meta = get_post_custom( $post->ID );
 
@@ -180,29 +201,21 @@ class Mervis_2016_Metaboxes {
 	/**
 	 * Saves metabox data
 	 *
-	 * @exits 		Doing autosave.
-	 * @exits 		User doesn't have capabilities.
-	 * @exits 		Not on the correct post type.
-	 * @exits 		Nonces don't validate.
 	 * @hooked 		save_post 		10
 	 * @since 		1.0.0
 	 * @access 		public
-	 * @param 		int 		$post_id 		The post ID
-	 * @param 		object 		$post 			The post object
+	 * @param 		int 			$post_id 		The post ID
+	 * @param 		object 			$post 			The post object
 	 */
 	public function validate_meta( $post_id, $post ) {
 
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) { return $post_id; }
-		if ( ! current_user_can( 'edit_post', $post_id ) ) { return $post_id; }
-		if ( 'page' != $post->post_type ) { return $post_id; }
+		$validate = $this->pre_validation_checks( $_POST, $post_id, $post );
 
-		$nonce_check = $this->check_nonces( $_POST );
+		if ( ! $validate ) { return $post_id; }
 
-		if ( 0 < $nonce_check ) { return $post_id; }
+		$fields = $this->fields;
 
-		$metas = $this->get_metabox_fields();
-
-		foreach ( $metas as $meta ) {
+		foreach ( $fields as $meta ) {
 
 			$value 		= ( empty( $this->meta[$meta[0]][0] ) ? '' : $this->meta[$meta[0]][0] );
 			$sanitizer 	= new Mervis_2016_Sanitize();

@@ -13,14 +13,9 @@
 	button = document.querySelector( '.btn-search .icon-menu' );
 	if ( ! button ) { return; }
 
-	//console.log( search );
-	//console.log( button );
-
 	search.setAttribute( 'aria-hidden', 'true' );
 
 	button.addEventListener( 'click', function( e ) {
-
-		console.log( 'yep' );
 
 		e.preventDefault();
 

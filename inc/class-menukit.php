@@ -13,6 +13,71 @@ class Mervis_2016_Menukit {
 	 */
 	public function __construct() {} // __construct()
 
+	/**
+	 * Add an icon the menu item
+	 *
+	 * @exits 		If $args is empty.
+	 * @exits 		If 'slushicons' is not in the classes array.
+	 * @hooked 		walker_nav_menu_start_el 		10
+	 * @link 		http://www.billerickson.net/customizing-wordpress-menus/
+	 * @param 		string 		$item_output		//
+	 * @param 		object 		$item				//
+	 * @param 		int 		$depth 				//
+	 * @param 		array 		$args 				//
+	 * @return 		string 							modified menu
+	 */
+	public function add_icons_to_menu( $item_output, $item, $depth, $args ) {
+
+		if ( empty( $args ) ) { return $item_output; }
+		if ( ! in_array( 'slushicons', $item->classes ) ) { return $item_output; }
+
+		$atts 		= $this->get_attributes( $item );
+		$icon 		= $this->get_icon_info( $item->classes );
+		$textpos 	= $this->get_text_pos( $item->classes );
+
+		if ( empty( $icon ) && empty( $textpos ) ) { return $item_output; }
+
+		$output = '';
+		$output .= '<a href="' . $item->url . '" class="icon-menu" ' . $atts . '>';
+
+		if ( 'right' === $textpos ) {
+
+			$output .= $this->get_icon( $icon );
+
+		}
+
+		if ( 'hide' === $textpos ) {
+
+			$output .= '<span class="screen-reader-text">' . $item->title . '</span>';
+			$output .= $this->get_icon( $icon );
+
+		} else {
+
+			$output .= '<span class="menu-label">' . $item->title . '</span>';
+
+		}
+
+		if ( 'left' === $textpos ) {
+
+			$output .= $this->get_icon( $icon );
+
+		}
+
+		$output .= '</a>';
+
+		return $output;
+
+	} // add_icons_to_menu()
+
+	/**
+	 * Adds a search form to the menu.
+	 *
+	 * @exits 		If not on the correct menu.
+	 * @hooked 		wp_nav_menu_items 			10
+	 * @param 		array 		$items 			The current menu items.
+	 * @param 		array 		$args 			The menu args.
+	 * @return 		array 						The menu items plus a search form.
+	 */
 	public function add_search_to_menu( $items, $args ) {
 
 		if ( 'header-tabs' !== $args->theme_location ) { return $items; }
@@ -22,149 +87,11 @@ class Mervis_2016_Menukit {
 	} // add_search_to_menu()
 
 	/**
-	 * Add an icon the menu item
-	 *
-	 * @link 	http://www.billerickson.net/customizing-wordpress-menus/
-	 *
-	 * @param 	string 		$item_output		//
-	 * @param 	object 		$item				//
-	 * @param 	int 		$depth 				//
-	 * @param 	array 		$args 				//
-	 *
-	 * @return 	string 							modified menu
-	 */
-	public function header_tabs_menu( $item_output, $item, $depth, $args ) {
-
-		if ( 'header-tabs' !== $args->theme_location ) { return $item_output; }
-
-		$atts 		= $this->get_attributes( $item );
-		$icon 		= $this->get_icon_info( $item->classes );
-		$textpos 	= $this->get_text_pos( $item->classes );
-
-		if ( empty( $icon ) && empty( $textpos ) ) { return $item_output; }
-
-		$output = '';
-
-		$output .= '<a href="' . $item->url . '" class="icon-menu" ' . $atts . '>';
-
-		if ( 'right' === $textpos ) {
-
-			$output .= $this->get_icon( $icon );
-
-		}
-
-		if ( 'hide' === $textpos ) {
-
-			$output .= '<span class="screen-reader-text">' . $item->title . '</span>';
-			$output .= $this->get_icon( $icon );
-
-		} else {
-
-			$output .= '<span class="menu-label">' . $item->title . '</span>';
-
-		}
-
-		if ( 'left' === $textpos ) {
-
-			$output .= $this->get_icon( $icon );
-
-		}
-
-		$output .= '</a>';
-
-		return $output;
-
-	} // header_tabs_menu()
-
-	/**
-	 * Add an icon the menu item
-	 *
-	 * @link 	http://www.billerickson.net/customizing-wordpress-menus/
-	 *
-	 * @param 	string 		$item_output		//
-	 * @param 	object 		$item				//
-	 * @param 	int 		$depth 				//
-	 * @param 	array 		$args 				//
-	 *
-	 * @return 	string 							modified menu
-	 */
-	public function android_menu( $item_output, $item, $depth, $args ) {
-
-		if ( 'android-footer' !== $args->theme_location ) { return $item_output; }
-
-		$atts 		= $this->get_attributes( $item );
-		$icon 		= $this->get_icon_info( $item->classes );
-		$textpos 	= $this->get_text_pos( $item->classes );
-
-		if ( empty( $icon ) && empty( $textpos ) ) { return $item_output; }
-
-		$output = '';
-
-		$output .= '<a href="' . $item->url . '" class="icon-menu" ' . $atts . '>';
-
-		if ( 'right' === $textpos ) {
-
-			$output .= $this->get_icon( $icon );
-
-		}
-
-		if ( 'hide' === $textpos ) {
-
-			$output .= '<span class="screen-reader-text">' . $item->title . '</span>';
-			$output .= $this->get_icon( $icon );
-
-		} else {
-
-			$output .= '<span class="menu-label">' . $item->title . '</span>';
-
-		}
-
-		if ( 'left' === $textpos ) {
-
-			$output .= $this->get_icon( $icon );
-
-		}
-
-		$output .= '</a>';
-
-		return $output;
-
-	} // android_menu()
-
-	/**
-	 * Add Plus ("+") expander to menus with children
-	 *
-	 * @param 		string 		$item_output		//
-	 * @param 		object 		$item				//
-	 * @param 		int 		$depth 				//
-	 * @param 		array 		$args 				//
-	 *
-	 * @return 		string 							modified menu
-	 */
-	public function menu_show_hide( $item_output, $item, $depth, $args ) {
-
-		if ( empty( $args ) || is_array( $args ) ) { return $item_output; }
-		if ( 'belowslider' !== $args->theme_location ) { return $item_output; }
-		if ( ! in_array( 'menu-item-has-children', $item->classes ) ) { return $item_output; }
-
-		$atts 	= $this->get_attributes( $item );
-		$output = '';
-
-		$output .= '<a href="' . $item->url . '">';
-		$output .= $item->title;
-		$output .= '<span class="children">' . mervis_2016_get_svg( 'caret-down' ) . '</span>';
-		$output .= '</a>';
-		$output .= '<span class="show-hide flex-center">+</span>';
-
-		return $output;
-
-	} // menu_show_hide()
-
-	/**
 	 * Returns a string of HTML attributes for the menu item
 	 *
-	 * @param 	object 		$item 			The menu item object
-	 * @return 	string 						A string of attributes
+	 * @exits 		If $item is empty.
+	 * @param 		object 		$item 			The menu item object
+	 * @return 		string 						A string of attributes
 	 */
 	public function get_attributes( $item ) {
 
@@ -193,6 +120,14 @@ class Mervis_2016_Menukit {
 
 	} // get_attributes()
 
+	/**
+	 * Returns the code for the icon.
+	 *
+	 * @exits 		If $icon is empty
+	 * @exits 		if $icon is not an array.
+	 * @param 		array 		$icon 			The icon info array.
+	 * @return 		mixed 						The icon markup.
+	 */
 	private function get_icon( $icon ) {
 
 		if ( empty( $icon ) || ! is_array( $icon ) ) { return; }
@@ -227,12 +162,19 @@ class Mervis_2016_Menukit {
 
 	} // get_icon()
 
+	/**
+	 * Returns an array of info about the icon.
+	 *
+	 * @exits 		If $classes is empty.
+	 * @param 		array 		$classes 			The menu item classes.
+	 * @return 		array 							The type and name of the icon.
+	 */
 	private function get_icon_info( $classes ) {
 
 		if ( empty( $classes ) ) { return; }
 
 		$return = array();
-		$checks = array( 'di-', 'fa-', 'svg-' );
+		$checks = array( 'dic-', 'fas-', 'svg-' );
 
 		foreach ( $classes as $class ) {
 
@@ -266,6 +208,13 @@ class Mervis_2016_Menukit {
 
 	} // get_icon_info()
 
+	/**
+	 * Returns the text position from the menu item class.
+	 *
+	 * @exits 		If $classes is empty.
+	 * @param 		array 		$classes 			The menu item classes.
+	 * @return 		string 							The text position.
+	 */
 	private function get_text_pos( $classes ) {
 
 		if ( empty( $classes ) ) { return; }
@@ -277,5 +226,38 @@ class Mervis_2016_Menukit {
 		return;
 
 	} // get_text_pos()
+
+	/**
+	 * Add Plus ("+") expander to menus with children
+	 *
+	 * @exits 		If $args is empty.
+	 * @exits 		If $args is not an array.
+	 * @exits 		If not on the correct menu.
+	 * @exits 		If 'menu-item-has-children' is not in the $classes array.
+	 * @hooked 		walker_nav_menu_start_el 		10
+	 * @param 		string 		$item_output		//
+	 * @param 		object 		$item				//
+	 * @param 		int 		$depth 				//
+	 * @param 		array 		$args 				//
+	 * @return 		string 							modified menu
+	 */
+	public function menu_show_hide( $item_output, $item, $depth, $args ) {
+
+		if ( empty( $args ) || is_array( $args ) ) { return $item_output; }
+		if ( 'belowslider' !== $args->theme_location && 'castings-main' !== $args->theme_location ) { return $item_output; }
+		if ( ! in_array( 'menu-item-has-children', $item->classes ) ) { return $item_output; }
+
+		$atts 	= $this->get_attributes( $item );
+		$output = '';
+
+		$output .= '<a href="' . $item->url . '">';
+		$output .= $item->title;
+		$output .= '<span class="children">' . mervis_2016_get_svg( 'caret-down' ) . '</span>';
+		$output .= '</a>';
+		$output .= '<span class="show-hide flex-center">+</span>';
+
+		return $output;
+
+	} // menu_show_hide()
 
 } // class

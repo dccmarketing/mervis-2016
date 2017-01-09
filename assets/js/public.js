@@ -1,7 +1,7 @@
 ( function( $ ) {
 
 	$( "#accordion" ).accordion({
-		active: 0,
+		active: false,
 		animate: 200,
 		collapsible: true,
 		header: "h2",
@@ -9,6 +9,47 @@
 		icons: { "header": "ui-icon-plus", "activeHeader": "ui-icon-minus" }
 	});
 
+} )( jQuery );
+
+/**
+ * Show location info on Android screens
+ */
+( function( $ ) {
+	$( ".location" ).each( function() {
+
+		console.log( $(this) );
+
+		var location, button, content, plus_minus;
+
+		location = $(this);
+		button = location.children(".show-info");
+		content = location.children(".loc-info");
+		plus_minus = button.children(".show-button");
+
+		if ( ! content.hasClass( "open" ) ) {
+
+			button.click( function(){
+
+				console.log( button );
+
+				content.toggleClass("open");
+
+				if ( content.hasClass( "open" ) ) {
+
+					plus_minus.html("-");
+					plus_minus.css( "padding", "0 0.5625em 0.1em" );
+
+				} else {
+
+					plus_minus.html("+");
+					plus_minus.css( "padding", "" );
+
+				}
+
+			}); // button.click()
+
+		}
+	}); // each
 } )( jQuery );
 
 /**
@@ -26,14 +67,9 @@
 	button = document.querySelector( '.btn-search .icon-menu' );
 	if ( ! button ) { return; }
 
-	//console.log( search );
-	//console.log( button );
-
 	search.setAttribute( 'aria-hidden', 'true' );
 
 	button.addEventListener( 'click', function( e ) {
-
-		console.log( 'yep' );
 
 		e.preventDefault();
 

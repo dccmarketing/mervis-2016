@@ -30,9 +30,10 @@
 			border-top: $border__gray-line;
 
 			@media only screen and (min-width: $bp__tablet) {
-				border-left : $border__gray-line;
-				border-top 	: none;
-				width 		: 26%;
+				border-left 	: $border__gray-line;
+				border-top 		: none;
+				margin-bottom 	: 0;
+				width 			: 26%;
 			}
 		}
 
@@ -63,15 +64,6 @@
 			padding-top: 0;
 		}
 
-		.widget-title {
-			display: none;
-
-			@media only screen and (min-width: $bp__tablet) {
-				color 		: transparent !important;
-				display 	: inherit;
-			}
-		}
-
 		ul {
 			@include listreset();
 		}
@@ -79,6 +71,24 @@
 		a {
 			font-family 	: 'bold';
 			@include unline( $red, $maroon );
+		}
+	}
+
+	.widget_sp_image {
+		a {
+			font-family 	: 'bold';
+			text-align 		: center;
+
+			@include unline( $red, $maroon );
+		}
+
+		.widget-title {
+			display: none;
+
+			@media only screen and (min-width: $bp__tablet) {
+				color 		: transparent !important;
+				display 	: inherit;
+			}
 		}
 	}
 

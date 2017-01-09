@@ -158,7 +158,7 @@ class Mervis_2016_Post_Format_Metaboxes {
 
 		wp_enqueue_script( $this->theme_name . '-file-uploader', get_stylesheet_directory() . 'js/file-uploader.js', array( 'jquery' ), $this->version, true );
 
-		wp_enqueue_script( $this->theme_name . '-post-formats', get_template_directory_uri() . '/js/post-formats.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->theme_name . '-post-formats', get_stylesheet_directory() . '/js/post-formats.js', array( 'jquery' ), $this->version, true );
 
 	} // enqueue
 
@@ -186,6 +186,8 @@ class Mervis_2016_Post_Format_Metaboxes {
 	/**
 	 * Calls a metabox file specified in the add_meta_box args for post format metaboxes.
 	 *
+	 * @exits 		Not in the admin.
+	 * @exits 		Not on the correct post type.
 	 * @since 	1.0.0
 	 * @access 	public
 	 * @return 	void
@@ -202,6 +204,10 @@ class Mervis_2016_Post_Format_Metaboxes {
 	/**
 	 * Adds classes to post format metaboxes.
 	 *
+	 * @hooked 		postbox_classes_post_post_format_audio
+	 * @hooked 		postbox_classes_post_post_format_image
+	 * @hooked 		postbox_classes_post_post_format_link
+	 * @hooked 		postbox_classes_post_post_format_video
 	 * @param 		array 		$classes 		Current metabox classes
 	 * @return 		array 						Modified metabox classes
 	 */
@@ -216,6 +222,8 @@ class Mervis_2016_Post_Format_Metaboxes {
 
 	/**
 	 * Adds all metaboxes in the "top" priority to just under the title field.
+	 *
+	 * @hooked 			edit_form_after_title
 	 */
 	public function promote_metaboxes() {
 

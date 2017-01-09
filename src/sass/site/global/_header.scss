@@ -38,10 +38,9 @@ header[role="banner"]{
 	@media only screen and (min-width: $bp__menu-button + 1) {
 		border-bottom 	: none;
 		justify-content : flex-start;
-	}
-
-	@media only screen and (min-width: $bp__tablet) {
-		margin: 0;
+		margin 			: 0;
+		min-width		: 315px;
+		width 			: 315px;
 	}
 
 	a {
@@ -57,6 +56,8 @@ header[role="banner"]{
 
 	@media only screen and (min-width: $bp__menu-button + 1) {
 		position: absolute;
+		margin 	: 0;
+		top 	: -40px;
 		z-index : 100;
 
 		&:hover {
@@ -77,7 +78,7 @@ header[role="banner"]{
 .wrap-header {
 	position: relative;
 
-	@media only screen and (min-width: $bp__tablet) {
+	@media only screen and (min-width: $bp__menu-button + 1) {
 		display 		: flex;
 		justify-content : space-between;
 	}
@@ -90,11 +91,18 @@ header[role="banner"]{
 	z-index 		: 1000;
 
 	@media only screen and (min-width: $bp__menu-button + 1) {
-		top: 0;
+		position 	: static;
+		text-align 	: right;
+		top 		: 0;
 	}
 
 	@media only screen and (min-width: $bp__tablet) {
-		text-align 	: right;
+		width 		: 450px;
+	}
+
+	@media only screen and (min-width: $bp__full-menu) {
+		flex-basis 	: 550px;
+		height 		: 120px;
 		width 		: auto;
 	}
 }
@@ -104,13 +112,13 @@ header[role="banner"]{
 	background-position : center center;
 	background-size 	: cover;
 	display 			: none;
-	padding 			: 5em 0;
 	width 				: 100%;
 
 	@media screen and (min-width: $bp__menu-button + 1) {
 		border-bottom 	: $border__header;
 		border-top 		: $border__header;
 		display 		: inherit;
+		height 			: 250px;
 	}
 }
 
@@ -124,7 +132,11 @@ header[role="banner"]{
 	text-shadow 	: 4px 4px 20px $transdarker;
 	text-transform 	: uppercase;
 
-	@media only screen and (min-width: $bp__menu-button + 1) {
+	@media screen and (min-width: $bp__menu-button + 1) {
+		@include vertcenter();
+	}
+
+	@media only screen and (min-width: $bp__tablet) {
 		font-size 	: 5em;
 	}
 }
@@ -135,18 +147,19 @@ header[role="banner"]{
 	margin-left	: 1em;
 
 	@media only screen and (min-width: $bp__menu-button + 1) {
-		margin 		: 2.5em 0;
+		height 		: 120px;
 		margin-left : calc(1em + #{$size__logo-width});
-	}
-
-	@media screen and (min-width: $bp__full-menu) {
-		margin-bottom 	: 1.5em;
-		margin-top 		: 1.5em;
 	}
 
 	img {
 		width: 100%;
 	}
+}
 
+.text-logo-link {
+	display: block;
 
+	@media only screen and (min-width: $bp__menu-button + 1) {
+		@include vertcenter();
+	}
 }

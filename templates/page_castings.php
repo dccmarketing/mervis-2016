@@ -1,16 +1,15 @@
 <?php
 /**
- * Template Name: Sidebar Content
+ * Template Name: Illini Castings
  *
- * Description: Page template with sidebar on the left-side
+ * Description: A full-width template with no sidebar
  *
  * @package Mervis_2016
  */
 
-get_header();
-get_sidebar( 'left' );
+get_header( 'castings' );
 
-	?><div id="primary" class="content-area sidebar-content">
+	?><div id="primary" class="content-area full-width">
 		<main id="main" role="main"><?php
 
 			/**

@@ -1,7 +1,7 @@
 ( function( $ ) {
 
 	$( "#accordion" ).accordion({
-		active: 0,
+		active: false,
 		animate: 200,
 		collapsible: true,
 		header: "h2",

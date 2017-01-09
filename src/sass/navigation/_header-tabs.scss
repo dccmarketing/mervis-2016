@@ -6,13 +6,17 @@
 	@media only screen and (min-width: $bp__menu-button + 1) {
 		background-color: inherit;
 		border: none;
-		float: right;
+		//float: right;
 	}
 
 	ul {
 		@include listreset();
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
+
+		@media screen and (min-width: $bp__menu-button + 1) {
+			justify-content: flex-end;
+		}
 	}
 
 	li {

@@ -11,8 +11,8 @@ the_title( '<h2 class="loc-name">', '</h2>' );
 
 ?><div class="wrap-location">
 	<div class="flex">
-		<div class="loc-info">
-			<ul class="loc-contact"><?php
+		<div class="locations-info">
+			<ul class="locations-contact"><?php
 
 		if ( ! empty( $fields['address1'] ) ) {
 
@@ -40,6 +40,8 @@ the_title( '<h2 class="loc-name">', '</h2>' );
 			?><li><?php esc_html_e( 'Email: ', 'mervis' ); ?><a class="track" href="mailto:<?php echo sanitize_email( $fields['email'] ); ?>"><?php echo sanitize_email( $fields['email'] ); ?></a></li><?php
 
 		}
+		
+		?></ul><?php
 
 		if ( ! empty( $fields['hours'] ) ) {
 
@@ -79,35 +81,22 @@ the_title( '<h2 class="loc-name">', '</h2>' );
 
 		}
 
-		?><div class="loc-map">
-			<script>
-				var map = null;
-				function initialize() {
-					var map_canvas = document.getElementById('<?php echo "map_canvas_" . get_the_ID(); ?>');
-					var myLoc = new google.maps.LatLng(<?php echo $fields['lat']; ?>,<?php echo $fields['long']; ?>);
-					var map_options = {
-						center: myLoc,
-						zoom: 12,
-						mapTypeId: google.maps.MapTypeId.ROADMAP,
-						disableDefaultUI: true
-					}
-					map = new google.maps.Map(map_canvas, map_options)
+		?><div class="locations-map">
+			<iframe id="map_canvas_<?php echo get_the_ID(); ?>" class="map_canvas" width="325" height="280" frameborder="0" style="border:0" src="<?php
 
-					var marker = new google.maps.Marker({
-						position: myLoc,
-						map: map,
-						animation: google.maps.Animation.DROP,
-					});
-				}
-				google.maps.event.addDomListener(window, 'load', initialize);
-			</script>
-			<div id="map_canvas_<?php echo get_the_ID(); ?>" class="map_canvas"></div><?php
+			$query_args['key'] 		= urlencode( 'AIzaSyAGcYxP0VLf9HPExuN_-4YtvsTqbsh_Tl0' );
+			$query_args['zoom'] 	= urlencode( 12 );
+			$query_args['center'] 	= urlencode( $fields['lat'] . ',' . $fields['long'] );
+			$query_args['q'] 		= urlencode( get_the_title() );
+			$url 					= add_query_arg( $query_args, 'https://www.google.com/maps/embed/v1/place' );
+
+			echo esc_url( $url ); ?>"></iframe><?php
 
 			$query_args['saddr'] 	= urlencode( get_the_title() );
 			$query_args['daddr'] 	= urlencode( $fields['lat'] . ','. $fields['long'] );
 			$url 					= add_query_arg( $query_args, 'http://www.google.com/maps/' );
 
-			?><a class="track" href="<?php echo esc_url( $url ); ?>" target="_blank"><?php esc_html_e( 'Map It', 'mervis' ); ?></a>
+			?><a class="track locations-link" href="<?php echo esc_url( $url ); ?>" target="_blank"><?php esc_html_e( 'Map It', 'mervis' ); ?></a>
 		</div><!-- .loc-map -->
 	</div><!-- .flex -->
 </div><!-- .wrap-location -->

@@ -2,7 +2,7 @@
 	background 		: transparent !important;
 	border 			: 1px solid $gray;
 	border-radius 	: 0 !important;
-    font-family 	: 'boldob';
+	font-family 	: 'boldob';
 	font-size 		: 1.5em !important;
 	padding 		: 0.25em !important;
 	padding-left 	: 1.5em !important;
@@ -14,7 +14,7 @@
 }
 
 .map_canvas {
-	width: 325px;
+	width: $size__map-width;
 	height: 280px
 }
 
@@ -25,12 +25,45 @@
 	}
 }
 
-.loc-info {
-	@media screen and (min-width: $bp__tablet) {
-		margin-right: 5%;
-	}
+.locations-info {
+	width: calc( 95% - #{$size__map-width} );
 }
 
-.loc-contact {
+.locations-map {
+	float: right;
+	margin-left: 5%;
+	min-width: $size__map-width;
+}
+
+.locations-contact {
 	@include listreset();
+}
+
+.locations-link {
+	display: block;
+}
+
+.single-locations {
+	
+	.loc-name {
+		padding-left	: 1em;
+		padding-right	: 1em;
+	}
+	
+	.loc-info,
+	.loc-map {
+		width: 100%;
+		
+		@media screen and (min-width: $bp__tablet) {
+			width: 48%;
+		}
+	}
+	
+	.mapp-layout {
+		margin: 0;
+	}
+	
+	.loc-contact {
+		@include listreset();
+	}
 }

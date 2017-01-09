@@ -14,6 +14,9 @@ get_header();
 
 			/**
 			 * The mervis_2016_while_before action hook
+			 *
+			 * @hooked 		title_archive 			10
+			 * @hooked 		title_single_post 		10
 			 */
 			do_action( 'mervis_2016_while_before' );
 
@@ -24,7 +27,7 @@ get_header();
 				 */
 				do_action( 'mervis_2016_entry_before' );
 
-				get_template_part( 'partials/template-parts/content', 'page' );
+				get_template_part( 'template-parts/content', 'page' );
 
 				/**
 				 * The mervis_2016_entry_after action hook
@@ -37,6 +40,8 @@ get_header();
 
 			/**
 			 * The mervis_2016_while_after action hook
+			 *
+			 * @hooked 			posts_nav
 			 */
 			do_action( 'mervis_2016_while_after' );
 
@@ -46,11 +51,11 @@ get_header();
 
 				while ( $locations->have_posts() ) : $locations->the_post();
 
-					get_template_part( 'partials/template-parts/content', 'location' );
+					get_template_part( 'template-parts/content', 'location' );
 
 				endwhile;
 
-				wp_reset_postdata;
+				wp_reset_postdata();
 
 			?></div><!-- #accordion -->
 		</main><!-- #main -->

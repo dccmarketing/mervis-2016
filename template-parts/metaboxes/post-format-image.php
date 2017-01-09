@@ -28,6 +28,6 @@ $atts = apply_filters( 'tcci-field-' . $atts['id'], $atts );
 
 ?><p><?php
 
-include( get_stylesheet_directory() . '/fields/file-upload.php' );
+include( get_stylesheet_directory() . '/template-parts/fields/'file-upload.php' );
 
 ?></p><?php

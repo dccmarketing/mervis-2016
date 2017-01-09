@@ -70,54 +70,8 @@ class Mervis_2016_Controller {
 	 */
 	private function load_dependencies() {
 
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core theme.
-		 */
-		require_once get_template_directory() . '/inc/class-loader.php';
-
-		/**
-		 * The class responsible for sanitizing user input
-		 */
-		require_once get_template_directory() . '/inc/class-sanitize.php';
-
-		/**
-		 * The class of opinionated, utility functions.
-		 */
-		require_once get_template_directory() . '/inc/class-utilities.php';
-
-		/**
-		 * The class of functions related to menus.
-		 */
-		require_once get_template_directory() . '/inc/class-menukit.php';
-
-		/**
-		 * The class of functions related to theme hooks.
-		 */
-		require_once get_template_directory() . '/inc/class-themehooks.php';
-
-		/**
-		 * The class responsible for defining all actions relating to metaboxes.
-		 */
-		require_once get_template_directory() . '/inc/class-metaboxes.php';
-
-		/**
-		 * The class responsible for defining all actions relating to post formats.
-		 */
-		require_once get_template_directory() . '/inc/class-post-formats.php';
-
-		/**
-		 * The class responsible for defining all actions relating to metaboxes.
-		 */
-		require_once get_template_directory() . '/inc/class-automattic.php';
-
-		/**
-		 * The class responsible for defining all actions relating to metaboxes.
-		 */
-		require_once get_template_directory() . '/inc/customizer/class-customizer.php';
-
 		$this->loader 		= new Mervis_2016_Loader();
-		$this->sanitizer 	= new Mervis_2016_Sanitize();
+		//$this->sanitizer 	= new Mervis_2016_Sanitize();
 
 	} // load_dependencies()
 
@@ -165,8 +119,7 @@ class Mervis_2016_Controller {
 		$theme_menu = new Mervis_2016_Menukit( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'menu_show_hide', 10, 4 );
-		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'header_tabs_menu', 10, 4 );
-		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'android_menu', 10, 4 );
+		$this->loader->filter( 'walker_nav_menu_start_el', 	$theme_menu, 'add_icons_to_menu', 10, 4 );
 		$this->loader->filter( 'wp_nav_menu_items', 		$theme_menu, 'add_search_to_menu', 10, 2 );
 
 	} // define_menu_hooks()
@@ -179,12 +132,14 @@ class Mervis_2016_Controller {
 	 */
 	private function define_metabox_hooks() {
 
-		$theme_metaboxes = new Mervis_2016_Metaboxes( $this->get_theme_name(), $this->get_version() );
+		//$theme_metaboxes = new Mervis_2016_Metaboxes( $this->get_theme_name(), $this->get_version() );
 
-		//$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'add_metaboxes' );
-		//$this->loader->action( 'save_post', 					$theme_metaboxes, 'validate_meta', 10, 2 );
+		$theme_metaboxes = new Mervis_2016_Metaboxes_Menus( $this->get_theme_name(), $this->get_version() );
+
+		$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'add_metaboxes' );
+		$this->loader->action( 'save_post', 					$theme_metaboxes, 'validate_meta', 10, 2 );
 		//$this->loader->action( 'edit_form_after_title', 		$theme_metaboxes, 'metabox_subtitle', 10, 2 );
-		//$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'set_meta' );
+		$this->loader->action( 'add_meta_boxes', 				$theme_metaboxes, 'set_meta' );
 		//$this->loader->filter( 'post_type_labels', 				$theme_metaboxes, 'change_featured_image_labels', 10, 1 );
 
 	} // define_metabox_hooks()
@@ -197,16 +152,12 @@ class Mervis_2016_Controller {
 	 */
 	private function define_post_format_hooks() {
 
-		$theme_formats = new Mervis_2016_Post_Format_Metaboxes( $this->get_theme_name(), $this->get_version() );
+		//$theme_formats = new Mervis_2016_Post_Format_Metaboxes( $this->get_theme_name(), $this->get_version() );
 
-		$this->loader->action( 'add_meta_boxes', 							$theme_formats, 'add_metaboxes' );
-		$this->loader->action( 'save_post', 								$theme_formats, 'validate_meta', 10, 2 );
-		$this->loader->action( 'add_meta_boxes', 							$theme_formats, 'set_meta' );
-		$this->loader->action( 'edit_form_after_title', 					$theme_formats, 'promote_metaboxes' );
-		$this->loader->filter( 'postbox_classes_post_post_format_audio', 	$theme_formats, 'metabox_classes_post_formats' );
-		$this->loader->filter( 'postbox_classes_post_post_format_image', 	$theme_formats, 'metabox_classes_post_formats' );
-		$this->loader->filter( 'postbox_classes_post_post_format_link', 	$theme_formats, 'metabox_classes_post_formats' );
-		$this->loader->filter( 'postbox_classes_post_post_format_video', 	$theme_formats, 'metabox_classes_post_formats' );
+		//$this->loader->action( 'add_meta_boxes', 							$theme_formats, 'add_metaboxes' );
+		//$this->loader->action( 'save_post', 								$theme_formats, 'validate_meta', 10, 2 );
+		//$this->loader->action( 'add_meta_boxes', 							$theme_formats, 'set_meta' );
+		//$this->loader->action( 'edit_form_after_title', 					$theme_formats, 'promote_metaboxes' );
 
 	} // define_post_format_hooks()
 
@@ -222,26 +173,20 @@ class Mervis_2016_Controller {
 		$theme_hooks = new Mervis_2016_Themehooks( $this->get_theme_name(), $this->get_version() );
 
 		$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'header_wrap_begin', 10 );
-		//$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'add_hidden_search', 11 );
-		$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'site_branding_start', 15 );
-
+		$this->loader->action( 'mervis_2016_header_top', 			$theme_hooks, 'site_branding_begin', 15 );
 		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'title_site', 10 );
-		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'text_logo', 20 );
+		//$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'text_logo', 20 );
 		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'site_branding_end', 20 );
 		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'header_menus_wrap_begin', 25 );
 		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'menu_toptabs', 30 );
 		$this->loader->action( 'mervis_2016_header_content', 			$theme_hooks, 'menu_header', 35 );
-
 		$this->loader->action( 'mervis_2016_header_bottom', 		$theme_hooks, 'header_menus_wrap_end', 75 );
 		$this->loader->action( 'mervis_2016_header_bottom', 		$theme_hooks, 'header_wrap_end', 85 );
-
 		$this->loader->action( 'mervis_2016_header_after', 		$theme_hooks, 'slider_home', 10 );
 		$this->loader->action( 'mervis_2016_header_after', 		$theme_hooks, 'featured_image', 10 );
 		$this->loader->action( 'mervis_2016_header_after', 		$theme_hooks, 'menu_belowslider', 15 );
-
 		$this->loader->action( 'mervis_2016_body_top', 					$theme_hooks, 'analytics_code', 10 );
 		$this->loader->action( 'mervis_2016_body_top', 					$theme_hooks, 'skip_link', 20 );
-
 		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'breadcrumbs', 10 );
 		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menubox_wrap_begin', 19 );
 		$this->loader->action( 'mervis_2016_content_top', 			$theme_hooks, 'menu_menubox1', 20 );
@@ -252,33 +197,39 @@ class Mervis_2016_Controller {
 
 		$this->loader->action( 'mervis_2016_while_before', 			$theme_hooks, 'title_archive', 10 );
 		$this->loader->action( 'mervis_2016_while_before', 			$theme_hooks, 'title_single_post', 10 );
-
 		$this->loader->action( 'mervis_2016_while_after', 				$theme_hooks, 'posts_nav' );
-
-		//$this->loader->action( 'mervis_2016_entry_after', 				$theme_hooks, 'comments', 10 );
-
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'add_search', 10 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_posts_widget', 15 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_categories', 20 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_archives', 25 );
 		$this->loader->action( 'mervis_2016_404_content', 			$theme_hooks, 'four_04_tag_cloud', 30 );
-
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'title_entry', 10 );
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'title_page', 10 );
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'title_search', 10 );
 		$this->loader->action( 'entry_header_content', 					$theme_hooks, 'posted_on', 20 );
-
 		$this->loader->action( 'mervis_2016_content_bottom', 			$theme_hooks, 'sidebar_news', 50 );
+		$this->loader->action( 'mervis_2016_content_after', 		$theme_hooks, 'sidebar_home', 50 );
+		$this->loader->action( 'mervis_2016_footer_before', 			$theme_hooks, 'sidebar_footer', 10 );
+		$this->loader->action( 'mervis_2016_footer_top', 			$theme_hooks, 'footer_wrap_begin' );
+		$this->loader->action( 'mervis_2016_footer_content', 			$theme_hooks, 'footer_content', 20 );
+		$this->loader->action( 'mervis_2016_footer_bottom', 		$theme_hooks, 'footer_wrap_end' );
 
-		$this->loader->action( 'mervis_2016_content_after', 			$theme_hooks, 'sidebar_home', 50 );
 
-		$this->loader->action( 'mervis_2016_footer_before', 		$theme_hooks, 'sidebar_footer', 10 );
 
-		$this->loader->action( 'mervis_2016_footer_top', 				$theme_hooks, 'footer_wrap_begin' );
-
-		$this->loader->action( 'mervis_2016_footer_content', 		$theme_hooks, 'footer_content', 20 );
-
-		$this->loader->action( 'mervis_2016_footer_bottom', 			$theme_hooks, 'footer_wrap_end' );
+		/**
+		 * Illini Castings Hooks
+		 */
+		$this->loader->action( 'castings_header_top', 			$theme_hooks, 'header_wrap_begin', 10 );
+		$this->loader->action( 'castings_header_top', 			$theme_hooks, 'site_branding_begin', 15 );
+		$this->loader->action( 'castings_header_content', 			$theme_hooks, 'title_site', 10 );
+		//$this->loader->action( 'castings_header_content', 			$theme_hooks, 'text_logo', 20 );
+		$this->loader->action( 'castings_header_content', 			$theme_hooks, 'site_branding_end', 20 );
+		$this->loader->action( 'castings_header_content', 			$theme_hooks, 'header_menus_wrap_begin', 25 );
+		$this->loader->action( 'castings_header_content', 			$theme_hooks, 'menu_castings_header', 35 );
+		$this->loader->action( 'castings_header_bottom', 		$theme_hooks, 'header_menus_wrap_end', 75 );
+		$this->loader->action( 'castings_header_bottom', 		$theme_hooks, 'header_wrap_end', 85 );
+		$this->loader->action( 'castings_header_after', 			$theme_hooks, 'featured_image', 10 );
+		$this->loader->action( 'castings_header_after', 			$theme_hooks, 'menu_castings_main', 15 );
 
 	} // define_theme_hooks()
 
@@ -322,10 +273,40 @@ class Mervis_2016_Controller {
 		$this->loader->action( 'save_post', 						$theme_utils, 'category_transient_flusher' );
 		//$this->loader->filter( 'wp_setup_nav_menu_item', 			$theme_utils, 'add_menu_title_as_class', 10, 1 );
 		//$this->loader->filter( 'wp_nav_menu_container_allowedtags', $theme_utils, 'allow_section_tags_as_containers', 10, 1 );
-
 		$this->loader->shortcode( 'listmenu', 						$theme_utils, 'list_menu' );
 
 	} // define_utility_hooks()
+
+	/**
+	 * Get instance of main class
+	 *
+	 * @since 		1.0.0
+	 * @return 		Mervis_2016_Controller
+	 */
+	public static function get_instance() {
+
+		if ( empty( self::$_instance ) ) {
+
+			self::$_instance = new self;
+
+		}
+
+		return self::$_instance;
+
+	} // get_instance()
+
+	/**
+	 * The reference to the class that orchestrates the hooks with the theme.
+	 *
+	 * @since     1.0.0
+	 *
+	 * @return    Mervis_2016_Loader    Orchestrates the hooks of the theme.
+	 */
+	public function get_loader() {
+
+		return $this->loader;
+
+	} // get_loader()
 
 	/**
 	 * The name of the theme used to uniquely identify it within the context of
@@ -340,19 +321,6 @@ class Mervis_2016_Controller {
 		return $this->theme_name;
 
 	} // get_theme_name()
-
-	/**
-	 * The reference to the class that orchestrates the hooks with the theme.
-	 *
-	 * @since     1.0.0
-	 *
-	 * @return    Mervis_2016_Loader    Orchestrates the hooks of the theme.
-	 */
-	public function get_loader() {
-
-		return $this->loader;
-
-	} // get_loader()
 
 	/**
 	 * Retrieve the version number of the theme.

@@ -11,7 +11,6 @@
  * Returns an array of image info from the image URL
  *
  * @param 		string 		$name 				The name of the customizer image field
- *
  * @return 		array 							The image info array
  */
 function mervis_2016_get_customizer_image_info( $name ) {
@@ -35,9 +34,8 @@ function mervis_2016_get_customizer_image_info( $name ) {
 /**
  * Returns an array of the featured image details
  *
- * @param 	int 	$postID 		The post ID
- *
- * @return 	array 					Array of info about the featured image
+ * @param 		int 	$postID 		The post ID
+ * @return 		array 					Array of info about the featured image
  */
 function mervis_2016_get_featured_images( $postID ) {
 
@@ -54,11 +52,9 @@ function mervis_2016_get_featured_images( $postID ) {
 /**
  * Returns the attachment ID from the file URL
  *
- * @link 	https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
- *
- * @param 	string 		$image_url 			The URL of the image
- *
- * @return 	int 							The image ID
+ * @link 		https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+ * @param 		string 		$image_url 			The URL of the image
+ * @return 		int 							The image ID
  */
 function mervis_2016_get_image_id( $image_url ) {
 
@@ -79,10 +75,9 @@ function mervis_2016_get_image_id( $image_url ) {
 /**
  * Returns the requested SVG
  *
- * @param 	string 		$svg 		The name of the icon to return
- * @param 	string 		$link 		URL to link from the SVG
- *
- * @return 	mixed 					The SVG code
+ * @param 		string 		$svg 		The name of the icon to return
+ * @param 		string 		$link 		URL to link from the SVG
+ * @return 		mixed 					The SVG code
  */
 function mervis_2016_get_svg( $svg ) {
 
@@ -154,10 +149,9 @@ function mervis_2016_get_svg_list() {
 /**
  * Returns the URL of the featured image
  *
- * @param 	int 		$postID 		The post ID
- * @param 	string 		$size 			The image size to return
- *
- * @return 	string | bool 				The URL of the featured image, otherwise FALSE
+ * @param 		int 		$postID 		The post ID
+ * @param 		string 		$size 			The image size to return
+ * @return 		string | bool 				The URL of the featured image, otherwise FALSE
  */
 function mervis_2016_get_thumbnail_url( $postID, $size = 'thumbnail' ) {
 
@@ -178,9 +172,8 @@ function mervis_2016_get_thumbnail_url( $postID, $size = 'thumbnail' ) {
 /**
  * Return the thumbnail src for Youtube videos
  *
- * @param 	string 		$video_url 			The YouTube video URL
- *
- * @return 	string 							The video thumbnail URL
+ * @param 		string 		$video_url 			The YouTube video URL
+ * @return 		string 							The video thumbnail URL
  */
 function mervis_2016_get_video_thumb( $embed_code ) {
 
@@ -221,10 +214,12 @@ function mervis_2016_get_video_thumb( $embed_code ) {
 
 } // mervis_2016_get_video_thumb()
 
-#
-# Return the thumbnail src for Vimeo videos
-# $video_id = the Vimeo video id
-#
+/**
+ * Return the thumbnail src for Vimeo videos
+ *
+ * @param 		string 		$video_id 			The video ID.
+ * @return 		url 							The URL for the video thumbnail.
+ */
 function mervis_2016_get_vimeo_thumb( $videoid ) {
 
 	$url 			= "http://vimeo.com/api/v2/video/" . $videoid . ".php";
@@ -262,7 +257,6 @@ function mervis_2016_get_vimeo_thumb( $videoid ) {
  * Echos the requested SVG
  *
  * @param 	string 		$svg 		The name of the icon to return
- *
  * @return 	mixed 					The SVG code
  */
 function mervis_2016_the_svg( $svg ) {

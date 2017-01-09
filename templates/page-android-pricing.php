@@ -24,7 +24,7 @@ if ( isset( $_POST['mode'] ) && 'pricing_search' == $_POST['mode'] && isset( $_P
 }
 
 get_header( 'android' );
-$locations 	= mervis_2016_get_posts( 'pricing' );
+$locations = mervis_2016_get_posts( 'pricing' );
 
 ?><section class="top-form">
 	<form action="<?php echo get_permalink(); ?>" method="post">
@@ -32,7 +32,7 @@ $locations 	= mervis_2016_get_posts( 'pricing' );
 		<div class="location-select">
 			<select name="pricing_location">
 				<option>Select a location...</option><?php
-
+				
 			foreach ( $locations->posts as $location ) {
 
 				?><option value="<?php echo $location->ID; ?>" <?php selected( $locID, $location->ID, true ); ?>><?php echo $location->post_title; ?></option><?php

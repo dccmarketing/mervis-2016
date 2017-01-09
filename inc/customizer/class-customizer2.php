@@ -703,7 +703,7 @@ class Mervis_2016_Customizer {
 	 */
 	public function control_scripts() {
 
-		wp_enqueue_script( 'mervis_2016_customizer_controls', get_template_directory_uri() . '/js/customizer-controls.min.js', array( 'jquery', 'customize-controls' ), false, true );
+		wp_enqueue_script( 'mervis_2016_customizer_controls', get_stylesheet_directory_uri() . '/js/customizer-controls.min.js', array( 'jquery', 'customize-controls' ), false, true );
 
 	} // control_scripts()
 
@@ -1090,7 +1090,7 @@ class Mervis_2016_Customizer {
 	 */
 	public function live_preview() {
 
-		wp_enqueue_script( 'mervis_2016_customizer', get_template_directory_uri() . '/js/customizer.min.js', array( 'jquery', 'customize-preview' ), '', true );
+		wp_enqueue_script( 'mervis_2016_customizer', get_stylesheet_directory_uri() . '/js/customizer.min.js', array( 'jquery', 'customize-preview' ), '', true );
 
 	} // live_preview()
 
@@ -1113,7 +1113,7 @@ class Mervis_2016_Customizer {
 
 		foreach ( $files as $file ) {
 
-			require_once( trailingslashit( get_template_directory() ) . $file );
+			require_once( trailingslashit( get_stylesheet_directory() ) . $file );
 
 		}
 

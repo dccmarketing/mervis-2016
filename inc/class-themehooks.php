@@ -14,30 +14,10 @@ class Mervis_2016_Themehooks {
 	public function __construct() {}
 
 	/**
-	 * Adds a hidden search field
-	 *
-	 * @hooked 		mervis_2016_body_top 		15
-	 *
-	 * @return 		mixed 				The HTML markup for a search field
-	 */
-	public function add_hidden_search() {
-
-		?><div aria-hidden="true" class="hidden-search" id="hidden-search">
-			<div class="wrap"><?php
-
-			get_search_form();
-
-			?></div>
-		</div><?php
-
-	} // add_hidden_search()
-
-	/**
 	 * Adds a search form
 	 *
 	 * @hooked 		mervis_2016_404_content 		15
-	 *
-	 * @return 		mixed 		Search form markup
+	 * @return 		mixed 							Search form markup
 	 */
 	public function add_search() {
 
@@ -49,10 +29,8 @@ class Mervis_2016_Themehooks {
 	 * Inserts Google Tag manager code after body tag
 	 *
 	 * @exits 		tag_manager field is empty.
-	 *
 	 * @hooked 		mervis_2016_body_top 		10
-	 *
-	 * @return 		mixed 				The inserted Google Tag Manager code
+	 * @return 		mixed 						The inserted Google Tag Manager code
 	 */
 	public function analytics_code() {
 
@@ -70,10 +48,8 @@ class Mervis_2016_Themehooks {
 	 * Returns the appropriate breadcrumbs.
 	 *
 	 * @exits 		On the front page.
-	 *
 	 * @hooked		mervis_2016_wrap_content
-	 *
-	 * @return 		mixed 				WooCommerce breadcrumbs, then Yoast breadcrumbs
+	 * @return 		mixed 						WooCommerce breadcrumbs, then Yoast breadcrumbs
 	 */
 	public function breadcrumbs() {
 
@@ -111,10 +87,8 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Comments closed.
 	 * @exits 		There are no comments.
-	 *
 	 * @hooked 		mervis_2016_entry_after 		10
-	 *
-	 * @return 		mixed 					The comments markup
+	 * @return 		mixed 							The comments markup
 	 */
 	public function comments() {
 
@@ -124,18 +98,14 @@ class Mervis_2016_Themehooks {
 
 	} // comments()
 
-	public function div_begin() {
-
-		?><div><?php
-
-	} // div_begin()
-
-	public function div_end() {
-
-		?></div><?php
-
-	} // div_end()
-
+	/**
+	 * Displays the featured image.
+	 *
+	 * @hooked 		mervis_2016_header_after
+	 * @hooked 		castings_header_after
+	 * @exits 		On the front page.
+	 * @return 		mixed 		HTML markup for the featured image.
+	 */
 	public function featured_image() {
 
 		if ( is_front_page() ) { return; }
@@ -143,15 +113,7 @@ class Mervis_2016_Themehooks {
 		?><div class="featured-image">
 			<div class="page-title-head"><?php
 
-			if ( is_home() && ! is_front_page() ) {
-
-				esc_html_e( 'News', 'mervis-2016' );
-
-			} else {
-
-				the_title();
-
-			}
+			echo esc_html( $this->get_page_title() );
 
 			?></div>
 		</div><?php
@@ -162,7 +124,6 @@ class Mervis_2016_Themehooks {
 	 * Adds the copyright and credits to the footer content.
 	 *
 	 * @hooked 		mervis_2016_footer_content
-	 *
 	 * @return 		mixed 									The footer markup
 	 */
 	public function footer_content() {
@@ -186,6 +147,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the opening wrapper tag.
 	 *
+	 * @hooked 		mervis_2016_footer_top
 	 * @return 		mixed 		The opening wrapper tag
 	 */
 	public function footer_wrap_begin() {
@@ -197,6 +159,7 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the closing wrapper tag.
 	 *
+	 * @hooked 		mervis_2016_footer_bottom
 	 * @return 		mixed 		The closing wrapper tag
 	 */
 	public function footer_wrap_end() {
@@ -209,9 +172,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the  to the 404 page content.
 	 *
 	 * @exits 		Not on 404 page.
-	 *
-	 * @hooked 		mervis_2016_404_content		25
-	 *
+	 * @hooked 		mervis_2016_404_content			25
 	 * @return 		mixed 							Markup for the archives
 	 */
 	public function four_04_archives() {
@@ -229,9 +190,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the  to the 404 page content.
 	 *
 	 * @exits 		Not on 404 page.
-	 *
-	 * @hooked 		mervis_2016_404_content		20
-	 *
+	 * @hooked 		mervis_2016_404_content			20
 	 * @return 		mixed 							The categories widget
 	 */
 	public function four_04_categories() {
@@ -260,9 +219,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the Recent Posts widget to the 404 page.
 	 *
 	 * @exits 		Not on 404 page.
-	 *
 	 * @hooked 		mervis_2016_404_content 		15
-	 *
 	 * @return 		mixed 							The Recent Posts widget
 	 */
 	public function four_04_posts_widget() {
@@ -277,9 +234,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the  to the 404 page content.
 	 *
 	 * @exits 		Not on 404 page.
-	 *
-	 * @hooked 		mervis_2016_404_content		30
-	 *
+	 * @hooked 		mervis_2016_404_content			30
 	 * @return 		mixed 							The tag cloud widget
 	 */
 	public function four_04_tag_cloud() {
@@ -291,11 +246,60 @@ class Mervis_2016_Themehooks {
 	} // four_04_tag_cloud()
 
 	/**
+	 * Returns the page title based on the conditions.
+	 *
+	 * If its the blog page and not the front page, returns "News".
+	 * If the parent page is illini-castings, returns "Illini Casings".
+	 * Otherwise, returns the page's title.
+	 *
+	 * @see 		featured_image()
+	 * @return 		string 		The page title
+	 */
+	private function get_page_title() {
+
+		$return = '';
+
+		if ( is_home() && ! is_front_page() ) {
+
+			$return = __( 'News', 'mervis-2016' );
+
+		}
+
+		if ( empty( $return ) ) {
+
+			$parents = get_post_ancestors( get_the_ID() );
+
+			if ( ! empty( $parents ) ) {
+
+				$id 	= $parents[count( $parents ) - 1];
+				$post 	= get_post( $id );
+				$slug 	= $post->post_name;
+
+				if ( 'illini-castings' === $slug ) {
+
+					$return = get_the_title( $id );
+
+				}
+
+			}
+
+		}
+
+		if ( empty( $return ) ) {
+
+			$return = get_the_title();
+
+		}
+
+		return $return;
+
+	} // get_page_title()
+
+	/**
 	 * The header wrap markup
 	 *
 	 * @hooked 		mervis_2016_header_top 		10
-	 *
-	 * @return 		mixed 				The header wrap markup
+	 * @return 		mixed 						The header wrap markup
 	 */
 	public function header_menus_wrap_begin() {
 
@@ -307,8 +311,7 @@ class Mervis_2016_Themehooks {
 	 * The header wrap markup
 	 *
 	 * @hooked  	mervis_2016_header_bottom 		90
-	 *
-	 * @return 		mixed 					The header wrap markup
+	 * @return 		mixed 							The header wrap markup
 	 */
 	public function header_menus_wrap_end() {
 
@@ -320,8 +323,7 @@ class Mervis_2016_Themehooks {
 	 * The header wrap markup
 	 *
 	 * @hooked 		mervis_2016_header_top 		10
-	 *
-	 * @return 		mixed 				The header wrap markup
+	 * @return 		mixed 						The header wrap markup
 	 */
 	public function header_wrap_begin() {
 
@@ -332,9 +334,9 @@ class Mervis_2016_Themehooks {
 	/**
 	 * The header wrap markup
 	 *
+	 * @exits 		Menu not active.
 	 * @hooked  	mervis_2016_header_bottom 		90
-	 *
-	 * @return 		mixed 					The header wrap markup
+	 * @return 		mixed 							The header wrap markup
 	 */
 	public function header_wrap_end() {
 
@@ -346,14 +348,10 @@ class Mervis_2016_Themehooks {
 	 * Adds the android menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_android() {
-
-		//if (  ) { return; }
 
 		if ( ! has_nav_menu( 'android-footer' ) ) { return; }
 
@@ -373,21 +371,21 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the main menu
 	 *
+	 * @exits 		Menu not active.
 	 * @hooked 		mervis_2016_header_bottom 		95
-	 *
-	 * @return 		mixed 					The primary menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_belowslider() {
 
-		//if ( is_front_page() ) { return; }
+		if ( ! has_nav_menu( 'belowslider' ) ) { return; }
 
 		?><nav id="site-navigation" class="main-navigation" role="navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'mervis-2016' ); ?></button><?php
 
-				$menu_args['theme_location']	= 'belowslider';
+				$menu_args['theme_location'] 	= 'belowslider';
+				$menu_args['container_class'] 	= 'menu nav-belowslider';
 				$menu_args['container'] 		= 'div';
 				$menu_args['container_id']    	= 'menu-belowslider';
-				$menu_args['container_class'] 	= 'menu nav-belowslider';
 				$menu_args['menu_id']         	= 'menu-belowslider-items';
 				$menu_args['menu_class']      	= 'menu-items medium upper';
 				$menu_args['depth']           	= 2;
@@ -401,24 +399,74 @@ class Mervis_2016_Themehooks {
 	} // menu_belowslider()
 
 	/**
+	 * Illini Castings Header menu.
+	 *
+	 * @exits 		Menu not active.
+	 * @hooked 		castings_header_content 		35
+	 * @return 		mixed 							The menu markup
+	 */
+	public function menu_castings_header() {
+
+		if ( ! has_nav_menu( 'castings-header' ) ) { return; }
+
+		$menu_args['theme_location'] 	= 'castings-header';
+		$menu_args['container_class'] 	= 'menu nav-header-menu castings-menu';
+		$menu_args['container'] 		= 'div';
+		$menu_args['container_id']    	= 'menu-header-menu';
+		$menu_args['menu_id']         	= 'menu-header-menu-items';
+		$menu_args['menu_class']      	= 'menu-items';
+		$menu_args['depth']           	= 1;
+		$menu_args['fallback_cb']     	= '';
+
+		wp_nav_menu( $menu_args );
+
+	} // menu_castings_header()
+
+	/**
+	 * Illini Castings Header menu.
+	 *
+	 * @exits 		Menu not active.
+	 * @hooked 		castings_header_bottom 			95
+	 * @return 		mixed 							The menu markup
+	 */
+	public function menu_castings_main() {
+
+		if ( ! has_nav_menu( 'castings-main' ) ) { return; }
+
+		?><nav id="site-navigation" class="main-navigation" role="navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'mervis-2016' ); ?></button><?php
+
+				$menu_args['theme_location'] 	= 'castings-main';
+				$menu_args['container'] 		= 'div';
+				$menu_args['container_id']    	= 'menu-belowslider';
+				$menu_args['container_class'] 	= 'menu nav-belowslider castings-main-menu';
+				$menu_args['menu_id']         	= 'menu-belowslider-items';
+				$menu_args['menu_class']      	= 'menu-items medium upper';
+				$menu_args['depth']           	= 2;
+				$menu_args['fallback_cb']     	= '';
+				$menu_args['walker']  			= new Mervis_2016_Walker();
+
+				wp_nav_menu( $menu_args );
+
+		?></nav><!-- #site-navigation --><?php
+
+	} // menu_castings_main()
+
+	/**
 	 * Adds the header menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_header() {
 
-		//if (  ) { return; }
-
 		if ( ! has_nav_menu( 'header-menu' ) ) { return; }
 
-		$menu_args['theme_location']	= 'header-menu';
+		$menu_args['theme_location'] 	= 'header-menu';
+		$menu_args['container_class'] 	= 'menu nav-header-menu';
 		$menu_args['container'] 		= 'div';
 		$menu_args['container_id']    	= 'menu-header-menu';
-		$menu_args['container_class'] 	= 'menu nav-header-menu';
 		$menu_args['menu_id']         	= 'menu-header-menu-items';
 		$menu_args['menu_class']      	= 'menu-items';
 		$menu_args['depth']           	= 1;
@@ -432,14 +480,10 @@ class Mervis_2016_Themehooks {
 	 * Adds the home about menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_menubox1() {
-
-		//if (  ) { return; }
 
 		if ( ! is_front_page() ) { return; }
 		if ( ! has_nav_menu( 'menubox1' ) ) { return; }
@@ -461,14 +505,10 @@ class Mervis_2016_Themehooks {
 	 * Adds the home about menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_menubox2() {
-
-		//if (  ) { return; }
 
 		if ( ! is_front_page() ) { return; }
 		if ( ! has_nav_menu( 'menubox2' ) ) { return; }
@@ -490,14 +530,10 @@ class Mervis_2016_Themehooks {
 	 * Adds the home about menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_menubox3() {
-
-		//if (  ) { return; }
 
 		if ( ! is_front_page() ) { return; }
 		if ( ! has_nav_menu( 'menubox3' ) ) { return; }
@@ -519,14 +555,10 @@ class Mervis_2016_Themehooks {
 	 * Adds the home about menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_menubox4() {
-
-		//if (  ) { return; }
 
 		if ( ! is_front_page() ) { return; }
 		if ( ! has_nav_menu( 'menubox4' ) ) { return; }
@@ -548,27 +580,41 @@ class Mervis_2016_Themehooks {
 	 * Adds the top tabs menu
 	 *
 	 * @exits 		Menu not active.
-	 *
 	 * @hooked 		mervis_2016_header_bottom 		65
-	 *
-	 * @return 		mixed 					The social links menu markup
+	 * @return 		mixed 							The menu markup
 	 */
 	public function menu_toptabs() {
 
-		//if (  ) { return; }
+		if ( is_page( 'illini-castings' ) ) { return; }
+
+		$parents = get_post_ancestors( get_the_ID() );
+
+		if ( ! empty( $parents ) ) {
+
+			$id 	= $parents[count( $parents ) - 1];
+			$post 	= get_post( $id );
+			$slug 	= $post->post_name;
+
+			if ( 'illini-castings' === $slug ) { return; }
+
+		}
 
 		if ( ! has_nav_menu( 'header-tabs' ) ) { return; }
 
-		$menu_args['theme_location']	= 'header-tabs';
-		$menu_args['container'] 		= 'div';
-		$menu_args['container_id']    	= 'menu-top-tabs-menu';
-		$menu_args['container_class'] 	= 'menu nav-top-tabs-menu';
-		$menu_args['menu_id']         	= 'menu-top-tabs-menu-items';
-		$menu_args['menu_class']      	= 'menu-items';
-		$menu_args['depth']           	= 1;
-		$menu_args['fallback_cb']     	= '';
+		?><div class="tabs-wrap"><?php
 
-		wp_nav_menu( $menu_args );
+			$menu_args['theme_location']	= 'header-tabs';
+			$menu_args['container'] 		= 'div';
+			$menu_args['container_id']    	= 'menu-top-tabs-menu';
+			$menu_args['container_class'] 	= 'menu nav-top-tabs-menu';
+			$menu_args['menu_id']         	= 'menu-top-tabs-menu-items';
+			$menu_args['menu_class']      	= 'menu-items';
+			$menu_args['depth']           	= 1;
+			$menu_args['fallback_cb']     	= '';
+
+			wp_nav_menu( $menu_args );
+
+		?></div><?php
 
 	} // menu_toptabs()
 
@@ -576,8 +622,8 @@ class Mervis_2016_Themehooks {
 	 * Displays the opening menubox section tag.
 	 *
 	 * @exits 		Not the front page.
-	 *
-	 * @return 		mixed 				HTML tag
+	 * @hooked 		mervis_2016_content_top 	19
+	 * @return 		mixed 						HTML tag
 	 */
 	public function menubox_wrap_begin() {
 
@@ -591,8 +637,8 @@ class Mervis_2016_Themehooks {
 	 * Displays the closing menubox section tag.
 	 *
 	 * @exits 		Not the front page.
-	 *
-	 * @return 		mixed 				HTML tag
+	 * @hooked 		mervis_2016_content_top 	41
+	 * @return 		mixed 						HTML tag
 	 */
 	public function menubox_wrap_end() {
 
@@ -607,8 +653,8 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on post type page.
 	 * @exits 		Not on search page.
-	 *
-	 * @return 		mixed 			The posted_on post meta.
+	 * @hooked 		entry_header_content 			20
+	 * @return 		mixed 							The posted_on post meta.
 	 */
 	public function posted_on() {
 
@@ -628,9 +674,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not on posts home.
 	 * @exits 		Not on archive page.
-	 *
 	 * @hooked 		mervis_2016_while_after
-	 *
 	 * @return 		mixed 							The posts navigation
 	 */
 	public function posts_nav() {
@@ -644,7 +688,8 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds a sidebar.
 	 *
-	 * @return [type] [description]
+	 * @hooked 		mervis_2016_footer_before 		10
+	 * @return 		mixed 							Sidebar markup
 	 */
 	public function sidebar_footer() {
 
@@ -662,8 +707,8 @@ class Mervis_2016_Themehooks {
 	 * Adds a sidebar.
 	 *
 	 * @exits 		Not on the front page.
-	 *
-	 * @return [type] [description]
+	 * @hooked 		mervis_2016_content_after	 	50
+	 * @return 		mixed 							Sidebar markup
 	 */
 	public function sidebar_home() {
 
@@ -682,9 +727,9 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds a sidebar.
 	 *
-	 * @exits 		Not on the front page.
-	 *
-	 * @return [type] [description]
+	 * @exits 		Not on the blog page.
+	 * @hooked 		mervis_2016_content_bottom 		50
+	 * @return 		mixed 							Sidebar markup
 	 */
 	public function sidebar_news() {
 
@@ -703,9 +748,20 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Adds the starting site branding markup
 	 *
-	 * @hooked 		mervis_2016_header_bottom			85
+	 * @hooked 		mervis_2016_header_top				15
+	 * @return 		mixed 								HTML markup
+	 */
+	public function site_branding_begin() {
+
+		?><div class="site-branding"><?php
+
+	} // site_branding_begin()
+
+	/**
+	 * Adds the starting site branding markup
 	 *
-	 * @return 		mixed 						HTML markup
+	 * @hooked 		mervis_2016_header_bottom			85
+	 * @return 		mixed 								HTML markup
 	 */
 	public function site_branding_end() {
 
@@ -714,23 +770,9 @@ class Mervis_2016_Themehooks {
 	} // site_branding_end()
 
 	/**
-	 * Adds the starting site branding markup
-	 *
-	 * @hooked 		mervis_2016_header_top				15
-	 *
-	 * @return 		mixed 						HTML markup
-	 */
-	public function site_branding_start() {
-
-		?><div class="site-branding"><?php
-
-	} // site_branding_start()
-
-	/**
 	 * Adds the site description markup
 	 *
-	 * @hooked 		mervis_2016_header_content 		15
-	 *
+	 * @hooked 		mervis_2016_header_content 			15
 	 * @return 		mixed 								The site description markup
 	 */
 	public function site_description() {
@@ -749,8 +791,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the a11y skip link markup
 	 *
 	 * @hooked 		mervis_2016_body_top 		20
-	 *
-	 * @return 		mixed 				Skip link markup
+	 * @return 		mixed 						Skip link markup
 	 */
 	public function skip_link() {
 
@@ -763,8 +804,8 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		Not the home page
 	 * @exits 		Soliloquy isn't installed and/or activated
-	 *
-	 * @return 		mixed 			Home Page Slider
+	 * @hooked 		mervis_2016_header_after 		10
+	 * @return 		mixed 							Home Page Slider
 	 */
 	public function slider_home() {
 
@@ -778,7 +819,8 @@ class Mervis_2016_Themehooks {
 	/**
 	 * Displays the text logo.
 	 *
-	 * @return [type] [description]
+	 * @hooked 		mervis_2016_header_content 		15
+	 * @return 		mixed 							The text logo markup.
 	 */
 	public function text_logo() {
 
@@ -807,7 +849,7 @@ class Mervis_2016_Themehooks {
 		if ( empty( $logo ) ) { return; }
 
 		?><p class="text-logo">
-			<a><img src="<?php echo esc_url( $logo ); ?>"></a>
+			<a class="text-logo-link"><img id="text-logo" src="<?php echo esc_url( $logo ); ?>"></a>
 		</p><!-- Background Images --><?php
 
 	} // text_logo()
@@ -816,9 +858,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the page title to an archive page
 	 *
 	 * @exits 		Not on archive page.
-	 *
 	 * @hooked 		mervis_2016_while_before
-	 *
 	 * @return 		mixed 							The archive page title
 	 */
 	public function title_archive() {
@@ -839,9 +879,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		On static front page.
 	 * @exits 		On a static page.
-	 *
 	 * @hooked 		entry_header_content 			10
-	 *
 	 * @return 		mixed 							The entry title
 	 */
 	public function title_entry() {
@@ -867,9 +905,7 @@ class Mervis_2016_Themehooks {
 	 * @exits 		On the front page.
 	 * @exits 		On posts home.
 	 * @exits 		Not on a page.
-	 *
 	 * @hooked 		mervis_2016_while_before 		10
-	 *
 	 * @return 		mixed 							The entry title
 	 */
 	public function title_page() {
@@ -885,9 +921,7 @@ class Mervis_2016_Themehooks {
 	 * The search title markup
 	 *
 	 * @exits 		Not on a search page.
-	 *
 	 * @hooked 		mervis_2016_while_before
-	 *
 	 * @return 		mixed 							Search title markup
 	 */
 	public function title_search() {
@@ -908,9 +942,7 @@ class Mervis_2016_Themehooks {
 	 * Adds the single post title to the index
 	 *
 	 * @exits 		On static front page
-	 *
 	 * @hooked 		mervis_2016_while_before
-	 *
 	 * @return 		mixed 							The single post title
 	 */
 	public function title_single_post() {
@@ -928,9 +960,7 @@ class Mervis_2016_Themehooks {
 	 *
 	 * @exits 		get_custom_logo doesn't exist
 	 * @exits 		get_custom_logo is empty
-	 *
-	 * @hooked 		mervis_2016_header_content 		10
-	 *
+	 * @hooked 		mervis_2016_header_content 			10
 	 * @return 		mixed 								The site title markup
 	 */
 	public function title_site() {

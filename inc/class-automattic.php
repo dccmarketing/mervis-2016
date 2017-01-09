@@ -16,8 +16,9 @@ class Mervis_2016_Automattic {
 	/**
 	 * Jetpack setup function.
 	 *
-	 * See: https://jetpack.com/support/infinite-scroll/
-	 * See: https://jetpack.com/support/responsive-videos/
+	 * @see: https://jetpack.com/support/infinite-scroll/
+	 * @see: https://jetpack.com/support/responsive-videos/
+	 * @hooked 		after_setup_theme
 	 */
 	function jetpack_setup() {
 
@@ -34,7 +35,8 @@ class Mervis_2016_Automattic {
 	/**
 	 * Adds support for wp.com-specific theme functions.
 	 *
-	 * @global array $themecolors
+	 * @hooked 		after_setup_theme
+	 * @global 		array 		$themecolors
 	 */
 	function wpcom_setup() {
 
@@ -65,11 +67,11 @@ function mervis_2016_infinite_scroll_render() {
 
 		if ( is_search() ) {
 
-			get_template_part( 'partials/template-parts/content', 'search' );
+			get_template_part( 'template-parts/content', 'search' );
 
 		} else {
 
-			get_template_part( 'partials/template-parts/content', get_post_format() );
+			get_template_part( 'template-parts/content', get_post_format() );
 
 		}
 

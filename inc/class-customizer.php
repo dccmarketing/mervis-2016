@@ -18,10 +18,10 @@ class Mervis_2016_Customizer {
 	/**
 	 * Registers custom panels for the Customizer
 	 *
+	 * @hooked 		customize_register
 	 * @see			add_action( 'customize_register', $func )
 	 * @link 		http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since 		1.0.0
-	 *
 	 * @param 		WP_Customize_Manager 		$wp_customize 		Theme Customizer object.
 	 */
 	public function register_panels( $wp_customize ) {
@@ -57,10 +57,10 @@ class Mervis_2016_Customizer {
 	 * static_front_page 	120 			Static Front Page
 	 * default 				160 			all others
 	 *
+	 * @hooked 		customize_register
 	 * @see			add_action( 'customize_register', $func )
 	 * @link 		http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since 		1.0.0
-	 *
 	 * @param 		WP_Customize_Manager 		$wp_customize 		Theme Customizer object.
 	 */
 	public function register_sections( $wp_customize ) {
@@ -103,10 +103,10 @@ class Mervis_2016_Customizer {
 	 * 		'transport' => 'postMessage'
 	 * 		$wp_customize->get_setting( 'field_name' )->transport = 'postMessage';
 	 *
+	 * @hooked 		customize_register
 	 * @see			add_action( 'customize_register', $func )
 	 * @link 		http://ottopress.com/2012/how-to-leverage-the-theme-customizer-in-your-own-themes/
 	 * @since 		1.0.0
-	 *
 	 * @param 		WP_Customize_Manager 		$wp_customize 		Theme Customizer object.
 	 */
 	public function register_fields( $wp_customize ) {
@@ -196,470 +196,6 @@ class Mervis_2016_Customizer {
 			)
 		);
 
-
-		/*
-		// Fields & Controls
-
-
-
-		// Text Field
-		$wp_customize->add_setting( 'text_field',
-			array(
-				'default'  			=> '',
-				'sanitize_callback' => 'sanitize_text_field',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'text_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label'  			=> esc_html__( 'Text Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section'  			=> 'new_section',
-				'settings' 			=> 'text_field',
-				'type' 				=> 'text'
-			)
-		);
-		$wp_customize->get_setting( 'text_field' )->transport = 'postMessage';
-
-
-
-		// URL Field
-		$wp_customize->add_setting( 'url_field',
-			array(
-				'default'  			=> '',
-				'sanitize_callback' => 'esc_url_raw',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'url_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'URL Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'url_field',
-				'type' 				=> 'url'
-			)
-		);
-		$wp_customize->get_setting( 'url_field' )->transport = 'postMessage';
-
-
-
-		// Email Field
-		$wp_customize->add_setting( 'email_field',
-			array(
-				'default'  			=> '',
-				'sanitize_callback' => 'sanitize_email',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'email_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Email Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'email_field',
-				'type' 				=> 'email'
-			)
-		);
-		$wp_customize->get_setting( 'email_field' )->transport = 'postMessage';
-
-		// Date Field
-		$wp_customize->add_setting( 'date_field',
-			array(
-				'default'  			=> '',
-				'sanitize_callback' => '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'date_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Date Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'date_field',
-				'type' 				=> 'date'
-			)
-		);
-		$wp_customize->get_setting( 'date_field' )->transport = 'postMessage';
-
-
-		// Checkbox Field
-		$wp_customize->add_setting( 'checkbox_field',
-			array(
-				'default'  			=> 'true',
-				'sanitize_callback' => 'absint',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'checkbox_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Checkbox Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'checkbox_field',
-				'type' 				=> 'checkbox'
-			)
-		);
-		$wp_customize->get_setting( 'checkbox_field' )->transport = 'postMessage';
-
-
-
-
-		// Password Field
-		$wp_customize->add_setting( 'password_field',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'password_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Password Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'password_field',
-				'type' 				=> 'password'
-			)
-		);
-		$wp_customize->get_setting( 'password_field' )->transport = 'postMessage';
-
-
-
-		// Radio Field
-		$wp_customize->add_setting( 'radio_field',
-			array(
-				'default'  			=> 'choice1',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'radio_field',
-			array(
-				'choices' 			=> array(
-					'choice1' 		=> esc_html__( 'Choice 1', 'mervis-2016' ),
-					'choice2' 		=> esc_html__( 'Choice 2', 'mervis-2016' ),
-					'choice3' 		=> esc_html__( 'Choice 3', 'mervis-2016' )
-				),
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Radio Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'radio_field',
-				'type' 				=> 'radio'
-			)
-		);
-		$wp_customize->get_setting( 'radio_field' )->transport = 'postMessage';
-
-
-
-		// Select Field
-		$wp_customize->add_setting( 'select_field',
-			array(
-				'default'  			=> 'choice1',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'select_field',
-			array(
-				'choices' 			=> array(
-					'choice1' 		=> esc_html__( 'Choice 1', 'mervis-2016' ),
-					'choice2' 		=> esc_html__( 'Choice 2', 'mervis-2016' ),
-					'choice3' 		=> esc_html__( 'Choice 3', 'mervis-2016' )
-				),
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Select Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'select_field',
-				'type' 				=> 'select'
-			)
-		);
-		$wp_customize->get_setting( 'select_field' )->transport = 'postMessage';
-
-
-
-		// Textarea Field
-		$wp_customize->add_setting( 'textarea_field',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'textarea_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Textarea Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'textarea_field',
-				'type'				=> 'textarea'
-			)
-		);
-		$wp_customize->get_setting( 'textarea_field' )->transport = 'postMessage';
-
-
-
-		// Range Field
-		$wp_customize->add_setting( 'range_field',
-			array(
-				'default'  			=> '',
-				'sanitize_callback' => ''
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'range_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'input_attrs' 		=> array(
-					'class' 		=> 'range-field',
-					'max' 			=> 100,
-					'min' 			=> 0,
-					'step' 			=> 1,
-					'style' 		=> 'color: #020202'
-				),
-				'label' 			=> esc_html__( 'Range Field', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'range_field',
-				'type' 				=> 'range'
-			)
-		);
-		$wp_customize->get_setting( 'range_field' )->transport = 'postMessage';
-
-
-
-		// Page Select Field
-		$wp_customize->add_setting( 'select_page_field',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'select_page_field',
-			array(
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Select Page', 'mervis-2016' ),
-				'priority' 			=> 10,
-				'section' 			=> 'new_section',
-				'settings' 			=> 'select_page_field',
-				'type' 				=> 'dropdown-pages'
-			)
-		);
-		$wp_customize->get_setting( 'dropdown-pages' )->transport = 'postMessage';
-
-
-
-		// Color Chooser Field
-		$wp_customize->add_setting( 'color_field',
-			array(
-				'default'  			=> '#ffffff',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_field',
-				array(
-					'description' 	=> esc_html__( '', 'mervis-2016' ),
-					'label' 		=> esc_html__( 'Color Field', 'mervis-2016' ),
-					'priority' 		=> 10,
-					'section' 		=> 'new_section',
-					'settings' 		=> 'color_field'
-				),
-			)
-		);
-		$wp_customize->get_setting( 'color_field' )->transport = 'postMessage';
-
-
-
-		// File Upload Field
-		$wp_customize->add_setting( 'file_upload' );
-		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'file_upload',
-				array(
-					'description' 	=> esc_html__( '', 'mervis-2016' ),
-					'label' 		=> esc_html__( 'File Upload', 'mervis-2016' ),
-					'priority' 		=> 10,
-					'section' 		=> 'new_section',
-					'settings' 		=> 'file_upload'
-				),
-			)
-		);
-
-
-
-		// Image Upload Field
-		$wp_customize->add_setting( 'image_upload',
-			array(
-				'default' 			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'image_upload',
-				array(
-					'description' 	=> esc_html__( '', 'mervis-2016' ),
-					'label' 		=> esc_html__( 'Image Field', 'mervis-2016' ),
-					'priority' 		=> 10,
-					'section' 		=> 'new_section',
-					'settings' 		=> 'image_upload'
-				)
-			)
-		);
-		$wp_customize->get_setting( 'image_upload' )->transport = 'postMessage';
-
-
-
-		// Media Upload Field
-		// Can be used for images
-		// Returns the image ID, not a URL
-		$wp_customize->add_setting( 'media_upload',
-			array(
-				'default' 			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control(
-			new WP_Customize_Media_Control(
-				$wp_customize,
-				'media_upload',
-				array(
-					'description' 	=> esc_html__( '', 'mervis-2016' ),
-					'label' 		=> esc_html__( 'Media Field', 'mervis-2016' ),
-					'mime_type' 	=> '',
-					'priority' 		=> 10,
-					'section'		=> 'new_section',
-					'settings' 		=> 'media_upload'
-				)
-			)
-		);
-		$wp_customize->get_setting( 'media_upload' )->transport = 'postMessage';
-
-
-
-
-		// Cropped Image Field
-		$wp_customize->add_setting( 'cropped_image',
-			array(
-				'default' 			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control(
-			new WP_Customize_Cropped_Image_Control(
-				$wp_customize,
-				'cropped_image',
-				array(
-					'description' 	=> esc_html__( '', 'mervis-2016' ),
-					'flex_height' 	=> '',
-					'flex_width' 	=> '',
-					'height' 		=> '1080',
-					'priority' 		=> 10,
-					'section' 		=> 'new_section',
-					'settings' 		=> 'cropped_image',
-					width' 			=> '1920'
-				)
-			)
-		);
-		$wp_customize->get_setting( 'cropped_image' )->transport = 'postMessage';
-
-
-		// Country Select Field
-		$wp_customize->add_setting( 'country',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'country',
-			array(
-				'choices' 			=> $this->country_list(),
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'Country', 'mervis-2016' ),
-				'priority' 			=> 250,
-				'section' 			=> 'contact_info',
-				'settings' 			=> 'country',
-				'type' 				=> 'select'
-			)
-		);
-		$wp_customize->get_setting( 'country' )->transport = 'postMessage';
-
-
-		// US States Select Field
-		$wp_customize->add_setting( 'us_state',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'us_state',
-			array(
-				'choices' 			=> $this->states_list_unitedstates(),
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'State', 'mervis-2016' ),
-				'priority' 			=> 230,
-				'section' 			=> 'contact_info',
-				'settings' 			=> 'us_state',
-				'type' 				=> 'select'
-			)
-		);
-		$wp_customize->get_setting( 'us_state' )->transport = 'postMessage';
-
-
-		// Canadian States Select Field
-		$wp_customize->add_setting( 'canada_state',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'canada_state',
-			array(
-				'choices' 			=> $this->states_list_canada(),
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'State', 'mervis-2016' ),
-				'priority' 			=> 230,
-				'section' 			=> 'contact_info',
-				'settings' 			=> 'canada_state',
-				'type' 				=> 'select'
-			)
-		);
-		$wp_customize->get_setting( 'canada_state' )->transport = 'postMessage';
-
-
-		// Australian States Select Field
-		$wp_customize->add_setting( 'australia_state',
-			array(
-				'default'  			=> '',
-				'transport' 		=> 'postMessage'
-			)
-		);
-		$wp_customize->add_control( 'australia_state',
-			array(
-				'choices' 			=> $this->states_list_australia(),
-				'description' 		=> esc_html__( '', 'mervis-2016' ),
-				'label' 			=> esc_html__( 'State', 'mervis-2016' ),
-				'priority' 			=> 230,
-				'section' 			=> 'contact_info',
-				'settings' 			=> 'australia_state',
-				'type' 				=> 'select'
-			)
-		);
-		$wp_customize->get_setting( 'australia_state' )->transport = 'postMessage';
-
-
-		*/
-
 	} // register_fields()
 
 	/**
@@ -668,14 +204,13 @@ class Mervis_2016_Customizer {
 	 *
 	 * @access 		public
 	 * @since 		1.0.0
-	 *
+	 * @see 		header_output()
 	 * @param 		string 		$selector 		CSS selector
 	 * @param 		string 		$style 			The name of the CSS *property* to modify
 	 * @param 		string 		$mod_name 		The name of the 'theme_mod' option to fetch
 	 * @param 		string 		$prefix 		Optional. Anything that needs to be output before the CSS property
 	 * @param 		string 		$postfix 		Optional. Anything that needs to be output after the CSS property
 	 * @param 		bool 		$echo 			Optional. Whether to print directly to the page (default: true).
-	 *
 	 * @return 		string 						Returns a single line of CSS with selectors and a property.
 	 */
 	public function generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
@@ -708,6 +243,7 @@ class Mervis_2016_Customizer {
 	 *
 	 * Used by hook: 'wp_head'
 	 *
+	 * @hooked 		wp_head
 	 * @access 		public
 	 * @see 		add_action( 'wp_head', $func )
 	 * @since 		1.0.0
@@ -766,7 +302,6 @@ class Mervis_2016_Customizer {
 	 * Returns true if a country has a custom select menu
 	 *
 	 * @param 		string 		$country 			The country code to check
-	 *
 	 * @return 		bool 							TRUE if the code is in the array, FALSE otherwise
 	 */
 	public function custom_countries( $country ) {
@@ -781,7 +316,6 @@ class Mervis_2016_Customizer {
 	 * Returns an array of countries or a country name.
 	 *
 	 * @param 		string 		$country 		Country code to return (optional)
-	 *
 	 * @return 		array|string 				Array of countries or a single country name
 	 */
 	public function country_list( $country = '' ) {
@@ -1074,7 +608,7 @@ class Mervis_2016_Customizer {
 
 		foreach ( $files as $file ) {
 
-			require_once( trailingslashit( get_template_directory() ) . 'inc/customizer/' . $file );
+			require_once( trailingslashit( get_stylesheet_directory() ) . 'inc/customizer/' . $file );
 
 		}
 

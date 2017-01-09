@@ -35,6 +35,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 			the_title();
 
 		?></div>
-		<img src="<?php echo get_template_directory_uri(); ?>/assets/images/mobile-logo.png" class="mervis-logo" />
+		<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/mobile-logo.png" class="mervis-logo" />
 	</div><!-- .wrapper -->
 </header>

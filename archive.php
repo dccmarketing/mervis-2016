@@ -17,7 +17,8 @@ get_header();
 			/**
 			 * The mervis_2016_while_before action hook
 			 *
-			 * @hooked 		title_archive
+			 * @hooked 		title_archive 			10
+			 * @hooked 		title_single_post 		10
 			 */
 			do_action( 'mervis_2016_while_before' );
 
@@ -34,7 +35,7 @@ get_header();
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				get_template_part( 'partials/template-parts/content', get_post_format() );
+				get_template_part( 'template-parts/content', get_post_format() );
 
 				/**
 				 * The mervis_2016_entry_after action hook
@@ -57,7 +58,7 @@ get_header();
 			 */
 			do_action( 'mervis_2016_entry_before' );
 
-			get_template_part( 'partials/template-parts/content', 'none' );
+			get_template_part( 'template-parts/content', 'none' );
 
 			/**
 			 * The mervis_2016_entry_after action hook

@@ -55,43 +55,41 @@ do_action( 'mervis_2016_html_before' );
 		?><header role="banner"><?php
 
 			/**
-			 * The mervis_2016_header_top action hook
+			 * The castings_header_top action hook
 			 *
 			 * @hooked 		header_wrap_begin 		10
 			 * @hooked 		site_branding_begin 	15
 			 */
-			do_action( 'mervis_2016_header_top' );
+			do_action( 'castings_header_top' );
 
 			/**
-			 * The header_content action hook
+			 * The castings_header_content action hook
 			 *
 			 * @hooked 		title_site 					10
 			 * @hooked 		text_logo 					15
 			 * @hooked 		site_branding_end 			20
 			 * @hooked 		header_menus_wrap_begin 	25
-			 * @hooked 		menu_toptabs 				30
-			 * @hooked 		menu_header 				35
+			 * @hooked 		menu_castings_header 		35
 			 */
-			do_action( 'mervis_2016_header_content' );
+			do_action( 'castings_header_content' );
 
 			/**
-			 * The mervis_2016_header_bottom action hook
+			 * The castings_header_bottom action hook
 			 *
 			 * @hooked 		header_menus_wrap_end 		75
-			 * @hooked 		header_wrap_end 			85
+			 * @hooked 		header_wrap_end 			90
 			 */
-			do_action( 'mervis_2016_header_bottom' );
+			do_action( 'castings_header_bottom' );
 
 		?></header><?php
 
 		/**
-		 * The mervis_2016_header_after action hook
+		 * The castings_header_after action hook
 		 *
-		 * @hooked 			slider_home 			10
 		 * @hooked 			featured_image 			10
-		 * @hooked 			menu_belowslider 		15
+		 * @hooked 			menu_castings_main 		15
 		 */
-		do_action( 'mervis_2016_header_after' );
+		do_action( 'castings_header_after' );
 
 		/**
 		 * The mervis_2016_content_before action hook

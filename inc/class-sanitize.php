@@ -18,16 +18,11 @@ class Mervis_2016_Sanitize {
 	/**
 	 * Cleans the data
 	 *
-	 * @access 	public
-	 * @since 	0.1
-	 *
-	 * @uses 	sanitize_email()
-	 * @uses 	sanitize_phone()
-	 * @uses 	esc_textarea()
-	 * @uses 	sanitize_text_field()
-	 * @uses 	esc_url()
-	 *
-	 * @return  mixed         The sanitized data
+	 * @access 		public
+	 * @since 		0.1
+	 * @param 		mixed 		$data 		The data to sanitize.
+	 * @param 		string  	$type 		The data type.
+	 * @return  	mixed         			The sanitized data
 	 */
 	public function clean( $data, $type ) {
 
@@ -72,6 +67,7 @@ class Mervis_2016_Sanitize {
 
 			case 'checkbox'			: $sanitized = ( isset( $data ) ? 1 : 0 ); break;
 			case 'color' 			: $sanitized = $this->sanitize_hex_color( $data ); break;
+			case 'editor' 			: $sanitized = wp_kses_post( $data ); break;
 			case 'email'			: $sanitized = sanitize_email( $data ); break;
 			case 'file'				: $sanitized = sanitize_file_name( $data ); break;
 			case 'tel'				: $sanitized = $this->sanitize_phone( $data ); break;
@@ -92,11 +88,10 @@ class Mervis_2016_Sanitize {
 	/**
 	 * Checks a date against a format to ensure its validity
 	 *
-	 * @link 	http://www.php.net/manual/en/function.checkdate.php
-	 *
-	 * @param  	string 		$date   		The date as collected from the form field
-	 * @param  	string 		$format 		The format to check the date against
-	 * @return 	string 		A validated, formatted date
+	 * @link 		http://www.php.net/manual/en/function.checkdate.php
+	 * @param  		string 		$date   		The date as collected from the form field
+	 * @param  		string 		$format 		The format to check the date against
+	 * @return 		string 		A validated, formatted date
 	 */
 	private function validate_date( $date, $format = 'Y-m-d H:i:s' ) {
 
@@ -119,12 +114,13 @@ class Mervis_2016_Sanitize {
 	/**
 	 * Validates the input is a hex color.
 	 *
-	 * @param 	string 		$color 			The hex color string
-	 * @return 	string 						The sanitized hex color string
+	 * @exits 		If $color is empty.
+	 * @param 		string 		$color 			The hex color string
+	 * @return 		string 						The sanitized hex color string
 	 */
 	private function sanitize_hex_color( $color ) {
 
-		if ( empty( $color ) ) { return; }
+		if ( empty( $color ) ) { return FALSE; }
 
 		$return = '';
 		$color 	= trim( $color );
@@ -143,11 +139,12 @@ class Mervis_2016_Sanitize {
 	/**
 	 * Validates a phone number
 	 *
-	 * @access 	private
-	 * @since	0.1
-	 * @link	http://jrtashjian.com/2009/03/code-snippet-validate-a-phone-number/
-	 * @param 	string 			$phone				A phone number string
-	 * @return	string|bool		$phone|FALSE		Returns the valid phone number, FALSE if not
+	 * @exits 		If $phone is empty.
+	 * @access 		private
+	 * @since		0.1
+	 * @link		http://jrtashjian.com/2009/03/code-snippet-validate-a-phone-number/
+	 * @param 		string 			$phone				A phone number string
+	 * @return		string|bool		$phone|FALSE		Returns the valid phone number, FALSE if not
 	 */
 	private function sanitize_phone( $phone ) {
 
@@ -166,14 +163,17 @@ class Mervis_2016_Sanitize {
 	/**
 	 * Performs general cleaning functions on data
 	 *
-	 * @param 	mixed 	$input 		Data to be cleaned
-	 * @return 	mixed 	$return 	The cleaned data
+	 * @exits 		If $input is empty.
+	 * @param 		mixed 		$input 		Data to be cleaned
+	 * @return 		mixed 		$return 	The cleaned data
 	 */
 	private function sanitize_random( $input ) {
 
-			$one	= trim( $input );
-			$two	= stripslashes( $one );
-			$return	= htmlspecialchars( $two );
+		if ( empty( $input ) ) { return ''; }
+
+		$one	= trim( $input );
+		$two	= stripslashes( $one );
+		$return	= htmlspecialchars( $two );
 
 		return $return;
 

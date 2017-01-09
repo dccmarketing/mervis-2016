@@ -69,6 +69,13 @@
 		} );
 	} );
 
+	// default_text_logo.
+	wp.customize( 'default_text_logo', function( value ) {
+		value.bind( function( to ) {
+			$( '#text-logo' ).attr( 'src', to );
+		} );
+	} );
+
 
 
 /*

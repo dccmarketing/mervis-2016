@@ -11,6 +11,8 @@
 
 			/**
 			 * The mervis_2016_content_bottom action hook
+			 *
+			 * @hooked 			sidebar_news 		50
 			 */
 			do_action( 'mervis_2016_content_bottom' );
 
@@ -18,11 +20,15 @@
 
 		/**
 		 * The mervis_2016_content_after action hook
+		 *
+		 * @hooked 			sidebar_home 	`	50`
 		 */
 		do_action( 'mervis_2016_content_after' );
 
 		/**
 		 * The mervis_2016_footer_before action hook
+		 *
+		 * @hooked 			sidebar_footer 		10
 		 */
 		do_action( 'mervis_2016_footer_before' );
 
@@ -30,18 +36,22 @@
 
 			/**
 			 * The mervis_2016_footer_top action hook
+			 *
+			 * @hooked 			footer_wrap_begin
 			 */
 			do_action( 'mervis_2016_footer_top' );
 
 			/**
 			 * The mervis_2016_footer_content action hook
 			 *
-			 * @hooked 		footer_content
+			 * @hooked 		footer_content 		20
 			 */
 			do_action( 'mervis_2016_footer_content' );
 
 			/**
 			 * The mervis_2016_footer_bottom action hook
+			 *
+			 * @hooked 			footer_wrap_end
 			 */
 			do_action( 'mervis_2016_footer_bottom' );
 

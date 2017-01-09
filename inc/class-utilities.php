@@ -40,13 +40,18 @@ class Mervis_2016_Utilities {
 
 	} // __construct()
 
+	/**
+	 * Setup theme support options.
+	 *
+	 * @hooked 		after_setup_theme
+	 */
 	public function setup() {
 
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'mervis-2016', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'mervis-2016', get_stylesheet_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -115,7 +120,9 @@ class Mervis_2016_Utilities {
 			'menubox3' 			=> esc_html__( 'Home Menubox 3', 'mervis-2016' ),
 			'menubox4' 			=> esc_html__( 'Home Menubox 4', 'mervis-2016' ),
 			'android-footer' 	=> esc_html__( 'Android Footer Location', 'mervis-2016' ),
-			'header-tabs' 		=> esc_html__( 'Header Tabs', 'mervis-2016' )
+			'header-tabs' 		=> esc_html__( 'Header Tabs', 'mervis-2016' ),
+			'castings-header' 	=> esc_html__( 'Illini Castings Header', 'mervis-2016' ),
+			'castings-main' 	=> esc_html__( 'Illini Castings Main', 'mervis-2016' )
 		) );
 
 	} // setup()
@@ -123,9 +130,9 @@ class Mervis_2016_Utilities {
 	/**
 	 * Add core editor buttons that are disabled by default
 	 *
-	 * @param 	array 		$buttons 		The current buttons
-	 *
-	 * @return 	array 						The modified buttons
+	 * @hooked 		mce_buttons_2
+	 * @param 		array 		$buttons 		The current buttons
+	 * @return 		array 						The modified buttons
 	 */
 	public function add_editor_buttons( $buttons ) {
 
@@ -139,7 +146,8 @@ class Mervis_2016_Utilities {
 	/**
 	 * Adds the Menu Item Title as a class on the menu item
 	 *
-	 * @param 	object 		$menu_item 			A menu item object
+	 * @hooked 		wp_setup_nav_menu_item
+	 * @param 		object 		$menu_item 			A menu item object
 	 */
 	public function add_menu_title_as_class( $menu_item ) {
 
@@ -158,24 +166,24 @@ class Mervis_2016_Utilities {
 	/**
 	 * Adds PDF as a filter for the Media Library
 	 *
-	 * @param 	array 		$post_mime_types 		The current MIME types
-	 *
-	 * @return 	array 								The modified MIME types
+	 * @hooked 		post_mime_types
+	 * @param 		array 		$post_mime_types 		The current MIME types
+	 * @return 		array 								The modified MIME types
 	 */
 	public function add_mime_types( $post_mime_types ) {
 
-	    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'mervis-2016' ), esc_html__( 'Manage PDFs', 'mervis-2016' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-	    $post_mime_types['text/x-vcard'] 	= array( esc_html__( 'vCards', 'mervis-2016' ), esc_html__( 'Manage vCards', 'mervis-2016' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
+		$post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'mervis-2016' ), esc_html__( 'Manage PDFs', 'mervis-2016' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+		$post_mime_types['text/x-vcard'] 	= array( esc_html__( 'vCards', 'mervis-2016' ), esc_html__( 'Manage vCards', 'mervis-2016' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
 
-	    return $post_mime_types;
+		return $post_mime_types;
 
 	} // add_mime_types()
 
 	/**
 	 * Adds more allowed tags for WP menu containers.
 	 *
+	 * @hooked 		wp_nav_menu_container_allowedtags
 	 * @param 		array 			$tags 			The current allowed tags
-	 *
 	 * @return 		array 							The modified allowed tags
 	 */
 	public function allow_section_tags_as_containers( $tags ) {
@@ -188,6 +196,8 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Sets the async attribute on all script tags.
+	 *
+	 * @hooked 		script_loader_tag
 	 */
 	public function async_scripts( $tag, $handle ) {
 
@@ -204,6 +214,7 @@ class Mervis_2016_Utilities {
 	/**
 	 * Creates a style tag in the header with the background image
 	 *
+	 * @hooked 		wp_head
 	 * @return 		mixed 			Style tag
 	 */
 	public function background_images() {
@@ -247,6 +258,10 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Flush out the transients used in mervis_2016_categorized_blog.
+	 *
+	 * @exits 		Doing Autosave.
+	 * @hooked 		edit_category
+	 * @hooked 		save_post
 	 */
 	public function category_transient_flusher() {
 
@@ -262,6 +277,7 @@ class Mervis_2016_Utilities {
 	 *
 	 * Priority 0 to make it available to lower priority callbacks.
 	 *
+	 * @hooked 		after_setup_theme
 	 * @global 		int 		$content_width
 	 */
 	public function content_width() {
@@ -273,8 +289,8 @@ class Mervis_2016_Utilities {
 	/**
 	 * Adds support for additional MIME types to WordPress
 	 *
+	 * @hooked 		upload_mimes
 	 * @param 		array 		$existing_mimes 			The existing MIME types
-	 *
 	 * @return 		array 									The modified MIME types
 	 */
 	public function custom_upload_mimes( $existing_mimes = array() ) {
@@ -288,6 +304,8 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Removes WordPress emoji support everywhere
+	 *
+	 * @hooked 		init
 	 */
 	public function disable_emojis() {
 
@@ -303,6 +321,8 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Enqueues scripts and styles for the admin
+	 *
+	 * @hooked 		admin_enqueue_scripts
 	 */
 	public function enqueue_admin( $hook ) {
 
@@ -314,6 +334,8 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+	 *
+	 * @hooked 		customize_preview_init
 	 */
 	public function enqueue_customizer() {
 
@@ -324,8 +346,7 @@ class Mervis_2016_Utilities {
 	/**
 	 * Used by customizer controls, mostly for active callbacks.
 	 *
-	 * @hook		customize_controls_enqueue_scripts
-	 *
+	 * @hooked		customize_controls_enqueue_scripts
 	 * @access 		public
 	 * @see 		add_action( 'customize_preview_init', $func )
 	 * @since 		1.0.0
@@ -338,6 +359,8 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Enqueues scripts and styles for the login page
+	 *
+	 * @hooked 		login_enqueue_scripts
 	 */
 	public function enqueue_login() {
 
@@ -347,6 +370,8 @@ class Mervis_2016_Utilities {
 
 	/**
 	 * Enqueue scripts and styles for the front end.
+	 *
+	 * @hooked 		wp_enqueue_scripts
 	 */
 	public function enqueue_public() {
 
@@ -356,9 +381,9 @@ class Mervis_2016_Utilities {
 
 		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), $this->version, true );
 
-		wp_enqueue_script( 'mervis-2016-public', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire', 'jquery-ui-accordion' ), $this->version, true );
+		wp_enqueue_script( 'mervis-2016-public', get_stylesheet_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire', 'jquery-ui-accordion' ), $this->version, true );
 
-		wp_enqueue_script( 'mervis-2016-maps', '//maps.googleapis.com/maps/api/js?sensor=false' );
+		//wp_enqueue_script( 'mervis-2016-maps', '//maps.googleapis.com/maps/api/js?sensor=false' );
 
 		wp_enqueue_style( 'dashicons' );
 
@@ -373,9 +398,9 @@ class Mervis_2016_Utilities {
 	/**
 	 * Limits excerpt length
 	 *
-	 * @param 	int 		$length 			The current word length of the excerpt
-	 *
-	 * @return 	int 							The word length of the excerpt
+	 * @hooked 		excerpt_length
+	 * @param 		int 		$length 			The current word length of the excerpt
+	 * @return 		int 							The word length of the excerpt
 	 */
 	public function excerpt_length( $length ) {
 
@@ -392,11 +417,10 @@ class Mervis_2016_Utilities {
 	/**
 	 * Customizes the "Read More" text for excerpts
 	 *
-	 * @global   			$post 		The post object
-	 *
-	 * @param 	mixed 		$more 		The current "read more"
-	 *
-	 * @return 	mixed 					The modifed "read more"
+	 * @hooked 		excerpt_more
+	 * @global   				$post 		The post object
+	 * @param 		mixed 		$more 		The current "read more"
+	 * @return 		mixed 					The modifed "read more"
 	 */
 	public function excerpt_read_more( $more ) {
 
@@ -415,7 +439,8 @@ class Mervis_2016_Utilities {
 	/**
 	 * Properly encode a font URLs to enqueue a Google font
 	 *
-	 * @return 	mixed 		A properly formatted, translated URL for a Google font
+	 * @see 		enqueue_public()
+	 * @return 		mixed 		A properly formatted, translated URL for a Google font
 	 */
 	public static function fonts_url() {
 
@@ -446,10 +471,10 @@ class Mervis_2016_Utilities {
 	/**
 	 * Returns a WordPress menu for a shortcode
 	 *
-	 * @param 	array 		$atts 			Shortcode attributes
-	 * @param 	mixed 		$content 		The page content
-	 *
-	 * @return 	mixed 						A WordPress menu
+	 * @hooked 		add_shortcode
+	 * @param 		array 		$atts 			Shortcode attributes
+	 * @param 		mixed 		$content 		The page content
+	 * @return 		mixed 						A WordPress menu
 	 */
 	public function list_menu( $atts, $content = null ) {
 
@@ -493,49 +518,10 @@ class Mervis_2016_Utilities {
 	} // list_menu()
 
 	/**
-	 * Creates a style tag in the header with the background image
-	 *
-	 * @return 		mixed 			Style tag
-	 */
-	public function logo_text() {
-
-		$output = '';
-		$image 	= mervis_2016_get_thumbnail_url( get_the_ID(), 'full' );
-
-		if ( ! $image ) {
-
-			$parents = get_post_ancestors( get_the_ID() );
-
-			if ( ! empty( $parents ) ) {
-
-				$id 	= $parents[count( $parents ) - 1];
-				$image 	= mervis_2016_get_thumbnail_url( $id, 'full' );
-
-			}
-
-		}
-
-		if ( ! $image ) {
-
-			$image = get_theme_mod( 'default_text_logo' );
-
-		}
-
-		if ( empty( $image ) ) { return; }
-
-		?><style>
-			.featured-image {background-image:url(<?php echo esc_url( $image ); ?>);}
-		</style><!-- Background Images --><?php
-
-	} // logo_text()
-
-	/**
 	 * Converts the search input button to an HTML5 button element
 	 *
-	 * @hook 		get_search_form
-	 *
+	 * @hooked 		get_search_form
 	 * @param 		mixed  		$form 			The current form HTML
-	 *
 	 * @return 		mixed 						The modified form HTML
 	 */
 	public function make_search_button_a_button( $form ) {
@@ -556,11 +542,10 @@ class Mervis_2016_Utilities {
 	/**
 	 * Adds classes to the body tag.
 	 *
-	 * @global 	$post						The $post object
-	 *
-	 * @param 	array 		$classes 		Classes for the body element.
-	 *
-	 * @return 	array 						The modified body class array
+	 * @hooked		body_class
+	 * @global 					$post			The $post object
+	 * @param 		array 		$classes 		Classes for the body element.
+	 * @return 		array 						The modified body class array
 	 */
 	public function page_body_classes( $classes ) {
 
@@ -597,9 +582,9 @@ class Mervis_2016_Utilities {
 	/**
 	 * The content for each column cell
 	 *
+	 * @hooked		manage_page_posts_custom_column
 	 * @param 		string 		$column_name 		The name of the column
 	 * @param 		int 		$post_ID 			The post ID
-	 *
 	 * @return 		mixed 							The cell content
 	 */
 	public function page_template_column_content( $column_name, $post_ID ) {
@@ -625,15 +610,15 @@ class Mervis_2016_Utilities {
 	/**
 	 * Adds the page template column to the columns on the page listings
 	 *
-	 * @param 	array 		$defaults 			The current column names
-	 *
-	 * @return 	array           				The modified column names
+	 * @hooked 		manage_page_posts_columns
+	 * @param 		array 		$defaults 			The current column names
+	 * @return 		array           				The modified column names
 	 */
 	public function page_template_column_head( $defaults ) {
 
 		$defaults['page_template'] = esc_html( 'Page Template', 'mervis-2016' );
 
-	    return $defaults;
+		return $defaults;
 
 	} // page_template_column_head()
 
@@ -643,9 +628,10 @@ class Mervis_2016_Utilities {
 	 *
 	 * Does not remove query strings from Google Font calls.
 	 *
-	 * @param 	string 		$src 			The resource URL
-	 *
-	 * @return 	string 						The modifed resource URL
+	 * @hooked		style_loader_src
+	 * @hooked 		script_loader_src
+	 * @param 		string 		$src 			The resource URL
+	 * @return 		string 						The modifed resource URL
 	 */
 	public function remove_cssjs_ver( $src ) {
 
@@ -665,9 +651,8 @@ class Mervis_2016_Utilities {
 	/**
 	 * Removes the "Private" text from the private pages in the breadcrumbs
 	 *
-	 * @param 	string 		$text 			The breadcrumb text
-	 *
-	 * @return 	string 						The modified breadcrumb text
+	 * @param 		string 		$text 			The breadcrumb text
+	 * @return 		string 						The modified breadcrumb text
 	 */
 	public function remove_private( $text ) {
 
@@ -686,10 +671,9 @@ class Mervis_2016_Utilities {
 	/**
 	 * Unlinks breadcrumbs that are private pages
 	 *
-	 * @param 	mixed 		$output 		The HTML output for the breadcrumb
-	 * @param 	array 		$link 			Array of link info
-	 *
-	 * @return 	mixed 						The modified link output
+	 * @param 		mixed 		$output 		The HTML output for the breadcrumb
+	 * @param 		array 		$link 			Array of link info
+	 * @return 		mixed 						The modified link output
 	 */
 	public function unlink_private_pages( $output, $link ) {
 
@@ -711,7 +695,8 @@ class Mervis_2016_Utilities {
 	/**
 	 * Register widget areas.
 	 *
-	 * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
+	 * @hooked 		widgets_init
+	 * @link 		https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
 	 */
 	public function widgets_init() {
 
@@ -750,11 +735,11 @@ class Mervis_2016_Utilities {
 	/**
 	 * Adds the video ID as the ID attribute on the iframe
 	 *
+	 * @hooked 		embed_oembed_html
 	 * @param 		string 		$html 			The current oembed HTML
 	 * @param 		string 		$url 			The oembed URL
 	 * @param 		array 		$attr 			The oembed attributes
 	 * @param 		int 		$post_id 		The post ID
-	 *
 	 * @return 		string 						The modified oembed HTML
 	 */
 	public function youtube_add_id_attribute( $html, $url, $attr, $post_id ) {
