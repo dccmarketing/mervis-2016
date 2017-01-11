@@ -51,7 +51,7 @@ class Mervis_2016_Utilities {
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 */
-		load_theme_textdomain( 'mervis-2016', get_stylesheet_directory() . '/languages' );
+		load_theme_textdomain( 'mervis-2016', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -153,10 +153,14 @@ class Mervis_2016_Utilities {
 
 		$title = sanitize_title( $menu_item->title );
 
-		if ( ! in_array( $title, $menu_item->classes ) ) {
+		if ( empty( $menu_item->classes ) || ! is_array( $menu_item->classes ) ) {
 
+			$menu_item->classes[0] = $title;
+
+		} elseif ( ! in_array( $title, $menu_item->classes ) ) {
+			
 			$menu_item->classes[] = $title;
-
+			
 		}
 
 		return $menu_item;
@@ -172,10 +176,10 @@ class Mervis_2016_Utilities {
 	 */
 	public function add_mime_types( $post_mime_types ) {
 
-		$post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'mervis-2016' ), esc_html__( 'Manage PDFs', 'mervis-2016' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
-		$post_mime_types['text/x-vcard'] 	= array( esc_html__( 'vCards', 'mervis-2016' ), esc_html__( 'Manage vCards', 'mervis-2016' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
+	    $post_mime_types['application/pdf'] = array( esc_html__( 'PDFs', 'mervis-2016' ), esc_html__( 'Manage PDFs', 'mervis-2016' ), _n_noop( 'PDF <span class="count">(%s)</span>', 'PDFs <span class="count">(%s)</span>' ) );
+	    $post_mime_types['text/x-vcard'] 	= array( esc_html__( 'vCards', 'mervis-2016' ), esc_html__( 'Manage vCards', 'mervis-2016' ), _n_noop( 'vCard <span class="count">(%s)</span>', 'vCards <span class="count">(%s)</span>' ) );
 
-		return $post_mime_types;
+	    return $post_mime_types;
 
 	} // add_mime_types()
 
@@ -381,9 +385,9 @@ class Mervis_2016_Utilities {
 
 		wp_enqueue_script( 'enquire', '//cdnjs.cloudflare.com/ajax/libs/enquire.js/2.1.2/enquire.min.js', array(), $this->version, true );
 
-		wp_enqueue_script( 'mervis-2016-public', get_stylesheet_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire', 'jquery-ui-accordion' ), $this->version, true );
+		wp_enqueue_script( 'mervis-2016-public', get_template_directory_uri() . '/assets/js/public.min.js', array( 'jquery', 'enquire', 'jquery-ui-accordion' ), $this->version, true );
 
-		//wp_enqueue_script( 'mervis-2016-maps', '//maps.googleapis.com/maps/api/js?sensor=false' );
+		wp_enqueue_script( 'mervis-2016-maps', '//maps.googleapis.com/maps/api/js?sensor=false' );
 
 		wp_enqueue_style( 'dashicons' );
 
@@ -618,7 +622,7 @@ class Mervis_2016_Utilities {
 
 		$defaults['page_template'] = esc_html( 'Page Template', 'mervis-2016' );
 
-		return $defaults;
+	    return $defaults;
 
 	} // page_template_column_head()
 
